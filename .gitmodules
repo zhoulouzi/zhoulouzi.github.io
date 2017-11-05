@@ -1,0 +1,3 @@
+[submodule "themes/tran"]
+	path = themes/tran
+	url = git://github.com/kakawait/hugo-tranquilpeak-theme.git
