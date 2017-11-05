@@ -3,22 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://blog.zhoulouzi.com/archives/</loc>
+    <loc>http://blog.zhoulouzi.com/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/</loc>
+    <loc>http://blog.zhoulouzi.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/</loc>
+    <loc>http://blog.zhoulouzi.com/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/tags/</loc>
+    <loc>http://blog.zhoulouzi.com/tags/</loc>
     <priority>0</priority>
   </url>
   
