@@ -1,0 +1,864 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.2-BETA">
+    <title>Prometheus vs influxDB</title>
+    <meta name="author" content="zhoulouzi">
+    <meta name="keywords" content=", zhoulouzi">
+
+    <link rel="icon" href="http://blog.zhoulouzi.com/favicon.png">
+    
+
+    
+    <meta name="description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
+prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
+Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
+TICK stack这边的东西：
+telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
+概念: input,ouput,processor,aggerator
+input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
+    <meta property="og:description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
+prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
+Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
+TICK stack这边的东西：
+telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
+概念: input,ouput,processor,aggerator
+input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Prometheus vs influxDB">
+    <meta property="og:url" content="/2017/04/prometheus/">
+    <meta property="og:site_name" content="Blog zhoulouzi">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Blog zhoulouzi">
+    <meta name="twitter:description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
+prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
+Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
+TICK stack这边的东西：
+telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
+概念: input,ouput,processor,aggerator
+input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
+    
+      <meta name="twitter:creator" content="@zhoulouzi">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
+    
+
+    
+      <meta property="og:image" content="http://blog.zhoulouzi.com/cover.jpg">
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://blog.zhoulouzi.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://blog.zhoulouzi.com/">Blog zhoulouzi</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://blog.zhoulouzi.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://blog.zhoulouzi.com/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">zhoulouzi</h4>
+        
+          <h5 class="sidebar-profile-bio">KEEP FOCUS AND CARRY ON</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://blog.zhoulouzi.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://blog.zhoulouzi.com/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://blog.zhoulouzi.com/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://blog.zhoulouzi.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/zhoulouzi" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Prometheus vs influxDB
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-04-05T21:48:15&#43;08:00">
+        
+  四月 5, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="http://blog.zhoulouzi.com/categories/docker">docker</a>, 
+    
+      <a class="category-link" href="http://blog.zhoulouzi.com/categories/prometheus">prometheus</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<p>InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。</p>
+
+<p>prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是：
+1. 多维度的数据模型(time series identified by metric name and key/value pairs)
+2. promQL强大灵活的查询语言
+3. 不依赖分布式存储
+4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。
+5. 通过pushgateway来支持push time series，适合short-lived
+ job。
+6. 可以通过服务发现或者静态配置scarpe目标
+7. 支持多种模式的图形和仪表盘</p>
+
+<p>Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。
+<a href="https://www.robustperception.io/translating-between-monitoring-languages/">Translating between monitoring languages</a></p>
+
+<p>TICK stack这边的东西：</p>
+
+<h3 id="telegraf">telegraf：</h3>
+
+<p><img src="http://opiq5jspn.bkt.clouddn.com/telegraf.png" alt="telegraf" />{: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}</p>
+
+<p>概念: input,ouput,processor,aggerator</p>
+
+<h2 id="input">input：</h2>
+
+<p>telegraf可以parse以下的数据格式到metrics
+1. influxDB LIne Protocol
+2. JSON
+3. Graphite
+4. value 举例: 45 or &ldquo;abc&rdquo;
+5. nagios
+6. collectd
+telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol：
+1. measurement Name(可以想象成SQL的一个table)
+2. Tags
+3. Fields
+4. Timestamp</p>
+
+<p>感觉telegraf这块的文档写意思就是说telegraf input能识别很多种格式，分别适应不同的场景。
+我这里关注的是 JSON，value</p>
+
+<h2 id="output">output</h2>
+
+<p>telegraf可以把metrics格式转化为以下格式：
+1. influxDB line protocol
+2. JSON
+3.graphite</p>
+
+<p>这里还是只关注输出到influxdb，其他的暂时不做研究。</p>
+
+<h2 id="processor-and-aggregators">processor and aggregators</h2>
+
+<p>官方文档只留下两段话,并没有留下简单的例子来说明how does it works 这点比prometheus的文档略差。
+aggregators就是prometheus qurey function 里的 aggregation。这部分还是prometheus支持的功能更强大一些，搭配recoding rules，使用起来感觉比较方便。不过上篇分享文章中提到telegraf可以搭配kapacitor script 来实现复杂功能。</p>
+
+<h3 id="chronograf">chronograf</h3>
+
+<p>chronograf 是一个webui，可以很方便的创建和设置dashborad和kapacitor的报警规则。对了，从v1.3开始influxdb自带的webui已经被删除，要做查询操作可以在chronograf的data-explorer上完成。
+chronograf颜值挺高的，我觉得比grafana好看。配置起来还是很简单的，这部分就不多说了上个截图</p>
+
+<p><img src="http://opiq5jspn.bkt.clouddn.com/Chronograf.png" alt="chronograf" />{: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}</p>
+
+<h2 id="kapacitor">kapacitor</h2>
+
+<p>kapacitor 是用来产生报警，运行ETL jobs 和检测异常。
+关键功能：
+1. 处理流式数据和批量数据。
+2. 可以定时从influxdb里查询数据，通过line protocal 接受数据。
+3. 利用influxQL处理数据变化， 并可以将数据存回infulxdb。
+4. 添加用户自定义的函数来检测异常
+5. 集成Alerta，Slack</p>
+
+<p>官方的kapacitor文档介绍了Tickscript怎么处理batch和steam数据，感觉学习成本挺高的，后期我准备用prometheus就没有系统的学习。持续关注吧，等有经验的前辈们来总结。·</p>
+
+<h2 id="influxdb">InfluxDB</h2>
+
+<p>InfluxDB应该是这套技术栈最核心的地方了吧，细节可推敲的地方还是很多，influxdb据说很多公司自研监控系统就是用的这.
+时序数据库，跟传统的 关系型数据库，NoSQL有很大的区别
+influxdb 用的存储格式是TSM 一个很深奥的话题。这里就不写了。大家好好看官方文档。</p>
+
+<h1 id="prometheus">prometheus</h1>
+
+<p>接下来把大部分精力都放在prometheus上 （1.7.0 / 2017-06-06 ）加油</p>
+
+<p>prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。</p>
+
+<h2 id="data-model">DATA MODEL</h2>
+
+<p>prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions.
+除此之外，还可以通过query生成临时衍生的time series。
+Metric name and labels</p>
+
+<p>每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。
+metric name 代表一个系统被监测的功能。 eg：http_requests<em>total  命名规则是 符合 [a-zA-Z</em>:][a-zA-Z0-9_:]* 这个正则表达式。</p>
+
+<p>labels 可以使prometheus 的数据多维度。对于相同metric name 给定了 labels组合 都是一个 特定维度 的 一个metric的实例。
+query languages 允许 过滤和聚合通过这些维度，更改任何一个label都将新建一个新的time series</p>
+
+<p>给定一组 metric name 和label
+&gt; &lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, &hellip;}
+&gt; api_http_requests_total{method=&ldquo;POST&rdquo;, handler=&ldquo;/messages&rdquo;}</p>
+
+<p>metric types:
+    prometheus 的 客户端库提供了4个核心的 metric type，不过只是在客户端库里存在，server端存的还是 untyped time series.
+1. counter
+    计数器，很好理解，代表一个只会增长的值。 用例：已经完成的请求数，任务完成数
+2. gauge
+    比计数器多个 减少。用例：内存使用值，the number of running goroutines.
+3. histogram
+    暂未理解
+4. summary
+    暂未理解，官方文档的最佳实践里有举例，学完再回来改</p>
+
+<h2 id="jobs-and-instances">Jobs and instances</h2>
+
+<p>对prometheus 来说每个scraped target都是一个实例。他们的集合可以称为job
+这个在配置prometheus的scraped_configs时候也有体现.
+如果这两个标签已经存在于scraped data里，这时候取决于 配置项honor_labels。</p>
+
+<p>honor<em>labels = true: 将保存scraped data里的数据 忽略 server端labels
+false： 通过重命名来解决，将scraped data  标记为 &ldquo;exported</em>&lt;original-label&gt;&rdquo;,然后添加上server端的labels</p>
+
+<p>server端配置的external_label不受此设置影响，external_label只适用于time series没有给定的labels，如果有，就被忽略。</p>
+
+<h2 id="querying">querying</h2>
+
+<p>prometheus 提供一个 强大的查询语言来为用户提供实时的查询和聚合 time series 。
+prometheus 的 expression language 可以操作4种类型：
+1. instant vector 一组time series 包含每个time series 的一个 sample，共享同一个时间戳
+2. range vector   一组 time series 包含随时间变化的  每个 time series 的 data point值。
+3. scalar 简单的数字浮点值
+4. string 字符串值，目前未使用</p>
+
+<p>举例子说明吧：
+instant vector:  node_load1 表达式得出的结果 （同一个时间戳）
+range vector: node_load1[5m] 表达式得出的结果 多个时间戳（间隔就是 配置里的抓取间隔）</p>
+
+<p>操作符：
+算术操作符：
++ - * ／ %  ^
+比较操作符：
+==  != &gt; &lt; &gt;= &lt;=
+逻辑操作符：
+and or unless
+Aggregation operators:
+sum min max avg stddev stdvar count count_valued bottomk topk quantile
+优先级：
+^
+*，/，%
++， -
+==，!=，&lt;=，&lt;，&gt;=，&gt;
+and， unless
+or</p>
+
+<h2 id="recording-rules">recording rules</h2>
+
+<p>recoding rules 可以帮助你将经常需要计算，或者计算很消耗性能的 表达式 预先计算并保存为新的 time series 然后查询recoding rules 会比每次执行原始表达快得多，这对于dashboard有用，每次dashboard刷新时都会去查询相同的表达式。
+语法：
+&gt; &lt;new time series name&gt;[{&lt;label overrides&gt;}] = &lt;expression to record&gt;</p>
+
+<p>放点简单的配置吧：</p>
+
+<pre><code>cat recoding.rules
+node_host = sum(label_replace(node_boot_time, &quot;host&quot;, &quot;$1&quot;, &quot;instance&quot;, `([\d\.]+):[\d\.]+`)) by (host)
+</code></pre>
+
+<p>上边这个例子在表达式里使用了 Aggregation  Function ，赋值给 node_host 这个metric name。</p>
+
+<p>另外这这里也说一下prometheus 的配置文件里支持抓取时对labels的处理。添加或者根据正则表达式替换，非常方便。
+举个例子，
+prometheus 抓取时 会有个instance的标签 base on <strong>address</strong> 这个tmp标签，格式时 ip：port
+那我在后边用的时候不想用这个port 直接用 ip来显示。</p>
+
+<pre><code>- job_name: 'node'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['192.168.30.200:31083','192.168.30.201:31083','192.168.30.209:31083','192.168.30.210:31083','192.168.30.211:31083','192.168.30.214:31083','192.168.30.215:31083', '192.168.30.239:31083', '192.168.30.195:31083', '192.168.30.202:31083', '192.168.30.203:31083', '192.168.30.108:31083', '192.168.30.156:31083']
+        labels:
+           node_text_label: 'node_scarpe_label_config'
+    relabel_configs:
+      -  source_labels: [__address__]
+         target_label: node_host
+         regex: ([\d\.]+):[\d\.]+
+</code></pre>
+
+<p>效果图：
+<img src="http://opiq5jspn.bkt.clouddn.com/prometheus.png" alt="" />
+这个例子最后就可以给你的series填上你自定义的标签。</p>
+
+<h2 id="配置">配置</h2>
+
+<p>prometheus 由2部分配置组成，一个是command-line flag 和 configuration file。command-line flag 是来配置不可变的系统参数比如说storage location。 configuration file 用来定义去 scraping 的 job instance 和 一堆rules
+prometheus -h 是可以看当前版本可用的avaliable command-line。
+configuration file 的配置可以通过HTTP POST 来随时reload， yaml格式，官网针对每个配置项都有详细的说明可以在使用中探索。
+command-line flag 大致分为5个部分：
+1. ALertmanger的一些简单配置
+2. Log 的简单配置
+3. query 的简单配置
+4. storage 大量的配置
+5. web的简单配置</p>
+
+<p>这里主要总结下 storage的配置：
+prometheus 有自己定规的存储layer 用恒大大小1024字节的chunk来组织采样数据，然后这些chunks都是根据每一个time series 一个文件存放在磁盘上。</p>
+
+<p>内存：
+在v1.6.0之后 storage.local.target-heap-size 替代了 原来storage.local.memory-chunks和storage.local.max-chunks-to-persist。保留了选项但是默认值都是0。只有 storage.local.memory-chunks 非0 时 覆盖 heap-size 的值为 x * 3072
+官方建议 storage.local.target-heap-size 的值为物理内存的三分之二。
+官方默认的GOGC是40%，如果你想修改可以覆盖环境变量</p>
+
+<p>磁盘：</p>
+
+<p>storage.local.path 存储使用目录
+storage.local.retention 采样数据保留多长时间，默认360小时</p>
+
+<p>chunk encoding:</p>
+
+<p>storage.local.chunk-encoding-version  0,1,2 三个版本
+默认是1，1的压缩比0好，0是最快的，官方推荐1.
+0，1都是由固定位数的bit-width。  2 是 可变的bit-width 的encoding。
+2提供更高的压缩比，但是cpu和查询的延迟会增大。
+官方有blog对比!()[<a href="https://prometheus.io/blog/2016/05/08/when-to-use-varbit-chunks/]有兴趣可以看看。">https://prometheus.io/blog/2016/05/08/when-to-use-varbit-chunks/]有兴趣可以看看。</a></p>
+
+<p>alertmanager:</p>
+
+<p>之前弄邮件报警的时候有个坑：
+qq邮箱默认的发送服务器：
+smtp.exmail.qq.com(使用SSL，端口号465)
+而prometheus 发送邮件使用的 STARTTLS  ，具体没有了解过这2个协议的区别，注意下就好
+smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
+
+<h5 id="解决方案资源">解决方案资源：</h5>
+
+<p><a href="https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/">https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://blog.zhoulouzi.com/tags/prometheus/">prometheus</a>
+
+  <a class="tag tag--primary tag--small" href="http://blog.zhoulouzi.com/tags/influxdb/">influxDB</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://blog.zhoulouzi.com/2017/04/prometheus/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2017 zhoulouzi. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://blog.zhoulouzi.com/2017/04/prometheus/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F04%2Fprometheus%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">zhoulouzi</h4>
+    
+      <div id="about-card-bio">KEEP FOCUS AND CARRY ON</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Dev ops
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China Beijing
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/11/raft/">
+                <h3 class="media-heading">Raft 初识</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">the secret lives of data http://thesecretlivesofdata.com/raft/
+he Raft Consensus Algorithm https://raft.github.io/
+Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/11/leetcode/">
+                <h3 class="media-heading">leetcode 笔记</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
+  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &gt; Given an array of integers, every element appears twice except for one. Find that single one. &gt; Note: &gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &gt; One-line python solution with O(n) time  def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/10/minikube/">
+                <h3 class="media-heading">minikube offline installed</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。
+建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
+4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
+/usr/local/bin/minikube start &ndash;vm-driver=none &ndash;iso-url file://tmp/minikube-v0.23.5.iso &ndash;kubernetes-version v1.7.5 &ndash;extra-config=apiserver.Service.NodePortRange=0-60000
+确保 一个localkube的服务正常启动
+做完这些 正常使用kubectl apply 你的服务。</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/06/zihuan/">
+                <h3 class="media-heading">资环十年</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"> 怀念不如相见。 从去年底，微信群里就滴滴不停，大家怂恿着要回学校给今年毕业的兄弟办一场告别赛。话说我们这帮兄弟都是毕业好几年的人了，整天混迹于校园群聊，还整天BB着那个学院今年来比较有实力的选手，那个学院今年怎么招摇了，押注那个学院今年夺冠，其实我看出来了，都是想回去踢个球，喝顿酒，在学弟面前吹吹逼，找找当年的感觉。
+不过说真的，那些年在球队的日子真的是神仙般的生活，踢球，喝酒，吹逼。纯爷们才能一起干的事，你说对吧，Tango？ 5月份，我开始筹备这些事，特别感谢宋忠贤同学的跑腿，帮安排酒店，看欧冠的地方，很不错，大家玩的很嗨。有的兄弟结婚了，有的兄弟事业忙，所以定了一个6月3，4日一个不太炎热的日子。最后报名人数还可以20个人，最后各种原因你懂的，实际到场人数大打折扣。毕了业还这么坑？田老板？毅哥？这二位都是毕业好久没见的兄弟，挺想你们的，上次在北京，没喝够。 老五，谁在我上铺的兄弟，4年的感情一碰就会哭。胖了，听说偷偷跑回学校表白小学妹了？可以啊，66666。 继红哥，球技又提升了，有空回太原和你和亮哥踢，当年教诲，培养毕生难忘。 晓龙，敢无视老子太上皇的位子，成天在学弟面前贬低我的17号？对象不错。嗯。 胖子，你不来，你后悔不，见不了你哥。
+附靓照N张：
+2017年6月3日: 与学弟们的合照 2010年校联赛-资源环境学院冠军 2011年校联赛-资源环境学院八强 2012年校联赛-资源环境学院八强 2013年校联赛-资源环境学院亚军 </div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/04/prometheus/">
+                <h3 class="media-heading">Prometheus vs influxDB</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
+prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
+Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
+TICK stack这边的东西：
+telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
+概念: input,ouput,processor,aggerator
+input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         5 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('http://opiq5jspn.bkt.clouddn.com/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="http://blog.zhoulouzi.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'http:\/\/blog.zhoulouzi.com\/2017\/04\/prometheus\/';
+          
+            this.page.identifier = '\/2017\/04\/prometheus\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'zhoulouzi';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

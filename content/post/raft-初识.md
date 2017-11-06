@@ -8,12 +8,14 @@ tags:
 - consistency
 archives:
 - raft
+categories:
+- algorithm
 clearReading: true
 thumbnailImage: cover.jpg
 thumbnailImagePosition: bottom
 autoThumbnailImage: yes
 metaAlignment: center
-comments: false
+comments: true
 showTags: true
 showPagination: true
 showSocial: true

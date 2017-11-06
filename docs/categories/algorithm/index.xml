@@ -13,13 +13,23 @@
     
     <item>
       <title>Raft 初识</title>
-      <link>http://blog.zhoulouzi.com/posts/raft-%E5%88%9D%E8%AF%86/</link>
+      <link>http://blog.zhoulouzi.com/2017/11/raft/</link>
       <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/posts/raft-%E5%88%9D%E8%AF%86/</guid>
+      <guid>http://blog.zhoulouzi.com/2017/11/raft/</guid>
       <description>the secret lives of data http://thesecretlivesofdata.com/raft/
 he Raft Consensus Algorithm https://raft.github.io/
 Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</description>
+    </item>
+    
+    <item>
+      <title>leetcode 笔记</title>
+      <link>http://blog.zhoulouzi.com/2017/11/leetcode/</link>
+      <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
+      
+      <guid>http://blog.zhoulouzi.com/2017/11/leetcode/</guid>
+      <description>总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
+  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &amp;gt; Given an array of integers, every element appears twice except for one. Find that single one. &amp;gt; Note: &amp;gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &amp;gt; One-line python solution with O(n) time  def singleNumber(self, nums): &amp;quot;&amp;quot;&amp;quot; :type nums: List[int] :rtype: int &amp;quot;&amp;quot;&amp;quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.</description>
     </item>
     
   </channel>
