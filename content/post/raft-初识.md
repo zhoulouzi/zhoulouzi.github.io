@@ -2,15 +2,22 @@
 title: "Raft 初识"
 date: 2017-11-05T21:48:15+08:00
 draft: false
-showDate: true
-showTag: true
-thumbnailImage: cover.jpg
+slug: "raft"
 tags:
 - raft
 - consistency
-categories:
-- development
-- algorithm
+archives:
+- raft
+clearReading: true
+thumbnailImage: cover.jpg
+thumbnailImagePosition: bottom
+autoThumbnailImage: yes
+metaAlignment: center
+comments: false
+showTags: true
+showPagination: true
+showSocial: true
+showDate: true
 ---
 
 ### the secret lives of data

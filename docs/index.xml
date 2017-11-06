@@ -13,10 +13,10 @@
     
     <item>
       <title>Raft 初识</title>
-      <link>http://blog.zhoulouzi.com/posts/raft-%E5%88%9D%E8%AF%86/</link>
+      <link>http://blog.zhoulouzi.com/2017/11/raft/</link>
       <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/posts/raft-%E5%88%9D%E8%AF%86/</guid>
+      <guid>http://blog.zhoulouzi.com/2017/11/raft/</guid>
       <description>the secret lives of data http://thesecretlivesofdata.com/raft/
 he Raft Consensus Algorithm https://raft.github.io/
 Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</description>

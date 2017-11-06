@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.2-BETA">
-    <title>Consistency</title>
+    <title>Raft 初识</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
 
     <link rel="icon" href="http://blog.zhoulouzi.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="http://blog.zhoulouzi.com/tags/consistency/index.xml">
-    
 
     
-    <meta name="description" content="blogs">
-    <meta property="og:description" content="blogs">
+    <meta name="description" content="the secret lives of data http://thesecretlivesofdata.com/raft/
+he Raft Consensus Algorithm https://raft.github.io/
+Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/">
+    <meta property="og:description" content="the secret lives of data http://thesecretlivesofdata.com/raft/
+he Raft Consensus Algorithm https://raft.github.io/
+Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Consistency">
-    <meta property="og:url" content="/tags/consistency/">
+    <meta property="og:title" content="Raft 初识">
+    <meta property="og:url" content="/2017/11/raft/">
     <meta property="og:site_name" content="Blog zhoulouzi">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Blog zhoulouzi">
-    <meta name="twitter:description" content="blogs">
+    <meta name="twitter:description" content="the secret lives of data http://thesecretlivesofdata.com/raft/
+he Raft Consensus Algorithm https://raft.github.io/
+Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/">
     
       <meta name="twitter:creator" content="@zhoulouzi">
     
@@ -49,6 +57,8 @@
       <meta property="og:image" content="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
     
 
+    
+      <meta property="og:image" content="http://blog.zhoulouzi.com/cover.jpg">
     
     
     
@@ -73,7 +83,7 @@
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="http://blog.zhoulouzi.com/">Blog zhoulouzi</a>
@@ -93,7 +103,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -172,35 +182,21 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-center">
   
-    
+    <h1 class="post-title" itemprop="headline">
+      Raft 初识
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="http://blog.zhoulouzi.com/2017/11/raft/">
-          Raft 初识
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
       <time itemprop="datePublished" datetime="2017-11-05T21:48:15&#43;08:00">
@@ -212,31 +208,97 @@
     
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      the secret lives of data http://thesecretlivesofdata.com/raft/
-he Raft Consensus Algorithm https://raft.github.io/
-Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/
-      <p>
-        <a href="http://blog.zhoulouzi.com/2017/11/raft/" class="postShorten-excerpt_link link">阅读全文</a>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h3 id="the-secret-lives-of-data">the secret lives of data</h3>
+
+<p><a href="http://thesecretlivesofdata.com/raft/">http://thesecretlivesofdata.com/raft/</a></p>
+
+<h3 id="he-raft-consensus-algorithm">he Raft Consensus Algorithm</h3>
+
+<p><a href="https://raft.github.io/">https://raft.github.io/</a></p>
+
+<h3 id="raft-the-raft-the-understandable-distributed-consensus-protocol-distributed-consensus-protocol">Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol</h3>
+
+<p><a href="https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/">https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</a></p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="http://blog.zhoulouzi.com/tags/raft/">raft</a>
+
+  <a class="tag tag--primary tag--small" href="http://blog.zhoulouzi.com/tags/consistency/">consistency</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://blog.zhoulouzi.com/2017/11/raft/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-    <a href="http://blog.zhoulouzi.com/2017/11/raft/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="http://blog.zhoulouzi.com/cover.jpg"/>
-      </div>
-    </a>
-  
-</article>
+
 
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 zhoulouzi. All Rights Reserved
@@ -244,6 +306,72 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://blog.zhoulouzi.com/2017/11/raft/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F11%2Fraft%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -356,6 +484,8 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
 
 
 
