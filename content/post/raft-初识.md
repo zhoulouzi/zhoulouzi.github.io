@@ -11,7 +11,7 @@ archives:
 categories:
 - algorithm
 clearReading: true
-thumbnailImage: cover.jpg
+thumbnailImage: http://opiq5jspn.bkt.clouddn.com/mountain_bike_2-wallpaper-3840x2400.jpg
 thumbnailImagePosition: bottom
 autoThumbnailImage: yes
 metaAlignment: center
@@ -25,7 +25,7 @@ showDate: true
 ### the secret lives of data
 http://thesecretlivesofdata.com/raft/
 
-### he Raft Consensus Algorithm
+### the Raft Consensus Algorithm
 
 https://raft.github.io/
 

@@ -11,7 +11,7 @@ categories:
 - docker
 - kubernetes
 clearReading: true
-thumbnailImage: cover.jpg
+thumbnailImage: http://opiq5jspn.bkt.clouddn.com/mountain_bike_2-wallpaper-3840x2400.jpg
 thumbnailImagePosition: bottom
 autoThumbnailImage: yes
 metaAlignment: center
@@ -25,7 +25,7 @@ showDate: true
 
 ## 目标：
 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。
-
+https://github.com/zhoulouzi/minikube_install_offline
 ## 建议在网络正常的情况下使用一次minikube，然后在做offline的安装
 
 需要提前下载几个东西：
