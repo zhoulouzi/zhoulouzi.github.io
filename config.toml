@@ -4,6 +4,7 @@ defaultContentLanguage = "zh-cn"
 title = "Blog zhoulouzi"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "blog-zhoulouzi-com"
+googleAnalytics = UA-110602463-1
 paginate = 7
 canonifyurls = true
 publishDir = "docs"
