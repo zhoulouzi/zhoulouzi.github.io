@@ -10,7 +10,7 @@ archives:
 categories:
 - algorithm
 clearReading: true
-thumbnailImage: http://opiq5jspn.bkt.clouddn.com/mountain_bike_2-wallpaper-3840x2400.jpg
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 thumbnailImagePosition: right
 autoThumbnailImage: yes
 metaAlignment: center

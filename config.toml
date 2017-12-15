@@ -73,7 +73,7 @@ publishDir = "docs"
 
   description = "blogs"
   sidebarBehavior = 2
-  coverImage = "http://opiq5jspn.bkt.clouddn.com/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012.jpg"
+  coverImage = "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 
   imageGallery = true
   thumbnailImage = true
