@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Minkube on Blog zhoulouzi</title>
-    <link>http://blog.zhoulouzi.com/tags/minkube/</link>
+    <link>https://blog.zhoulouzi.com/tags/minkube/</link>
     <description>Recent content in Minkube on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 07 Oct 2017 21:48:15 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhoulouzi.com/tags/minkube/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.zhoulouzi.com/tags/minkube/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>minikube offline installed</title>
-      <link>http://blog.zhoulouzi.com/2017/10/minikube/</link>
+      <link>https://blog.zhoulouzi.com/2017/10/minikube/</link>
       <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/2017/10/minikube/</guid>
-      <description>目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。
+      <guid>https://blog.zhoulouzi.com/2017/10/minikube/</guid>
+      <description>目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
 建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
 4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
 /usr/local/bin/minikube start &amp;ndash;vm-driver=none &amp;ndash;iso-url file://tmp/minikube-v0.23.5.iso &amp;ndash;kubernetes-version v1.7.5 &amp;ndash;extra-config=apiserver.Service.NodePortRange=0-60000

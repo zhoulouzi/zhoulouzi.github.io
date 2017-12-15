@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kubernetes on Blog zhoulouzi</title>
-    <link>https://blog.zhoulouzi.com/categories/kubernetes/</link>
+    <link>https://blog.zhoulouzi.com/tags/kubernetes/</link>
     <description>Recent content in Kubernetes on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Nov 2017 21:48:15 +0800</lastBuildDate>
     
-	<atom:link href="https://blog.zhoulouzi.com/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.zhoulouzi.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,20 +21,6 @@
 备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
 etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
 暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</description>
-    </item>
-    
-    <item>
-      <title>minikube offline installed</title>
-      <link>https://blog.zhoulouzi.com/2017/10/minikube/</link>
-      <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/2017/10/minikube/</guid>
-      <description>目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
-建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
-4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
-/usr/local/bin/minikube start &amp;ndash;vm-driver=none &amp;ndash;iso-url file://tmp/minikube-v0.23.5.iso &amp;ndash;kubernetes-version v1.7.5 &amp;ndash;extra-config=apiserver.Service.NodePortRange=0-60000
-确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。</description>
     </item>
     
   </channel>

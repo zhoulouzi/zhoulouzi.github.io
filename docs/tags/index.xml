@@ -2,75 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Blog zhoulouzi</title>
-    <link>http://blog.zhoulouzi.com/tags/</link>
+    <link>https://blog.zhoulouzi.com/tags/</link>
     <description>Recent content in Tags on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Nov 2017 21:48:15 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhoulouzi.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.zhoulouzi.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Consistency</title>
-      <link>http://blog.zhoulouzi.com/tags/consistency/</link>
+      <link>https://blog.zhoulouzi.com/tags/consistency/</link>
       <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/consistency/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/consistency/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Influxdb</title>
-      <link>http://blog.zhoulouzi.com/tags/influxdb/</link>
+      <link>https://blog.zhoulouzi.com/tags/influxdb/</link>
       <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/influxdb/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/influxdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blog.zhoulouzi.com/tags/kubernetes/</link>
+      <pubDate>Tue, 07 Nov 2017 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leetcode</title>
-      <link>http://blog.zhoulouzi.com/tags/leetcode/</link>
-      <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
+      <link>https://blog.zhoulouzi.com/tags/leetcode/</link>
+      <pubDate>Tue, 05 Sep 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/leetcode/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Minkube</title>
-      <link>http://blog.zhoulouzi.com/tags/minkube/</link>
+      <link>https://blog.zhoulouzi.com/tags/minkube/</link>
       <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/minkube/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/minkube/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Prometheus</title>
-      <link>http://blog.zhoulouzi.com/tags/prometheus/</link>
+      <link>https://blog.zhoulouzi.com/tags/prometheus/</link>
       <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/prometheus/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/prometheus/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Raft</title>
-      <link>http://blog.zhoulouzi.com/tags/raft/</link>
+      <link>https://blog.zhoulouzi.com/tags/raft/</link>
       <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/raft/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/raft/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Soccer</title>
-      <link>http://blog.zhoulouzi.com/tags/soccer/</link>
+      <link>https://blog.zhoulouzi.com/tags/soccer/</link>
       <pubDate>Wed, 07 Jun 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/tags/soccer/</guid>
+      <guid>https://blog.zhoulouzi.com/tags/soccer/</guid>
       <description></description>
     </item>
     

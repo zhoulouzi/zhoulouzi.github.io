@@ -1,4 +1,4 @@
-baseURL = "http://blog.zhoulouzi.com/"
+baseURL = "https://blog.zhoulouzi.com/"
 languageCode = "en-us"
 defaultContentLanguage = "zh-cn"
 title = "Blog zhoulouzi"

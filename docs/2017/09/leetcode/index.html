@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.2-BETA">
-    <title>Zihuan</title>
+    <title>leetcode 笔记</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://blog.zhoulouzi.com/archives/zihuan/index.xml">
-    
 
     
-    <meta name="description" content="blogs">
-    <meta property="og:description" content="blogs">
+    <meta name="description" content="总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
+  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &gt; Given an array of integers, every element appears twice except for one. Find that single one. &gt; Note: &gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &gt; One-line python solution with O(n) time  def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.">
+    <meta property="og:description" content="总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
+  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &gt; Given an array of integers, every element appears twice except for one. Find that single one. &gt; Note: &gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &gt; One-line python solution with O(n) time  def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Zihuan">
-    <meta property="og:url" content="/archives/zihuan/">
+    <meta property="og:title" content="leetcode 笔记">
+    <meta property="og:url" content="/2017/09/leetcode/">
     <meta property="og:site_name" content="Blog zhoulouzi">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Blog zhoulouzi">
-    <meta name="twitter:description" content="blogs">
+    <meta name="twitter:description" content="总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
+  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &gt; Given an array of integers, every element appears twice except for one. Find that single one. &gt; Note: &gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &gt; One-line python solution with O(n) time  def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.">
     
       <meta name="twitter:creator" content="@zhoulouzi">
     
@@ -49,6 +54,8 @@
       <meta property="og:image" content="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
     
 
+    
+      <meta property="og:image" content="http://opiq5jspn.bkt.clouddn.com/mountain_bike_2-wallpaper-3840x2400.jpg">
     
     
     
@@ -83,7 +90,7 @@ ga('send', 'pageview');
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://blog.zhoulouzi.com/">Blog zhoulouzi</a>
@@ -103,7 +110,7 @@ ga('send', 'pageview');
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -193,36 +200,25 @@ ga('send', 'pageview');
 
       
 
-      <div id="main" data-behavior="2"
+      <div id="main" data-behavior="5"
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
-            
+            <div class="post-header main-content-wrap text-center">
   
-    
+    <h1 class="post-title" itemprop="headline">
+      leetcode 笔记
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://blog.zhoulouzi.com/2017/06/zihuan/">
-          资环十年
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-06-07T21:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2017-09-05T21:48:15&#43;08:00">
         
-  六月 7, 2017
+  九月 5, 2017
 
       </time>
     
@@ -231,37 +227,199 @@ ga('send', 'pageview');
   
     <span>发布在</span>
     
-      <a class="category-link" href="https://blog.zhoulouzi.com/categories/life">life</a>
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/algorithm">algorithm</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-       怀念不如相见。 从去年底，微信群里就滴滴不停，大家怂恿着要回学校给今年毕业的兄弟办一场告别赛。话说我们这帮兄弟都是毕业好几年的人了，整天混迹于校园群聊，还整天BB着那个学院今年来比较有实力的选手，那个学院今年怎么招摇了，押注那个学院今年夺冠，其实我看出来了，都是想回去踢个球，喝顿酒，在学弟面前吹吹逼，找找当年的感觉。
-不过说真的，那些年在球队的日子真的是神仙般的生活，踢球，喝酒，吹逼。纯爷们才能一起干的事，你说对吧，Tango？ 5月份，我开始筹备这些事，特别感谢宋忠贤同学的跑腿，帮安排酒店，看欧冠的地方，很不错，大家玩的很嗨。有的兄弟结婚了，有的兄弟事业忙，所以定了一个6月3，4日一个不太炎热的日子。最后报名人数还可以20个人，最后各种原因你懂的，实际到场人数大打折扣。毕了业还这么坑？田老板？毅哥？这二位都是毕业好久没见的兄弟，挺想你们的，上次在北京，没喝够。 老五，谁在我上铺的兄弟，4年的感情一碰就会哭。胖了，听说偷偷跑回学校表白小学妹了？可以啊，66666。 继红哥，球技又提升了，有空回太原和你和亮哥踢，当年教诲，培养毕生难忘。 晓龙，敢无视老子太上皇的位子，成天在学弟面前贬低我的17号？对象不错。嗯。 胖子，你不来，你后悔不，见不了你哥。
-附靓照N张：
-2017年6月3日: 与学弟们的合照 2010年校联赛-资源环境学院冠军 2011年校联赛-资源环境学院八强 2012年校联赛-资源环境学院八强 2013年校联赛-资源环境学院亚军 
-      <p>
-        <a href="https://blog.zhoulouzi.com/2017/06/zihuan/" class="postShorten-excerpt_link link">阅读全文</a>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="总结出一些比较意义的题">总结出一些比较意义的题</h1>
+
+<blockquote>
+<p>好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。</p>
+</blockquote>
+
+<ol>
+<li>一个列表成员都是出现2次的整数，只有一个元素出现一次。
+&gt; Given an array of integers, every element appears twice except for one. Find that single one.
+&gt; Note:
+&gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：
+&gt; One-line python solution with O(n) time
+<code>
+def singleNumber(self, nums):
+    &quot;&quot;&quot;
+    :type nums: List[int]
+    :rtype: int
+    &quot;&quot;&quot;
+    return reduce(lambda x, y: x ^ y, nums)
+</code>
+第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。</li>
+<li>Remove Element
+Given an array and a value, remove all instances of that value in place and return the new length.
+Do not allocate extra space for another array, you must do this in place with constant memory.
+The order of elements can be changed. It doesn&rsquo;t matter what you leave beyond the new length.
+Example:
+Given input array nums = [3,2,2,3], val = 3
+Your function should return length = 2, with the first two elements of nums being 2.
+&gt;  这个题用python有点简单。但是 list.remove这个方法用的还是很少的.加深下记忆
+<code>
+def removeElement(nums, val):
+ for i in range(nums.count(val)):
+        nums.remove(val)
+ return len(nums)
+</code></li>
+<li>Palindrome Number 回数，又看见这个题了，曾经面试遇到过
+利用切片搞定。
+<code>
+def isPalindrome(x):
+    &quot;&quot;&quot;
+    :type x: int
+    :rtype: bool
+    &quot;&quot;&quot;
+    return str(x) == str(x)[::-1]
+</code></li>
+<li>Valid Palindrome 回文，忽略大小写，只考虑字母和数字
+&gt; For example,
+&ldquo;A man, a plan, a canal: Panama&rdquo; is a palindrome.
+&ldquo;race a car&rdquo; is not a palindrome.
+<code>
+def isPalindrome(s):
+    &quot;&quot;&quot;
+    :type s: str
+    :rtype: bool
+    &quot;&quot;&quot;
+    act = []
+    act = list(filter(lambda a: a.isalnum(), list(s.lower())))
+    return act == act[::-1]
+</code></li>
+</ol>
+
+<p>排序：
+冒泡排序：</p>
+
+<pre><code>arr = [9,8,7,6,5,4,3,2,1]
+for j in range(len(arr)):
+    for i in range(len(arr) - 1 - j ):
+        if arr[i] &gt; arr[i+1]:
+            arr[i],arr[i+1] = arr[i+1],arr[i]
+
+print(arr)
+</code></pre>
+
+<p>快速排序：</p>
+
+<pre><code>def quick(L,left,right):
+    if left &gt;= right:
+        return L
+    key = L[left]
+    low = left
+    high = right
+    while left &lt; right:
+        while left &lt; right and L[right] &gt;= key:
+            right -= 1
+        L[left] = L[right]                     #------------------ 比key值小的值放到左边
+        while left &lt;right and L[left] &lt;= key:
+            left += 1
+        L[right] = L[left]                     #------------------比key值大的放到右边
+    #left = right 跳出循环
+    L[left] = key                             #------------------将key值赋给left=right的位置
+    #此时left=right,分别对左右子列表进行快速排序
+    quick(L,low,right-1)
+    quick(L,left+1,high)
+    #递归调用，知道子列表为单一子列表 left=right
+quick(L,0,len(L)-1)
+</code></pre>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/leetcode/">leetcode</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/10/minikube/" data-tooltip="minikube offline installed">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/09/leetcode/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-    <a href="https://blog.zhoulouzi.com/2017/06/zihuan/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="http://opiq5jspn.bkt.clouddn.com/mountain_bike_2-wallpaper-3840x2400.jpg"/>
-      </div>
-    </a>
-  
-</article>
 
-          
-          
 
-        </section>
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2017 zhoulouzi. All Rights Reserved
@@ -269,6 +427,78 @@ ga('send', 'pageview');
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/10/minikube/" data-tooltip="minikube offline installed">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/09/leetcode/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F09%2Fleetcode%2F">
+          <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -484,6 +714,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/blog.zhoulouzi.com\/2017\/09\/leetcode\/';
+          
+            this.page.identifier = '\/2017\/09\/leetcode\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'blog-zhoulouzi-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

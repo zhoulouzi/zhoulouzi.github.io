@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.2-BETA">
-    <title>Prometheus vs influxDB</title>
+    <title>kubernetes installed</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
 
@@ -30,33 +30,24 @@
     
 
     
-    <meta name="description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
-prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
-Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
-TICK stack这边的东西：
-telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
-概念: input,ouput,processor,aggerator
-input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
-    <meta property="og:description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
-prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
-Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
-TICK stack这边的东西：
-telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
-概念: input,ouput,processor,aggerator
-input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
+    <meta name="description" content="概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
+备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
+暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口">
+    <meta property="og:description" content="概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
+备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
+暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Prometheus vs influxDB">
-    <meta property="og:url" content="/2017/04/prometheus/">
+    <meta property="og:title" content="kubernetes installed">
+    <meta property="og:url" content="/2017/11/kubernetes/">
     <meta property="og:site_name" content="Blog zhoulouzi">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Blog zhoulouzi">
-    <meta name="twitter:description" content="InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
-prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
-Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
-TICK stack这边的东西：
-telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
-概念: input,ouput,processor,aggerator
-input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.">
+    <meta name="twitter:description" content="概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
+备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
+暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口">
     
       <meta name="twitter:creator" content="@zhoulouzi">
     
@@ -225,15 +216,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      Prometheus vs influxDB
+      kubernetes installed
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-04-05T21:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2017-11-07T21:48:15&#43;08:00">
         
-  四月 5, 2017
+  十一月 7, 2017
 
       </time>
     
@@ -244,7 +235,7 @@ ga('send', 'pageview');
     
       <a class="category-link" href="https://blog.zhoulouzi.com/categories/docker">docker</a>, 
     
-      <a class="category-link" href="https://blog.zhoulouzi.com/categories/prometheus">prometheus</a>
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/kubernetes">kubernetes</a>
     
   
 
@@ -256,239 +247,274 @@ ga('send', 'pageview');
             <div class="main-content-wrap">
               
 
-<p>InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。</p>
+<p>概述:
+此文档用于在ubuntu16.04上独立安装kubernetes节点
+api-server与kubelet、kube-proxy之间通过tls认证交互
+control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互</p>
 
-<p>prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是：
-1. 多维度的数据模型(time series identified by metric name and key/value pairs)
-2. promQL强大灵活的查询语言
-3. 不依赖分布式存储
-4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。
-5. 通过pushgateway来支持push time series，适合short-lived
- job。
-6. 可以通过服务发现或者静态配置scarpe目标
-7. 支持多种模式的图形和仪表盘</p>
+<p>备注：未实现HA模式  ，实现HA模式，官方的文档（<a href="https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。">https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。</a></p>
 
-<p>Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。
-<a href="https://www.robustperception.io/translating-between-monitoring-languages/">Translating between monitoring languages</a></p>
+<p>etcd组件说明：
+    port:
+        127.0.0.1:2379: listen-client
+        127.0.0.1:2380: initial-cluster
+kubelet组件说明：
+    port:
+        4194:       cadvisor-port                      #cadvisor作为kubernetes一个组件集成在kubelet里
+        127.0.0.1:10248:    localhost healthz endpoint #
+        10250:     Kubelet to server on  listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest.
+        10255:    The read-only port for the Kubelet to serve on with no authentication/authorization
+            # 只读</p>
 
-<p>TICK stack这边的东西：</p>
+<h1 id="暴露kubelet里的指标-http-192-168-199-142-10255-stats-summary">暴露kubelet里的指标 <a href="http://192.168.199.142:10255/stats/summary">http://192.168.199.142:10255/stats/summary</a></h1>
 
-<h3 id="telegraf">telegraf：</h3>
+<p>kube-proxy组件：
+    port：
+        127.0.0.1:10249:   metrics server to serve on   # metrics server 并未安装待探索
+        10256:   health check server port
+        代理的其他服务端口</p>
 
-<p><img src="http://opiq5jspn.bkt.clouddn.com/telegraf.png" alt="telegraf" />{: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}</p>
+<p>apiserver 组件说明：
+    port:
+        127.0.0.1:8080:     insecure-port
+        6443:           secure-port</p>
 
-<p>概念: input,ouput,processor,aggerator</p>
+<p>API 认证策略（Authentication strategies）：X509 Client Certs、Service Account Tokens
+        # <a href="https://kubernetes.io/docs/admin/authentication/">https://kubernetes.io/docs/admin/authentication/</a>
+API 授权模式（Authorization Mozules）:Node、RBAC
+        # <a href="https://kubernetes.io/docs/admin/authorization/">https://kubernetes.io/docs/admin/authorization/</a></p>
 
-<h2 id="input">input：</h2>
+<p>kube-controller-manager组件说明：
+    port:
+        10252:      the controller-manager&rsquo;s http service runs on
+kube-scheduler组件说明：
+    port:
+        10251:          the scheduler&rsquo;s http service runs on</p>
 
-<p>telegraf可以parse以下的数据格式到metrics
-1. influxDB LIne Protocol
-2. JSON
-3. Graphite
-4. value 举例: 45 or &ldquo;abc&rdquo;
-5. nagios
-6. collectd
-telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol：
-1. measurement Name(可以想象成SQL的一个table)
-2. Tags
-3. Fields
-4. Timestamp</p>
+<p>kube-dns组件说明：
+    k8s-dns-sidecar：        # daemon that exports metrics and performs healthcheck on DNS systems.
+        10054：      metrics
+        dnsmasq:            # 集群内部默认的dns服务
+        53  tcp/udp
+    kube-dns:           # 与apiserver交互
+        10053  tcp/udp      #监听来自dnsmasq的 forward请求
+    备注：
+    如果reslov.conf 里面是127.0.1.1，本地启动的dnsmasq，在容器里会出现解析外网有问题。</p>
 
-<p>感觉telegraf这块的文档写意思就是说telegraf input能识别很多种格式，分别适应不同的场景。
-我这里关注的是 JSON，value</p>
+<h1 id="https-github-com-kubernetes-kubernetes-issues-31337"><a href="https://github.com/kubernetes/kubernetes/issues/31337">https://github.com/kubernetes/kubernetes/issues/31337</a></h1>
 
-<h2 id="output">output</h2>
+<p>如果你是这种情况 给你的kubelet添加启动参数 &ndash;resolv-conf自定义你的resolv.conf文件或者  DISABLE DNSMASQ的方式完成。
+<a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker">https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker</a> 这个文章 可以详细看看</p>
 
-<p>telegraf可以把metrics格式转化为以下格式：
-1. influxDB line protocol
-2. JSON
-3.graphite</p>
+<p>组件清单:
+    组件介绍官方文档:<a href="https://kubernetes.io/docs/concepts/overview/components/">https://kubernetes.io/docs/concepts/overview/components/</a>
+ kubernetes核心组件:
+      二进制:                      版本
+    kubectl :kubernetes 客户端工具
+    kubelet                     Kubernetes v1.8.3
+    kube-proxy                  Kubernetes v1.8.3
+      容器方式:                     镜像
+    etcd                        gcr.io/google_containers/etcd-amd64:3.0.17
+    kube-apiserver                  gcr.io/google_containers/kube-apiserver-amd64:v1.8.3
+    kube-controller-manager             gcr.io/google_containers/kube-controller-manager-amd64:v1.8.3
+kube-scheduler                  gcr.io/google_containers/kube-scheduler-amd64:v1.8.3
+kubernetes-addons: addons 手动部署，自动的好像要加label没搞明白
+       容器方式:                        镜像
+    kube-dns                    gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.7
+                            gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.7
+                            gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.7
+    kube-dns-autoscaler             gcr.io/google_containers/cluster-proportional-autoscaler-amd64:1.0.0
+    kube-dashboard                  gcr.io/google_containers/kubernetes-dashboard-init-amd64:v1.0.1
+                            gcr.io/google_containers/kubernetes-dashboard-amd64:v1.7.1
+    heapster                    gcr.io/google_containers/heapster-amd64:v1.4.0
+    calico                      quay.io/calico/node:v2.6.2
+                            quay.io/calico/kube-controllers:v1.0.0
+                            quay.io/calico/cni:v1.11.0
+另外kubernetes所需的pod根容器:
+    pause                       gcr.io/google_containers/pause-amd64:3.0</p>
 
-<p>这里还是只关注输出到influxdb，其他的暂时不做研究。</p>
+<p>打包结构如下：
+kubernetes_install:
+    /binary                     # 包含所需组件的二进制文件和docker镜像
+        /二进制\镜像如上列表
+        /save.sh                #用于本地打包镜像
+    /docker_install
+        /docker-ce_17.03.2~ce-0~ubuntu-xenial_amd64.deb
+        /install                    #docker 安装脚本
+    /conf   配置模板
+        /mainfests                  #kubelet manifests yaml
+            /etcd.yaml
+            /kubernetes-apiserver.yaml
+            /kubernetes-controller-manager.yaml
+            /kubernetes-scheduler.yaml
+/kube-addon-manager.yaml            s
+        /addons                 #kubernetes addons yaml
+            /kubernetes-dashboard.yaml
+/dashboard-admin.yaml       #dashboard的权限
+/kubernetes-dns.yml
+/heapster.yaml
+/heapster-rbac.yaml
+/dns-horizontal-autoscaler.yaml
+/calico.yaml
+/calico-rbac.yaml
+    /certs                      #存放生成的证书
+        /templates              #cfss csr模板s
+/apiserver-csr.conf.template
+/ca-config.json         #cfssl ca的config文件
+/ca-csr.json                #cfssl ca证书的csr文件
+/kube-admin-csr.json.template
+/kubelet-csr.json.template
+/kube-proxy-csr.json
+    /scripts
+        /kubernetes_install.sh      #节点执行的脚本
+        /node_var_template          #节点变量模板
+    /INSTALL                    #安装主脚本
+    /cfssl_to_kubernetes.sh         #证书生成脚本，被INSTALL调用
+    /cluster_var                    #定义集群参数
+    /README.md                  #说明</p>
 
-<h2 id="processor-and-aggregators">processor and aggregators</h2>
+<p>安装步骤：
+1.准备环境:
+1.1 安装docker:
+建议docker版本:17.03.2-ce
+环境确认：
+net.ipv4.ip_forward = 1
+iptables -P FORWARD ACCEPT          大小写敏感
+docker  官方关于 ufw ：forward 表 默认drop的说明：
+<a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/#allow-access-to-the-remote-api-through-a-firewall">https://docs.docker.com/engine/installation/linux/linux-postinstall/#allow-access-to-the-remote-api-through-a-firewall</a>
+kubernetes  kube-proxy 关于这个问题的fix：
+<a href="https://github.com/kubernetes/kubernetes/pull/52569">https://github.com/kubernetes/kubernetes/pull/52569</a></p>
 
-<p>官方文档只留下两段话,并没有留下简单的例子来说明how does it works 这点比prometheus的文档略差。
-aggregators就是prometheus qurey function 里的 aggregation。这部分还是prometheus支持的功能更强大一些，搭配recoding rules，使用起来感觉比较方便。不过上篇分享文章中提到telegraf可以搭配kapacitor script 来实现复杂功能。</p>
+<p>如果docker 安装有问题请参阅:<a href="https://docs.docker.com/engine/installation/linux/linux-postinstall/">https://docs.docker.com/engine/installation/linux/linux-postinstall/</a>
+1.2 环境准备:
+关闭swap: swapoff -a
+安装conntrack包: apt install conntrack
+    # kube-proxy的依赖，没有kube-proxy可能起不来</p>
 
-<h3 id="chronograf">chronograf</h3>
+<p>2.处理iptables:
+删除docker创建的网桥:
+systemctl stop docker
+iptables -t nat -F
+ip link set docker0 down
+ip link delete docker0</p>
 
-<p>chronograf 是一个webui，可以很方便的创建和设置dashborad和kapacitor的报警规则。对了，从v1.3开始influxdb自带的webui已经被删除，要做查询操作可以在chronograf的data-explorer上完成。
-chronograf颜值挺高的，我觉得比grafana好看。配置起来还是很简单的，这部分就不多说了上个截图</p>
+<h1 id="使用calico-此处废除">使用calico 此处废除。</h1>
 
-<p><img src="http://opiq5jspn.bkt.clouddn.com/Chronograf.png" alt="chronograf" />{: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}</p>
+<p>新建 cbr0:
+ip link add name cbr0 type bridge
+ip link set dev cbr0 mtu 1460
+ip addr add 10.0.0.<sup>1</sup>&frasl;<sub>16</sub> dev cbr0                    #此处IP为 pod range ip 的第一位
+ip link set dev cbr0 up
+iptables -t nat -A POSTROUTING ! -d 192.168.199.0/24 -m addrtype ! &ndash;dst-type LOCAL -j MASQUERADE
+3.处理docker启动参数:
+cp  kubernetes_install/conf/systemd/docker.service  /lib/systemd/system/docker.service</p>
 
-<h2 id="kapacitor">kapacitor</h2>
+<h2 id="具体docker参数-bridge-cbr0-ip-masq-false-iptables-false-bridge-node-exec-root-var-run-docker">具体docker参数: &ndash;bridge=cbr0 &ndash;ip-masq=false &ndash;iptables=false  &ndash;bridge=node &ndash;exec-root=/var/run/docker</h2>
 
-<p>kapacitor 是用来产生报警，运行ETL jobs 和检测异常。
-关键功能：
-1. 处理流式数据和批量数据。
-2. 可以定时从influxdb里查询数据，通过line protocal 接受数据。
-3. 利用influxQL处理数据变化， 并可以将数据存回infulxdb。
-4. 添加用户自定义的函数来检测异常
-5. 集成Alerta，Slack</p>
+<p>#LimitNOFILE=1048576
+#脚本处理时，dockerd的参数全部放置在了daemon.json</p>
 
-<p>官方的kapacitor文档介绍了Tickscript怎么处理batch和steam数据，感觉学习成本挺高的，后期我准备用prometheus就没有系统的学习。持续关注吧，等有经验的前辈们来总结。·</p>
+<h1 id="完整的-dockerd-配置手册-https-docs-docker-com-engine-reference-commandline-dockerd">完整的 dockerd 配置手册 <a href="https://docs.docker.com/engine/reference/commandline/dockerd/">https://docs.docker.com/engine/reference/commandline/dockerd/</a></h1>
 
-<h2 id="influxdb">InfluxDB</h2>
+<p>4.处理kubelet启动参数
+cp  kubernetes_install/conf/systemd/kubelet.service  /lib/systemd/system/kubelet.service</p>
 
-<p>InfluxDB应该是这套技术栈最核心的地方了吧，细节可推敲的地方还是很多，influxdb据说很多公司自研监控系统就是用的这.
-时序数据库，跟传统的 关系型数据库，NoSQL有很大的区别
-influxdb 用的存储格式是TSM 一个很深奥的话题。这里就不写了。大家好好看官方文档。</p>
+<h2 id="具体kubelet参数-allow-privileged-kubeconfig-var-lib-kubelet-kubeconfig-pod-manifest-path-etc-kubernetes-manifests-cluster-dns-10-96-0-10-cluster-domain-cluster-local-register-node-hostname-override-192-168-199-142-node-ip-192-168-199-142-network-plugin-cni">具体kubelet参数:   &ndash;allow-privileged &ndash;kubeconfig=/var/lib/kubelet/kubeconfig &ndash;pod-manifest-path=/etc/kubernetes/manifests &ndash;cluster-dns=10.96.0.10  &ndash;cluster-domain=cluster.local  &ndash;register-node &ndash;hostname-override=192.168.199.142 &ndash;node-ip 192.168.199.142  &ndash;network-plugin=cni</h2>
 
-<h1 id="prometheus">prometheus</h1>
+<p>5.处理kube-proxy启动参数
+cp  kubernetes_install/conf/systemd/kube-proxy.service  /lib/systemd/system/kube-proxy.service</p>
 
-<p>接下来把大部分精力都放在prometheus上 （1.7.0 / 2017-06-06 ）加油</p>
+<h2 id="具体kube-proxy参数-proxy-mode-iptables-hostname-override-192-168-199-142-master-https-192-168-199-142-6443-kubeconfig-var-lib-kube-proxy-kubeconfig-proxy-port-range-1-65535-cluster-cidr-10-0-0-0-16">具体kube-proxy参数:  &ndash;proxy-mode=iptables &ndash;hostname-override=192.168.199.142 &ndash;master=<a href="https://192.168.199.142:6443">https://192.168.199.142:6443</a> &ndash;kubeconfig=/var/lib/kube-proxy/kubeconfig &ndash;proxy-port-range=1-65535 &ndash;cluster-cidr=10.0.0.0/16</h2>
 
-<p>prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。</p>
+<p>#脚本内 &ndash;proxy-port-range=1-65535 没有打开 默认3000以上端口，看后期需求</p>
 
-<h2 id="data-model">DATA MODEL</h2>
+<p>修改参数3\4\5完毕之后执行systemctl daemon-reload
+重启3\4\5中的服务</p>
 
-<p>prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions.
-除此之外，还可以通过query生成临时衍生的time series。
-Metric name and labels</p>
+<p>6.复制kubernetes-apiserver.yaml到宿主机/etc/kubernetes/manifests
+cp  kubernetes_install/conf/manifests/kubernetes-apiserver.yaml /etc/kubernetes/manifests/kubernetes-apiserver.yaml</p>
 
-<p>每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。
-metric name 代表一个系统被监测的功能。 eg：http_requests<em>total  命名规则是 符合 [a-zA-Z</em>:][a-zA-Z0-9_:]* 这个正则表达式。</p>
+<h1 id="apiserver的启动参数">apiserver的启动参数:</h1>
 
-<p>labels 可以使prometheus 的数据多维度。对于相同metric name 给定了 labels组合 都是一个 特定维度 的 一个metric的实例。
-query languages 允许 过滤和聚合通过这些维度，更改任何一个label都将新建一个新的time series</p>
+<p>kube-apiserver
+    - &ndash;allow-privileged=true
+    - &ndash;address=192.168.199.142
+    - &ndash;service-cluster-ip-range=10.96.0.0/12
+    - &ndash;etcd-servers=<a href="http://127.0.0.1:2379">http://127.0.0.1:2379</a>
+    - &ndash;client-ca-file=/srv/kubernetes/ca.crt
+    - &ndash;tls-cert-file=/srv/kubernetes/apiserver.crt
+    - &ndash;tls-private-key-file=/srv/kubernetes/apiserver.key
+    - &ndash;admission-control=Initializers,NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,ResourceQuota
+    - &ndash;allow-privileged=true
+    - &ndash;insecure-bind-address=127.0.0.1
+    - &ndash;advertise-address=192.168.199.142
+    - &ndash;authorization-mode=Node,RBAC
+    - &ndash;service-node-port-range=0-65535</p>
 
-<p>给定一组 metric name 和label
-&gt; &lt;metric name&gt;{&lt;label name&gt;=&lt;label value&gt;, &hellip;}
-&gt; api_http_requests_total{method=&ldquo;POST&rdquo;, handler=&ldquo;/messages&rdquo;}</p>
+<p>7.复制yaml配置文件
+cp  kubernetes_install/conf/manifests/kubernetes-controller-manager.yaml /etc/kubernetes/manifests/kubernetes-controller-manager.yaml
+cp  kubernetes_install/conf/manifests/kubernetes-scheduler.yaml /etc/kubernetes/manifests/kubernetes-scheduler.yaml
+cp kubernetes_install/conf/addons/* /etc/kubernetes/addons/</p>
 
-<p>metric types:
-    prometheus 的 客户端库提供了4个核心的 metric type，不过只是在客户端库里存在，server端存的还是 untyped time series.
-1. counter
-    计数器，很好理解，代表一个只会增长的值。 用例：已经完成的请求数，任务完成数
-2. gauge
-    比计数器多个 减少。用例：内存使用值，the number of running goroutines.
-3. histogram
-    暂未理解
-4. summary
-    暂未理解，官方文档的最佳实践里有举例，学完再回来改</p>
+<p>8.证书生成:
+#脚本使用的cfssl，简单无脑
+8.1 CA证书生成：
+openssl genrsa -out ca.key 2048
+    openssl req -x509 -new -nodes -key ca.key -subj &ldquo;/CN=${MASTER_IP}&rdquo; -days 10000 -out ca.crt</p>
 
-<h2 id="jobs-and-instances">Jobs and instances</h2>
+<h1 id="distributing-self-signed-ca-certificate">Distributing Self-Signed CA Certificate</h1>
 
-<p>对prometheus 来说每个scraped target都是一个实例。他们的集合可以称为job
-这个在配置prometheus的scraped_configs时候也有体现.
-如果这两个标签已经存在于scraped data里，这时候取决于 配置项honor_labels。</p>
+<p>sudo cp ca.crt /usr/local/share/ca-certificates/kubernetes.crt
+sudo update-ca-certificates</p>
 
-<p>honor<em>labels = true: 将保存scraped data里的数据 忽略 server端labels
-false： 通过重命名来解决，将scraped data  标记为 &ldquo;exported</em>&lt;original-label&gt;&rdquo;,然后添加上server端的labels</p>
+<p>8.2 apiserver证书生成：
+    openssl genrsa -out apiserver.key 2048
+修改 kubernetes_install/cert/openssl/apiserver.csr.conf 文件分别将 <MASTER_IP>   <MASTER_CLUSTER_IP>替换
+openssl req -new -key apiserver.key -out apiserver.csr -config apiserver.csr.conf
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key <br />
+ -CAcreateserial -out apiserver.crt -days 10000 <br />
+-extensions v3_ext -extfile apiserver.csr.conf</p>
 
-<p>server端配置的external_label不受此设置影响，external_label只适用于time series没有给定的labels，如果有，就被忽略。</p>
+<p>8.3 kubelet证书生成：
+openssl genrsa -out kubelet.key 2048
+openssl req -new -key kubelet.key -out kubelet-csr.pem -subj  &ldquo;/CN=system:node:${nodeip}/O=system:nodes&rdquo;
+        # <a href="https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings">https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings</a>
+openssl x509 -req -in kubelet-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out kubelet.crt -days 10000</p>
 
-<h2 id="querying">querying</h2>
+<p>8.4 kube-proxy证书生成：
+openssl genrsa -out kube-proxy.key 2048
+openssl req -new -key kubelet-proxy.key -out kube-proxy-csr.pem -subj  &ldquo;/CN=system:kube-proxy&rdquo;
+        # <a href="https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings">https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings</a>
+openssl x509 -req -in kube-proxy-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out kube-proxy.crt -days 10000</p>
 
-<p>prometheus 提供一个 强大的查询语言来为用户提供实时的查询和聚合 time series 。
-prometheus 的 expression language 可以操作4种类型：
-1. instant vector 一组time series 包含每个time series 的一个 sample，共享同一个时间戳
-2. range vector   一组 time series 包含随时间变化的  每个 time series 的 data point值。
-3. scalar 简单的数字浮点值
-4. string 字符串值，目前未使用</p>
+<p>8.4 kube-admin证书生成：
+openssl genrsa -out kube-admin.key 2048
+openssl req -new -key kube-admin.key -out kube-admin-csr.pem -subj  &ldquo;/CN=kube-admin/O=system:masters&rdquo;
+        # <a href="https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings">https://kubernetes.io/docs/admin/authorization/rbac/#default-roles-and-role-bindings</a>
+openssl x509 -req -in kube-admin-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out kube-admin.crt -days 10000</p>
 
-<p>举例子说明吧：
-instant vector:  node_load1 表达式得出的结果 （同一个时间戳）
-range vector: node_load1[5m] 表达式得出的结果 多个时间戳（间隔就是 配置里的抓取间隔）</p>
+<p>将所有生成的crt key 复制到 /srv/kubernetes；should separate differnt crt/key</p>
 
-<p>操作符：
-算术操作符：
-+ - * ／ %  ^
-比较操作符：
-==  != &gt; &lt; &gt;= &lt;=
-逻辑操作符：
-and or unless
-Aggregation operators:
-sum min max avg stddev stdvar count count_valued bottomk topk quantile
-优先级：
-^
-*，/，%
-+， -
-==，!=，&lt;=，&lt;，&gt;=，&gt;
-and， unless
-or</p>
-
-<h2 id="recording-rules">recording rules</h2>
-
-<p>recoding rules 可以帮助你将经常需要计算，或者计算很消耗性能的 表达式 预先计算并保存为新的 time series 然后查询recoding rules 会比每次执行原始表达快得多，这对于dashboard有用，每次dashboard刷新时都会去查询相同的表达式。
-语法：
-&gt; &lt;new time series name&gt;[{&lt;label overrides&gt;}] = &lt;expression to record&gt;</p>
-
-<p>放点简单的配置吧：</p>
-
-<pre><code>cat recoding.rules
-node_host = sum(label_replace(node_boot_time, &quot;host&quot;, &quot;$1&quot;, &quot;instance&quot;, `([\d\.]+):[\d\.]+`)) by (host)
-</code></pre>
-
-<p>上边这个例子在表达式里使用了 Aggregation  Function ，赋值给 node_host 这个metric name。</p>
-
-<p>另外这这里也说一下prometheus 的配置文件里支持抓取时对labels的处理。添加或者根据正则表达式替换，非常方便。
-举个例子，
-prometheus 抓取时 会有个instance的标签 base on <strong>address</strong> 这个tmp标签，格式时 ip：port
-那我在后边用的时候不想用这个port 直接用 ip来显示。</p>
-
-<pre><code>- job_name: 'node'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['192.168.30.200:31083','192.168.30.201:31083','192.168.30.209:31083','192.168.30.210:31083','192.168.30.211:31083','192.168.30.214:31083','192.168.30.215:31083', '192.168.30.239:31083', '192.168.30.195:31083', '192.168.30.202:31083', '192.168.30.203:31083', '192.168.30.108:31083', '192.168.30.156:31083']
-        labels:
-           node_text_label: 'node_scarpe_label_config'
-    relabel_configs:
-      -  source_labels: [__address__]
-         target_label: node_host
-         regex: ([\d\.]+):[\d\.]+
-</code></pre>
-
-<p>效果图：
-<img src="http://opiq5jspn.bkt.clouddn.com/prometheus.png" alt="" />
-这个例子最后就可以给你的series填上你自定义的标签。</p>
-
-<h2 id="配置">配置</h2>
-
-<p>prometheus 由2部分配置组成，一个是command-line flag 和 configuration file。command-line flag 是来配置不可变的系统参数比如说storage location。 configuration file 用来定义去 scraping 的 job instance 和 一堆rules
-prometheus -h 是可以看当前版本可用的avaliable command-line。
-configuration file 的配置可以通过HTTP POST 来随时reload， yaml格式，官网针对每个配置项都有详细的说明可以在使用中探索。
-command-line flag 大致分为5个部分：
-1. ALertmanger的一些简单配置
-2. Log 的简单配置
-3. query 的简单配置
-4. storage 大量的配置
-5. web的简单配置</p>
-
-<p>这里主要总结下 storage的配置：
-prometheus 有自己定规的存储layer 用恒大大小1024字节的chunk来组织采样数据，然后这些chunks都是根据每一个time series 一个文件存放在磁盘上。</p>
-
-<p>内存：
-在v1.6.0之后 storage.local.target-heap-size 替代了 原来storage.local.memory-chunks和storage.local.max-chunks-to-persist。保留了选项但是默认值都是0。只有 storage.local.memory-chunks 非0 时 覆盖 heap-size 的值为 x * 3072
-官方建议 storage.local.target-heap-size 的值为物理内存的三分之二。
-官方默认的GOGC是40%，如果你想修改可以覆盖环境变量</p>
-
-<p>磁盘：</p>
-
-<p>storage.local.path 存储使用目录
-storage.local.retention 采样数据保留多长时间，默认360小时</p>
-
-<p>chunk encoding:</p>
-
-<p>storage.local.chunk-encoding-version  0,1,2 三个版本
-默认是1，1的压缩比0好，0是最快的，官方推荐1.
-0，1都是由固定位数的bit-width。  2 是 可变的bit-width 的encoding。
-2提供更高的压缩比，但是cpu和查询的延迟会增大。
-官方有blog对比!()[<a href="https://prometheus.io/blog/2016/05/08/when-to-use-varbit-chunks/]有兴趣可以看看。">https://prometheus.io/blog/2016/05/08/when-to-use-varbit-chunks/]有兴趣可以看看。</a></p>
-
-<p>alertmanager:</p>
-
-<p>之前弄邮件报警的时候有个坑：
-qq邮箱默认的发送服务器：
-smtp.exmail.qq.com(使用SSL，端口号465)
-而prometheus 发送邮件使用的 STARTTLS  ，具体没有了解过这2个协议的区别，注意下就好
-smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
-
-<h5 id="解决方案资源">解决方案资源：</h5>
-
-<p><a href="https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/">https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/</a></p>
+<p>9 kubeconfig文件生成：
+    利用kubectl生成: should point generate config file
+9.1 kubelet-kubeconfig 文件生成：
+kubectl config set-cluster k8s &ndash;certificate-authority=/srv/kubernetes/ca.crt &ndash;embed-certs=true &ndash;server=<a href="https://192.168.199.142:6443">https://192.168.199.142:6443</a>
+kubectl config set-credentials kubelet &ndash;client-certificate=/srv/kubernetes/kubelet.crt &ndash;client-key=/srv/kubernetes/kubelet.key &ndash;embed-certs=true
+kubectl config set-context k8s_kubelet &ndash;cluster=k8s &ndash;user=kubelet
+kubectl config use-context k8s_kubelet
+mv /root/.kube/config  /var/lib/kubelet/kubeconfig
+9.2 kube-proxy-kubeconfig 文件生成：
+kubectl config set-cluster k8s &ndash;certificate-authority=/srv/kubernetes/ca.crt &ndash;embed-certs=true &ndash;server=<a href="https://192.168.199.142:6443">https://192.168.199.142:6443</a>
+kubectl config set-credentials system:kube-proxy &ndash;client-certificate=/srv/kubernetes/kube-proxy.crt &ndash;client-key=/srv/kubernetes/kube-proxy.key &ndash;embed-certs=true
+kubectl config set-context k8s_kube-proxy &ndash;cluster=k8s &ndash;user=system:kube-proxy
+kubectl config use-context k8s_kube-proxy
+mv /root/.kube/config  /var/lib/kube-proxy/kubeconfig
+9.3 admin-kubeconfig 文件生成：
+kubectl config set-cluster k8s &ndash;certificate-authority=/srv/kubernetes/ca.crt &ndash;embed-certs=true &ndash;server=<a href="https://192.168.199.142:6443">https://192.168.199.142:6443</a>
+kubectl config set-credentials kube-admin &ndash;client-certificate=/srv/kubernetes/ kube-admin.crt &ndash;client-key=/srv/kubernetes/ kube-admin.key &ndash;embed-certs=true
+kubectl config set-context k8s_kube-admin &ndash;cluster=k8s &ndash;user=kube-admin
+kubectl config use-context kube-admin
+备份你的admin-kubeconfig。</p>
 
               
             </div>
@@ -501,9 +527,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/prometheus/">prometheus</a>
-
-  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/influxdb/">influxDB</a>
+  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/kubernetes/">kubernetes</a>
 
                   </div>
                 
@@ -516,7 +540,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/raft/" data-tooltip="Raft 初识">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -524,7 +548,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -542,7 +566,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/04/prometheus/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/11/kubernetes/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -590,7 +614,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/raft/" data-tooltip="Raft 初识">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -598,7 +622,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/06/zihuan/" data-tooltip="资环十年">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -616,7 +640,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/04/prometheus/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/11/kubernetes/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -646,7 +670,7 @@ smarthost: &lsquo;smtp.exmail.qq.com:587&rsquo;</p>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F04%2Fprometheus%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F11%2Fkubernetes%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -874,9 +898,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/blog.zhoulouzi.com\/2017\/04\/prometheus\/';
+          this.page.url = 'https:\/\/blog.zhoulouzi.com\/2017\/11\/kubernetes\/';
           
-            this.page.identifier = '\/2017\/04\/prometheus\/'
+            this.page.identifier = '\/2017\/11\/kubernetes\/'
           
         };
         (function() {

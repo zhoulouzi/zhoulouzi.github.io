@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Consistency on Blog zhoulouzi</title>
-    <link>http://blog.zhoulouzi.com/tags/consistency/</link>
+    <link>https://blog.zhoulouzi.com/tags/consistency/</link>
     <description>Recent content in Consistency on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Nov 2017 21:48:15 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.zhoulouzi.com/tags/consistency/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.zhoulouzi.com/tags/consistency/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Raft 初识</title>
-      <link>http://blog.zhoulouzi.com/2017/11/raft/</link>
+      <link>https://blog.zhoulouzi.com/2017/11/raft/</link>
       <pubDate>Sun, 05 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>http://blog.zhoulouzi.com/2017/11/raft/</guid>
+      <guid>https://blog.zhoulouzi.com/2017/11/raft/</guid>
       <description>the secret lives of data http://thesecretlivesofdata.com/raft/
-he Raft Consensus Algorithm https://raft.github.io/
+the Raft Consensus Algorithm https://raft.github.io/
 Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</description>
     </item>
     
