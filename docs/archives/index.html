@@ -250,7 +250,7 @@ ga('send', 'pageview');
           <h5 class="archive-title" style="text-decoration: none;">四月</h5>
           
             <li class="archive-post archive-day" data-date="20170405">
-              <a class="archive-post-title" href="https://blog.zhoulouzi.com/2017/04/prometheus/">Prometheus vs influxDB</a>
+              <a class="archive-post-title" href="https://blog.zhoulouzi.com/2017/04/prometheus/">Prometheus base</a>
             </li>
           
         </ul>
@@ -322,9 +322,9 @@ ga('send', 'pageview');
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
-备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
-etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
-暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</div>
+备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+ etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary
+kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -383,7 +383,8 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather">总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
-  一个列表成员都是出现2次的整数，只有一个元素出现一次。 &gt; Given an array of integers, every element appears twice except for one. Find that single one. &gt; Note: &gt; Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： &gt; One-line python solution with O(n) time  def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。 Remove Element Given an array and a value, remove all instances of that value in place and return the new length.</div>
+ 1.一个列表成员都是出现2次的整数，只有一个元素出现一次。  Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案： One-line python solution with O(n) time
+def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)  第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -413,20 +414,16 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/2017/04/prometheus/">
-                <h3 class="media-heading">Prometheus vs influxDB</h3>
+                <h3 class="media-heading">Prometheus base</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Apr 4, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
-prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是： 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
-Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。 Translating between monitoring languages
-TICK stack这边的东西：
-telegraf： {: width=&ldquo;800px&rdquo; height=&ldquo;480px&rdquo;}
-概念: input,ouput,processor,aggerator
-input： telegraf可以parse以下的数据格式到metrics 1. influxDB LIne Protocol 2. JSON 3. Graphite 4. value 举例: 45 or &ldquo;abc&rdquo; 5. nagios 6. collectd telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol： 1.</div>
+              <div class="media-content hide-xs font-merryweather">prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘 prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。
+ DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。 Metric name and labels
+每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

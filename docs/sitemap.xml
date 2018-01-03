@@ -80,12 +80,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhoulouzi.com/archives/kubernetes/</loc>
     <lastmod>2017-11-07T21:48:15+08:00</lastmod>
     <priority>0</priority>
@@ -93,6 +87,12 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/tags/kubernetes/</loc>
+    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
     <lastmod>2017-11-07T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -128,13 +128,13 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/prometheus/</loc>
+    <loc>https://blog.zhoulouzi.com/tags/prometheus/</loc>
     <lastmod>2017-04-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/tags/prometheus/</loc>
+    <loc>https://blog.zhoulouzi.com/categories/prometheus/</loc>
     <lastmod>2017-04-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>

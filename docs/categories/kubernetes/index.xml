@@ -18,9 +18,9 @@
       
       <guid>https://blog.zhoulouzi.com/2017/11/kubernetes/</guid>
       <description>概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
-备注：未实现HA模式 ，实现HA模式，官方的文档（https://kubernetes.io/docs/admin/high-availability/）里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
-etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读
-暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</description>
+备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+ etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary
+kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</description>
     </item>
     
     <item>

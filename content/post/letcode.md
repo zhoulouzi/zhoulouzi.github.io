@@ -25,7 +25,7 @@ showDate: true
 # 总结出一些比较意义的题
 > 好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
 
-1. 一个列表成员都是出现2次的整数，只有一个元素出现一次。
+### 1.一个列表成员都是出现2次的整数，只有一个元素出现一次。
 > Given an array of integers, every element appears twice except for one. Find that single one.
 > Note:
 > Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
@@ -40,7 +40,7 @@ def singleNumber(self, nums):
         return reduce(lambda x, y: x ^ y, nums)
 ```
 第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。
-2. Remove Element
+### 2. Remove Element
 Given an array and a value, remove all instances of that value in place and return the new length.
 Do not allocate extra space for another array, you must do this in place with constant memory.
 The order of elements can be changed. It doesn't matter what you leave beyond the new length.
@@ -54,7 +54,7 @@ def removeElement(nums, val):
             nums.remove(val)
      return len(nums)
 ```
-3. Palindrome Number 回数，又看见这个题了，曾经面试遇到过
+### 3. Palindrome Number 回数，又看见这个题了，曾经面试遇到过
 利用切片搞定。
 ```
 def isPalindrome(x):
@@ -64,7 +64,7 @@ def isPalindrome(x):
         """
         return str(x) == str(x)[::-1]
 ```
-4. Valid Palindrome 回文，忽略大小写，只考虑字母和数字
+### 4. Valid Palindrome 回文，忽略大小写，只考虑字母和数字
 > For example,
 "A man, a plan, a canal: Panama" is a palindrome.
 "race a car" is not a palindrome.
@@ -80,8 +80,8 @@ def isPalindrome(x):
 ```
 
 
-排序：
-冒泡排序：
+## 排序：
+### 冒泡排序：
 ```
 arr = [9,8,7,6,5,4,3,2,1]
 for j in range(len(arr)):
@@ -92,7 +92,7 @@ for j in range(len(arr)):
 print(arr)
 ```
 
-快速排序：
+### 快速排序：
 ```
 def quick(L,left,right):
     if left >= right:

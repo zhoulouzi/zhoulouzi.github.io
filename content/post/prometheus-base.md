@@ -1,5 +1,5 @@
 ---
-title: "Prometheus vs influxDB"
+title: "Prometheus base"
 date: 2017-04-05T21:48:15+08:00
 draft: false
 slug: "prometheus"
@@ -23,87 +23,14 @@ showSocial: true
 showDate: true
 ---
 
-
-InfluxDB是一个由influxData开源的时序型数据库，Go编写，着力于高性能地查询与存储时序型数据，loT行业的实时数据等场景，influxDB在技术实现上充分利用了Go语言的特性，无需任何外部依赖即可独立部署。
-
-prometheus是SoundCloud开源的监控警报系统，Go编写，主要特点是：
+>prometheus是SoundCloud开源的监控警报系统:
 1. 多维度的数据模型(time series identified by metric name and key/value pairs)
 2. promQL强大灵活的查询语言
 3. 不依赖分布式存储
 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。
-5. 通过pushgateway来支持push time series，适合short-lived
- job。
+5. 通过pushgateway来支持push time series，适合short-lived job。
 6. 可以通过服务发现或者静态配置scarpe目标
 7. 支持多种模式的图形和仪表盘
-
-
-Influxdb的查询语句类似SQL方便用户进行数据查询。这点prometheus是使用了promQL,这里有一个prometheus作者对Graphite, InfluxDB and Prometheus 三者的查询的对比。
-[Translating between monitoring languages](https://www.robustperception.io/translating-between-monitoring-languages/)
-
-
-TICK stack这边的东西：
-### telegraf：
-![telegraf](http://opiq5jspn.bkt.clouddn.com/telegraf.png){: width="800px" height="480px"}
-
-概念: input,ouput,processor,aggerator
-
-## input：
-telegraf可以parse以下的数据格式到metrics
-1. influxDB LIne Protocol
-2. JSON
-3. Graphite
-4. value 举例: 45 or "abc"
-5. nagios
-6. collectd
-telegraf metircs 比如说 influxDB points(就像SQL的一个row)由以下4部分组成，其实这4个部分就是 influxDB line protocol：
-1. measurement Name(可以想象成SQL的一个table)
-2. Tags
-3. Fields
-4. Timestamp
-
-感觉telegraf这块的文档写意思就是说telegraf input能识别很多种格式，分别适应不同的场景。
-我这里关注的是 JSON，value
-
-## output
-telegraf可以把metrics格式转化为以下格式：
-1. influxDB line protocol
-2. JSON
-3.graphite
-
-这里还是只关注输出到influxdb，其他的暂时不做研究。
-
-## processor and aggregators
-官方文档只留下两段话,并没有留下简单的例子来说明how does it works 这点比prometheus的文档略差。
-aggregators就是prometheus qurey function 里的 aggregation。这部分还是prometheus支持的功能更强大一些，搭配recoding rules，使用起来感觉比较方便。不过上篇分享文章中提到telegraf可以搭配kapacitor script 来实现复杂功能。
-
-
-### chronograf
-chronograf 是一个webui，可以很方便的创建和设置dashborad和kapacitor的报警规则。对了，从v1.3开始influxdb自带的webui已经被删除，要做查询操作可以在chronograf的data-explorer上完成。
-chronograf颜值挺高的，我觉得比grafana好看。配置起来还是很简单的，这部分就不多说了上个截图
-
-![chronograf](http://opiq5jspn.bkt.clouddn.com/Chronograf.png){: width="800px" height="480px"}
-
-## kapacitor
-kapacitor 是用来产生报警，运行ETL jobs 和检测异常。
-关键功能：
-1. 处理流式数据和批量数据。
-2. 可以定时从influxdb里查询数据，通过line protocal 接受数据。
-3. 利用influxQL处理数据变化， 并可以将数据存回infulxdb。
-4. 添加用户自定义的函数来检测异常
-5. 集成Alerta，Slack
-
-官方的kapacitor文档介绍了Tickscript怎么处理batch和steam数据，感觉学习成本挺高的，后期我准备用prometheus就没有系统的学习。持续关注吧，等有经验的前辈们来总结。·
-
-## InfluxDB
-
-InfluxDB应该是这套技术栈最核心的地方了吧，细节可推敲的地方还是很多，influxdb据说很多公司自研监控系统就是用的这.
-时序数据库，跟传统的 关系型数据库，NoSQL有很大的区别
-influxdb 用的存储格式是TSM 一个很深奥的话题。这里就不写了。大家好好看官方文档。
-
-
-# prometheus
-接下来把大部分精力都放在prometheus上 （1.7.0 / 2017-06-06 ）加油
-
 prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。
 
 
