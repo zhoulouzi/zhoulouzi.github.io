@@ -1,6 +1,6 @@
 ---
 title: "kubernetes yaml 配置文件的 reference"
-date: 2017-11-07T21:48:15+08:00
+date: 2018-01-31T21:48:15+08:00
 draft: false
 slug: "kubernetes"
 tags:
