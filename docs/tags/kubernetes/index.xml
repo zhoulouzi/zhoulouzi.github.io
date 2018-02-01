@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Nov 2017 21:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jan 2018 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes yaml 配置文件的 reference</title>
+      <link>https://blog.zhoulouzi.com/2018/01/kubernetes/</link>
+      <pubDate>Wed, 31 Jan 2018 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/2018/01/kubernetes/</guid>
+      <description>怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &amp;lt;string&amp;gt; data &amp;lt;map[string]string&amp;gt; kind &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; annotations &amp;lt;map[string]string&amp;gt; clusterName &amp;lt;string&amp;gt; creationTimestamp &amp;lt;string&amp;gt; deletionGracePeriodSeconds &amp;lt;integer&amp;gt; deletionTimestamp &amp;lt;string&amp;gt; finalizers &amp;lt;[]string&amp;gt; generateName &amp;lt;string&amp;gt; generation &amp;lt;integer&amp;gt; initializers &amp;lt;Object&amp;gt; pending &amp;lt;[]Object&amp;gt; name &amp;lt;string&amp;gt; result &amp;lt;Object&amp;gt; apiVersion &amp;lt;string&amp;gt; code &amp;lt;integer&amp;gt; details &amp;lt;Object&amp;gt; causes &amp;lt;[]Object&amp;gt; field &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; group &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; retryAfterSeconds &amp;lt;integer&amp;gt; uid &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; continue &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; status &amp;lt;string&amp;gt; labels &amp;lt;map[string]string&amp;gt; name &amp;lt;string&amp;gt; namespace &amp;lt;string&amp;gt; ownerReferences &amp;lt;[]Object&amp;gt; apiVersion &amp;lt;string&amp;gt; blockOwnerDeletion &amp;lt;boolean&amp;gt; controller &amp;lt;boolean&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; stringData &amp;lt;map[string]string&amp;gt; type &amp;lt;string&amp;gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &amp;lt;-&amp;gt; config.</description>
+    </item>
     
     <item>
       <title>kubernetes installed</title>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Nov 2017 21:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jan 2018 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes yaml 配置文件的 reference</title>
+      <link>https://blog.zhoulouzi.com/2018/01/kubernetes/</link>
+      <pubDate>Wed, 31 Jan 2018 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/2018/01/kubernetes/</guid>
+      <description>怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &amp;lt;string&amp;gt; data &amp;lt;map[string]string&amp;gt; kind &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; annotations &amp;lt;map[string]string&amp;gt; clusterName &amp;lt;string&amp;gt; creationTimestamp &amp;lt;string&amp;gt; deletionGracePeriodSeconds &amp;lt;integer&amp;gt; deletionTimestamp &amp;lt;string&amp;gt; finalizers &amp;lt;[]string&amp;gt; generateName &amp;lt;string&amp;gt; generation &amp;lt;integer&amp;gt; initializers &amp;lt;Object&amp;gt; pending &amp;lt;[]Object&amp;gt; name &amp;lt;string&amp;gt; result &amp;lt;Object&amp;gt; apiVersion &amp;lt;string&amp;gt; code &amp;lt;integer&amp;gt; details &amp;lt;Object&amp;gt; causes &amp;lt;[]Object&amp;gt; field &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; group &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; retryAfterSeconds &amp;lt;integer&amp;gt; uid &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; continue &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; status &amp;lt;string&amp;gt; labels &amp;lt;map[string]string&amp;gt; name &amp;lt;string&amp;gt; namespace &amp;lt;string&amp;gt; ownerReferences &amp;lt;[]Object&amp;gt; apiVersion &amp;lt;string&amp;gt; blockOwnerDeletion &amp;lt;boolean&amp;gt; controller &amp;lt;boolean&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; stringData &amp;lt;map[string]string&amp;gt; type &amp;lt;string&amp;gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &amp;lt;-&amp;gt; config.</description>
+    </item>
     
     <item>
       <title>kubernetes installed</title>
@@ -77,7 +86,7 @@ def singleNumber(self, nums): &amp;quot;&amp;quot;&amp;quot; :type nums: List[in
       <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2017/04/prometheus/</guid>
-      <description>prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘 prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。
+      <description>prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
  DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。 Metric name and labels
 每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</description>
     </item>

@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.32.2 with theme Tranquilpeak 0.4.2-BETA">
-    <title>minikube offline installed</title>
+    <title>kubernetes yaml 配置文件的 reference</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
 
@@ -30,30 +30,15 @@
     
 
     
-    <meta name="description" content="目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
-建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
-4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
-/usr/local/bin/minikube start &ndash;vm-driver=none &ndash;iso-url file://tmp/minikube-v0.23.5.iso &ndash;kubernetes-version v1.7.5 &ndash;extra-config=apiserver.Service.NodePortRange=0-60000
-确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。">
-    <meta property="og:description" content="目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
-建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
-4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
-/usr/local/bin/minikube start &ndash;vm-driver=none &ndash;iso-url file://tmp/minikube-v0.23.5.iso &ndash;kubernetes-version v1.7.5 &ndash;extra-config=apiserver.Service.NodePortRange=0-60000
-确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。">
+    <meta name="description" content="怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &lt;-&gt; config.">
+    <meta property="og:description" content="怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &lt;-&gt; config.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="minikube offline installed">
-    <meta property="og:url" content="/2017/10/minikube/">
+    <meta property="og:title" content="kubernetes yaml 配置文件的 reference">
+    <meta property="og:url" content="/2018/01/kubernetes/">
     <meta property="og:site_name" content="Blog zhoulouzi">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Blog zhoulouzi">
-    <meta name="twitter:description" content="目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
-建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
-4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
-/usr/local/bin/minikube start &ndash;vm-driver=none &ndash;iso-url file://tmp/minikube-v0.23.5.iso &ndash;kubernetes-version v1.7.5 &ndash;extra-config=apiserver.Service.NodePortRange=0-60000
-确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。">
+    <meta name="twitter:description" content="怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &lt;-&gt; config.">
     
       <meta name="twitter:creator" content="@zhoulouzi">
     
@@ -222,15 +207,15 @@ ga('send', 'pageview');
             <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      minikube offline installed
+      kubernetes yaml 配置文件的 reference
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-10-07T21:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-01-31T21:48:15&#43;08:00">
         
-  十月 7, 2017
+  一月 31, 2018
 
       </time>
     
@@ -253,40 +238,82 @@ ga('send', 'pageview');
             <div class="main-content-wrap">
               
 
-<h2 id="目标">目标：</h2>
+<h2 id="怎么找到编写kubernetes-yaml-配置文件的手册">怎么找到编写kubernetes yaml 配置文件的手册</h2>
 
-<p>在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。
-<a href="https://github.com/zhoulouzi/minikube_install_offline">https://github.com/zhoulouzi/minikube_install_offline</a></p>
+<pre><code>其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。
 
-<h2 id="建议在网络正常的情况下使用一次minikube-然后在做offline的安装">建议在网络正常的情况下使用一次minikube，然后在做offline的安装</h2>
+# kubectl explain -h
 
-<p>需要提前下载几个东西：
-    1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可
-    2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可
-    3、docker的离线安装包 docker 离线安装</p>
+kubectl explain secrets
 
-<pre><code>4、minikube 要跑起来所需要的docker镜像：
-    gcr.io/google_containers/kubernetes-dashboard-amd64    v1.6.3
-    gcr.io/google_containers/k8s-dns-sidecar-amd64         1.14.5
-    gcr.io/google_containers/k8s-dns-kube-dns-amd64        1.14.5
-    gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64   1.14.5
-    gcr.io/google-containers/kube-addon-manager            v6.4-beta.2
-    gcr.io/google_containers/pause-amd64                   3.0
+kubectl explain secrets --recursive
 
-    docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来
+DESCRIPTION:
+ Secret holds secret data of a certain type. The total bytes of the values
+ in the Data field must be less than MaxSecretSize bytes.
 
-    minikube addons 里面disabled 的 镜像未做研究。
+FIELDS:
+   apiVersion   &lt;string&gt;
+   data &lt;map[string]string&gt;
+   kind &lt;string&gt;
+   metadata &lt;Object&gt;
+      annotations   &lt;map[string]string&gt;
+      clusterName   &lt;string&gt;
+      creationTimestamp &lt;string&gt;
+      deletionGracePeriodSeconds    &lt;integer&gt;
+      deletionTimestamp &lt;string&gt;
+      finalizers    &lt;[]string&gt;
+      generateName  &lt;string&gt;
+      generation    &lt;integer&gt;
+      initializers  &lt;Object&gt;
+         pending    &lt;[]Object&gt;
+            name    &lt;string&gt;
+         result &lt;Object&gt;
+            apiVersion  &lt;string&gt;
+            code    &lt;integer&gt;
+            details &lt;Object&gt;
+               causes   &lt;[]Object&gt;
+                  field &lt;string&gt;
+                  message   &lt;string&gt;
+                  reason    &lt;string&gt;
+               group    &lt;string&gt;
+               kind &lt;string&gt;
+               name &lt;string&gt;
+               retryAfterSeconds    &lt;integer&gt;
+               uid  &lt;string&gt;
+            kind    &lt;string&gt;
+            message &lt;string&gt;
+            metadata    &lt;Object&gt;
+               continue &lt;string&gt;
+               resourceVersion  &lt;string&gt;
+               selfLink &lt;string&gt;
+            reason  &lt;string&gt;
+            status  &lt;string&gt;
+      labels    &lt;map[string]string&gt;
+      name  &lt;string&gt;
+      namespace &lt;string&gt;
+      ownerReferences   &lt;[]Object&gt;
+         apiVersion &lt;string&gt;
+         blockOwnerDeletion &lt;boolean&gt;
+         controller &lt;boolean&gt;
+         kind   &lt;string&gt;
+         name   &lt;string&gt;
+         uid    &lt;string&gt;
+      resourceVersion   &lt;string&gt;
+      selfLink  &lt;string&gt;
+      uid   &lt;string&gt;
+   stringData   &lt;map[string]string&gt;
+   type &lt;string&gt;
 
-5、minikue.iso   下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso
+试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）
 </code></pre>
 
-<p>minikube 启动参数：</p>
+<h2 id="额外分享一个工具">额外分享一个工具。</h2>
 
-<p>/usr/local/bin/minikube start &ndash;vm-driver=none &ndash;iso-url file://tmp/minikube-v0.23.5.iso &ndash;kubernetes-version v1.7.5 &ndash;extra-config=apiserver.Service.NodePortRange=0-60000</p>
+<pre><code>Registry creds &lt;-&gt; config.json &lt;-&gt; Kubernetes Secret YAML
 
-<p>确保 一个localkube的服务正常启动</p>
-
-<p>做完这些 正常使用kubectl apply 你的服务。</p>
+https://polyverse.github.io/docker-creds-converter/
+</code></pre>
 
               
             </div>
@@ -299,7 +326,7 @@ ga('send', 'pageview');
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/minkube/">minkube</a>
+  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/kubernetes/">kubernetes</a>
 
                   </div>
                 
@@ -312,7 +339,7 @@ ga('send', 'pageview');
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/09/leetcode/" data-tooltip="leetcode 笔记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/kubernetes/" data-tooltip="kubernetes installed">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -320,7 +347,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/raft/" data-tooltip="Raft 初识">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -338,7 +365,7 @@ ga('send', 'pageview');
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/10/minikube/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2018/01/kubernetes/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -386,7 +413,7 @@ ga('send', 'pageview');
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/09/leetcode/" data-tooltip="leetcode 笔记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/kubernetes/" data-tooltip="kubernetes installed">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -394,7 +421,7 @@ ga('send', 'pageview');
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/2017/11/raft/" data-tooltip="Raft 初识">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -412,7 +439,7 @@ ga('send', 'pageview');
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2017/10/minikube/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/2018/01/kubernetes/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -442,7 +469,7 @@ ga('send', 'pageview');
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2F2017%2F10%2Fminikube%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2F2018%2F01%2Fkubernetes%2F">
           <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
         </a>
       </li>
@@ -684,9 +711,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/blog.zhoulouzi.com\/2017\/10\/minikube\/';
+          this.page.url = 'https:\/\/blog.zhoulouzi.com\/2018\/01\/kubernetes\/';
           
-            this.page.identifier = '\/2017\/10\/minikube\/'
+            this.page.identifier = '\/2018\/01\/kubernetes\/'
           
         };
         (function() {

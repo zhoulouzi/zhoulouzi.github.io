@@ -17,7 +17,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.30.2 with theme Tranquilpeak 0.4.2-BETA">
+    <meta name="generator" content="Hugo 0.32.2 with theme Tranquilpeak 0.4.2-BETA">
     <title>Minkube</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
@@ -330,6 +330,23 @@ ga('send', 'pageview');
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/2018/01/kubernetes/">
+                <h3 class="media-heading">kubernetes yaml 配置文件的 reference</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &lt;-&gt; config.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/2017/11/kubernetes/">
                 <h3 class="media-heading">kubernetes installed</h3>
               </a>
@@ -438,7 +455,7 @@ def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: i
                   Apr 4, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘 prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。
+              <div class="media-content hide-xs font-merryweather">prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
  DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。 Metric name and labels
 每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</div>
             </div>
@@ -453,7 +470,7 @@ def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: i
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         6 posts found
+         7 posts found
       </p>
     </div>
   </div>

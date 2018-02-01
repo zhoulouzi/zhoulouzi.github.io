@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://blog.zhoulouzi.com/2018/01/kubernetes/</loc>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.zhoulouzi.com/2017/11/kubernetes/</loc>
     <lastmod>2017-11-07T21:48:15+08:00</lastmod>
   </url>
@@ -45,7 +50,7 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -63,7 +68,7 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -80,31 +85,31 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/archives/kubernetes/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhoulouzi.com/tags/kubernetes/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/archives/leetcode/</loc>
-    <lastmod>2017-09-05T21:48:15+08:00</lastmod>
+    <loc>https://blog.zhoulouzi.com/archives/kubernetes/</loc>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.zhoulouzi.com/tags/leetcode/</loc>
+    <lastmod>2017-09-05T21:48:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhoulouzi.com/archives/leetcode/</loc>
     <lastmod>2017-09-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -123,7 +128,7 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/post/</loc>
-    <lastmod>2017-11-07T21:48:15+08:00</lastmod>
+    <lastmod>2018-01-31T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,13 +145,13 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/archives/raft/</loc>
+    <loc>https://blog.zhoulouzi.com/tags/raft/</loc>
     <lastmod>2017-11-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/tags/raft/</loc>
+    <loc>https://blog.zhoulouzi.com/archives/raft/</loc>
     <lastmod>2017-11-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
