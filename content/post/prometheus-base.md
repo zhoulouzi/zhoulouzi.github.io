@@ -31,7 +31,6 @@ showDate: true
 5. 通过pushgateway来支持push time series，适合short-lived job。
 6. 可以通过服务发现或者静态配置scarpe目标
 7. 支持多种模式的图形和仪表盘
-prometheus的作者brian brazil现在是专职开发promeheus，曾经给Ansible，Python，Aurora，Zookeeper贡献过代码，曾经在Google SRE 工作7年 ，职责是和reliable和monitoring相关的工作。
 
 
 ## DATA MODEL
@@ -128,7 +127,7 @@ prometheus 抓取时 会有个instance的标签 base on __address__ 这个tmp标
          target_label: node_host
          regex: ([\d\.]+):[\d\.]+
 ```
-效果图：
+即国土：
 ![](http://opiq5jspn.bkt.clouddn.com/prometheus.png)
 这个例子最后就可以给你的series填上你自定义的标签。
 
@@ -155,6 +154,13 @@ prometheus 有自己定规的存储layer 用恒大大小1024字节的chunk来组
 
 storage.local.path 存储使用目录
 storage.local.retention 采样数据保留多长时间，默认360小时
+
+规划 prometheus 的磁盘使用容量 可以简单利用一个计算公式
+
+needed_disk_space = retention_time_seconds * ingested_samples_per_second * bytes_per_sample
+
+每个smaple大约是1-2个字节
+在生产环节也验证了这个值是差不多的。
 
 chunk encoding:
 
