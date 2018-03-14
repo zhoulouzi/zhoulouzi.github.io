@@ -1,5 +1,5 @@
 ---
-title: "minikube offline installed"
+title: "minikube install offline"
 date: 2017-10-07T21:48:15+08:00
 draft: false
 slug: "minikube"

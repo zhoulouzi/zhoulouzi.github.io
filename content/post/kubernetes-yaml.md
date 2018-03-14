@@ -1,5 +1,5 @@
 ---
-title: "kubernetes yaml 配置文件的 reference"
+title: "kubectl explain"
 date: 2018-01-31T21:48:15+08:00
 draft: false
 slug: "kubernetes"

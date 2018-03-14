@@ -1,5 +1,5 @@
 ---
-title: "Prometheus base"
+title: "prometheus base"
 date: 2017-04-05T21:48:15+08:00
 draft: false
 slug: "prometheus"
