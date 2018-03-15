@@ -2,7 +2,7 @@
 title: "kubernetes-local-perisistent-storage"
 date: 2018-03-07T21:48:15+08:00
 draft: false
-slug: "kubernetes"
+slug: "kubernetes-local"
 tags:
 - kubernetes
 archives:
