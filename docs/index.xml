@@ -6,10 +6,20 @@
     <description>Recent content on Blog zhoulouzi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 Jan 2018 21:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kubernetes-local-perisistent-storage</title>
+      <link>https://blog.zhoulouzi.com/2018/03/kubernetes/</link>
+      <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/2018/03/kubernetes/</guid>
+      <description>在公司kubernetes集群是否使用ceph、gluster、nfs等 Dynamic volume provisioning 的问题上，对性能和成本方面的考虑没有使用。但是kuberntes volume 本身提供的hostpath对于statefulset的服务非常不方便使用，特别是volume的挂载和pod 的调度上（之前我们是利用了hostpath和nodeselector做的），在详细的看过kubernets文档之后，我们把精力都聚焦在了 volume ”local“ 这个功能上： 首先，我们来看一下文档关于local volume的介绍（ https://kubernetes.io/docs/concepts/storage/volumes/#local ）：
+ local FEATURE STATE: Kubernetes v1.7 alpha This alpha feature requires the PersistentLocalVolumes feature gate to be enabled. Note: Starting in 1.9, the VolumeScheduling feature gate must also be enabled. A local volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume.</description>
+    </item>
     
     <item>
       <title>kubectl explain</title>
@@ -30,16 +40,6 @@
 备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
  etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary
 kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</description>
-    </item>
-    
-    <item>
-      <title>kubernetes-local-perisistent-storage</title>
-      <link>https://blog.zhoulouzi.com/2017/11/kubernetes/</link>
-      <pubDate>Tue, 07 Nov 2017 21:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/2017/11/kubernetes/</guid>
-      <description>在公司kubernetes集群是否使用ceph、gluster、nfs等 Dynamic volume provisioning 的问题上，对性能和成本方面的考虑没有使用。但是kuberntes volume 本身提供的hostpath对于statefulset的服务非常不方便使用，特别是volume的挂载和pod 的调度上（之前我们是利用了hostpath和nodeselector做的），在详细的看过kubernets文档之后，我们把精力都聚焦在了 volume ”local“ 这个功能上： 首先，我们来看一下文档关于local volume的介绍（ https://kubernetes.io/docs/concepts/storage/volumes/#local ）：
- local FEATURE STATE: Kubernetes v1.7 alpha This alpha feature requires the PersistentLocalVolumes feature gate to be enabled. Note: Starting in 1.9, the VolumeScheduling feature gate must also be enabled. A local volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume.</description>
     </item>
     
     <item>
