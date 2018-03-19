@@ -23,20 +23,22 @@ showSocial: true
 showDate: true
 ---
 
->prometheus是SoundCloud开源的监控警报系统:
-1. 多维度的数据模型(time series identified by metric name and key/value pairs)
-2. promQL强大灵活的查询语言
-3. 不依赖分布式存储
-4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。
-5. 通过pushgateway来支持push time series，适合short-lived job。
-6. 可以通过服务发现或者静态配置scarpe目标
-7. 支持多种模式的图形和仪表盘
+# prometheus
+
+> 1. 多维度的数据模型(time series identified by metric name and key/value pairs)
+> 2. promQL强大灵活的查询语言
+> 3. 不依赖分布式存储
+> 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。
+> 5. 通过pushgateway来支持push time series，适合short-lived job。
+> 6. 可以通过服务发现或者静态配置scarpe目标
+> 7. 支持多种模式的图形和仪表盘
 
 
 ## DATA MODEL
 prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions.
 除此之外，还可以通过query生成临时衍生的time series。
-Metric name and labels
+
+#### Metric name and labels
 
 每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。
 metric name 代表一个系统被监测的功能。 eg：http_requests_total  命名规则是 符合 [a-zA-Z_:][a-zA-Z0-9_:]* 这个正则表达式。
@@ -48,7 +50,7 @@ query languages 允许 过滤和聚合通过这些维度，更改任何一个lab
 > \<metric name\>{\<label name\>=\<label value\>, ...}
 > api_http_requests_total{method="POST", handler="/messages"}
 
-metric types:
+#### metric types:
     prometheus 的 客户端库提供了4个核心的 metric type，不过只是在客户端库里存在，server端存的还是 untyped time series.
 1. counter
     计数器，很好理解，代表一个只会增长的值。 用例：已经完成的请求数，任务完成数
@@ -127,7 +129,6 @@ prometheus 抓取时 会有个instance的标签 base on __address__ 这个tmp标
          target_label: node_host
          regex: ([\d\.]+):[\d\.]+
 ```
-即国土：
 ![](http://opiq5jspn.bkt.clouddn.com/prometheus.png)
 这个例子最后就可以给你的series填上你自定义的标签。
 
@@ -183,6 +184,27 @@ smarthost: 'smtp.exmail.qq.com:587'
 
 ##### 解决方案资源：
 https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

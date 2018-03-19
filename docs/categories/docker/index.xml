@@ -17,8 +17,13 @@
       <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2018/03/kubernetes-local/</guid>
-      <description>在公司kubernetes集群是否使用ceph、gluster、nfs等 Dynamic volume provisioning 的问题上，对性能和成本方面的考虑没有使用。但是kuberntes volume 本身提供的hostpath对于statefulset的服务非常不方便使用，特别是volume的挂载和pod 的调度上（之前我们是利用了hostpath和nodeselector做的），在详细的看过kubernets文档之后，我们把精力都聚焦在了 volume ”local“ 这个功能上： 首先，我们来看一下文档关于local volume的介绍（ https://kubernetes.io/docs/concepts/storage/volumes/#local ）：
- local FEATURE STATE: Kubernetes v1.7 alpha This alpha feature requires the PersistentLocalVolumes feature gate to be enabled. Note: Starting in 1.9, the VolumeScheduling feature gate must also be enabled. A local volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume.</description>
+      <description>Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档关于local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) github手册地址：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
+仔细阅读了这两篇文章之后，我们来做个实验。 环境： kubernets 1.9.3
+step1： api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
+--feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
+ $ cat local-storage.yaml # Only create this for K8s 1.9+ apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: local-storage provisioner: kubernetes.io/no-provisioner volumeBindingMode: WaitForFirstConsumer
+ step3: Manually create local persistent volume
+ #文档中提供了一个 local volume static provisioner ，大概的功能就是 自动将你定义的path里的子文件夹 创建成 persistent volume #这里没有使用这种方式，而是选择了手动创建。 这里一定要关注一下 pv的 accessModes persistentVolumeReclaimPolicy 这两个参数，理解他们的意思。</description>
     </item>
     
     <item>
@@ -27,7 +32,8 @@
       <pubDate>Wed, 31 Jan 2018 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2018/01/kubernetes/</guid>
-      <description>怎么找到编写kubernetes yaml 配置文件的手册 其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。 # kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &amp;lt;string&amp;gt; data &amp;lt;map[string]string&amp;gt; kind &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; annotations &amp;lt;map[string]string&amp;gt; clusterName &amp;lt;string&amp;gt; creationTimestamp &amp;lt;string&amp;gt; deletionGracePeriodSeconds &amp;lt;integer&amp;gt; deletionTimestamp &amp;lt;string&amp;gt; finalizers &amp;lt;[]string&amp;gt; generateName &amp;lt;string&amp;gt; generation &amp;lt;integer&amp;gt; initializers &amp;lt;Object&amp;gt; pending &amp;lt;[]Object&amp;gt; name &amp;lt;string&amp;gt; result &amp;lt;Object&amp;gt; apiVersion &amp;lt;string&amp;gt; code &amp;lt;integer&amp;gt; details &amp;lt;Object&amp;gt; causes &amp;lt;[]Object&amp;gt; field &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; group &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; retryAfterSeconds &amp;lt;integer&amp;gt; uid &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; continue &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; status &amp;lt;string&amp;gt; labels &amp;lt;map[string]string&amp;gt; name &amp;lt;string&amp;gt; namespace &amp;lt;string&amp;gt; ownerReferences &amp;lt;[]Object&amp;gt; apiVersion &amp;lt;string&amp;gt; blockOwnerDeletion &amp;lt;boolean&amp;gt; controller &amp;lt;boolean&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; stringData &amp;lt;map[string]string&amp;gt; type &amp;lt;string&amp;gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具。 Registry creds &amp;lt;-&amp;gt; config.</description>
+      <description>kubectl explain 之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。
+# kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &amp;lt;string&amp;gt; data &amp;lt;map[string]string&amp;gt; kind &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; annotations &amp;lt;map[string]string&amp;gt; clusterName &amp;lt;string&amp;gt; creationTimestamp &amp;lt;string&amp;gt; deletionGracePeriodSeconds &amp;lt;integer&amp;gt; deletionTimestamp &amp;lt;string&amp;gt; finalizers &amp;lt;[]string&amp;gt; generateName &amp;lt;string&amp;gt; generation &amp;lt;integer&amp;gt; initializers &amp;lt;Object&amp;gt; pending &amp;lt;[]Object&amp;gt; name &amp;lt;string&amp;gt; result &amp;lt;Object&amp;gt; apiVersion &amp;lt;string&amp;gt; code &amp;lt;integer&amp;gt; details &amp;lt;Object&amp;gt; causes &amp;lt;[]Object&amp;gt; field &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; group &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; retryAfterSeconds &amp;lt;integer&amp;gt; uid &amp;lt;string&amp;gt; kind &amp;lt;string&amp;gt; message &amp;lt;string&amp;gt; metadata &amp;lt;Object&amp;gt; continue &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; reason &amp;lt;string&amp;gt; status &amp;lt;string&amp;gt; labels &amp;lt;map[string]string&amp;gt; name &amp;lt;string&amp;gt; namespace &amp;lt;string&amp;gt; ownerReferences &amp;lt;[]Object&amp;gt; apiVersion &amp;lt;string&amp;gt; blockOwnerDeletion &amp;lt;boolean&amp;gt; controller &amp;lt;boolean&amp;gt; kind &amp;lt;string&amp;gt; name &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; resourceVersion &amp;lt;string&amp;gt; selfLink &amp;lt;string&amp;gt; uid &amp;lt;string&amp;gt; stringData &amp;lt;map[string]string&amp;gt; type &amp;lt;string&amp;gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具，看看是什么吧？ Registry creds &amp;lt;-&amp;gt; config.</description>
     </item>
     
     <item>
@@ -36,10 +42,9 @@
       <pubDate>Tue, 07 Nov 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2017/11/kubernetes/</guid>
-      <description>概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
+      <description>kubernetes install offline step by step  概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
 备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
- etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary
-kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metrics server 并未安装待探索 10256: health check server port 代理的其他服务端口</description>
+ etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster  kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary  kube-proxy组件： port： 127.</description>
     </item>
     
     <item>
@@ -48,11 +53,9 @@ kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metric
       <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2017/10/minikube/</guid>
-      <description>目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline
-建议在网络正常的情况下使用一次minikube，然后在做offline的安装 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装
-4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 到一个tar包即可，同时也可以将所需的app docker镜像 save下来 minikube addons 里面disabled 的 镜像未做研究。 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso  minikube 启动参数：
-/usr/local/bin/minikube start &amp;ndash;vm-driver=none &amp;ndash;iso-url file://tmp/minikube-v0.23.5.iso &amp;ndash;kubernetes-version v1.7.5 &amp;ndash;extra-config=apiserver.Service.NodePortRange=0-60000
-确保 一个localkube的服务正常启动
+      <description>minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline,建议在网络正常的情况下使用一次minikube，然后在做offline的安装
+ 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装 4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 这个指令可以帮助你把镜像打到一个tar包即可 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso
+ minikube 启动参数： /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  确保 一个localkube的服务正常启动
 做完这些 正常使用kubectl apply 你的服务。</description>
     </item>
     
@@ -62,9 +65,8 @@ kube-proxy组件： port： 127.0.0.1:10249: metrics server to serve on # metric
       <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2017/04/prometheus/</guid>
-      <description>prometheus是SoundCloud开源的监控警报系统: 1. 多维度的数据模型(time series identified by metric name and key/value pairs) 2. promQL强大灵活的查询语言 3. 不依赖分布式存储 4. HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 5. 通过pushgateway来支持push time series，适合short-lived job。 6. 可以通过服务发现或者静态配置scarpe目标 7. 支持多种模式的图形和仪表盘
- DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。 Metric name and labels
-每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</description>
+      <description>prometheus   多维度的数据模型(time series identified by metric name and key/value pairs) promQL强大灵活的查询语言 不依赖分布式存储 HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 通过pushgateway来支持push time series，适合short-lived job。 可以通过服务发现或者静态配置scarpe目标 支持多种模式的图形和仪表盘   DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。
+Metric name and labels 每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</description>
     </item>
     
   </channel>

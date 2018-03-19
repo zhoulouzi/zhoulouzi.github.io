@@ -22,9 +22,9 @@ showSocial: true
 showDate: true
 ---
 
-## 怎么找到编写kubernetes yaml 配置文件的手册
+# kubectl explain
 
-    其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写。
+ 之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。
 
     # kubectl explain -h
 
@@ -93,7 +93,7 @@ showDate: true
 
 
 
-## 额外分享一个工具。
+## 额外分享一个工具，看看是什么吧？
 
     Registry creds <-> config.json <-> Kubernetes Secret YAML
 

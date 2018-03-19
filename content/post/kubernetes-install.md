@@ -23,6 +23,7 @@ showDate: true
 ---
 
 
+# kubernetes install offline step by step
 >概述:
 此文档用于在ubuntu16.04上独立安装kubernetes节点
 api-server与kubelet、kube-proxy之间通过tls认证交互
@@ -31,11 +32,11 @@ control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交�
 >备注：
 未实现HA模式  ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
 
-etcd组件说明：
+### etcd组件说明：
     port:
         127.0.0.1:2379: listen-client
         127.0.0.1:2380: initial-cluster
-kubelet组件说明：
+### kubelet组件说明：
     port:
         4194:       cadvisor-port                      #cadvisor作为kubernetes一个组件集成在kubelet里
         127.0.0.1:10248:    localhost healthz endpoint #
@@ -43,30 +44,33 @@ kubelet组件说明：
         10255:    The read-only port for the Kubelet to serve on with no authentication/authorization
             # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary
 
-kube-proxy组件：
+### kube-proxy组件：
     port：
         127.0.0.1:10249:   metrics server to serve on   # metrics server 并未安装待探索
         10256:   health check server port
         代理的其他服务端口
 
-apiserver 组件说明：
+### apiserver 组件说明：
     port:
         127.0.0.1:8080:     insecure-port
         6443:           secure-port
 
-API 认证策略（Authentication strategies）：X509 Client Certs、Service Account Tokens
+##### API 认证策略（Authentication strategies）：
+
+X509 Client Certs、Service Account Tokens
         # https://kubernetes.io/docs/admin/authentication/
-API 授权模式（Authorization Mozules）:Node、RBAC
+##### API 授权模式（Authorization Mozules）:
+Node、RBAC
         # https://kubernetes.io/docs/admin/authorization/
 
-kube-controller-manager组件说明：
+### kube-controller-manager组件说明：
     port:
         10252:      the controller-manager's http service runs on
-kube-scheduler组件说明：
+### kube-scheduler组件说明：
     port:
         10251:          the scheduler's http service runs on
 
-kube-dns组件说明：
+### kube-dns组件说明：
     k8s-dns-sidecar：        # daemon that exports metrics and performs healthcheck on DNS systems.
         10054：      metrics
         dnsmasq:            # 集群内部默认的dns服务
@@ -80,9 +84,11 @@ https://github.com/kubernetes/kubernetes/issues/31337
 https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker 这个文章 可以详细看看
 
 
-组件清单:
-组件介绍官方文档:https://kubernetes.io/docs/concepts/overview/components/
- kubernetes核心组件:
+## 组件清单:
+
+> 组件介绍官方文档:https://kubernetes.io/docs/concepts/overview/components/
+
+ ### kubernetes核心组件:
       二进制:                      版本
     kubectl :kubernetes 客户端工具
     kubelet                     Kubernetes v1.8.3
@@ -91,8 +97,8 @@ https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns
     etcd                        gcr.io/google_containers/etcd-amd64:3.0.17
     kube-apiserver                  gcr.io/google_containers/kube-apiserver-amd64:v1.8.3
     kube-controller-manager             gcr.io/google_containers/kube-controller-manager-amd64:v1.8.3
-kube-scheduler                  gcr.io/google_containers/kube-scheduler-amd64:v1.8.3
-kubernetes-addons: addons 手动部署，自动的好像要加label没搞明白
+    kube-scheduler                  gcr.io/google_containers/kube-scheduler- amd64:v1.8.3
+    kubernetes-addons: addons 手动部署，自动的好像要加label没搞明白
        容器方式:                        镜像
     kube-dns                    gcr.io/google_containers/k8s-dns-sidecar-amd64:1.14.7
                             gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.7
@@ -104,50 +110,49 @@ kubernetes-addons: addons 手动部署，自动的好像要加label没搞明白
     calico                      quay.io/calico/node:v2.6.2
                             quay.io/calico/kube-controllers:v1.0.0
                             quay.io/calico/cni:v1.11.0
-另外kubernetes所需的pod根容器:
     pause                       gcr.io/google_containers/pause-amd64:3.0
 
 
 打包结构如下：
-kubernetes_install:
-    /binary                     # 包含所需组件的二进制文件和docker镜像
-        /二进制\镜像如上列表
-        /save.sh                #用于本地打包镜像
-    /docker_install
-        /docker-ce_17.03.2~ce-0~ubuntu-xenial_amd64.deb
-        /install                    #docker 安装脚本
-    /conf   配置模板
-        /mainfests                  #kubelet manifests yaml
-            /etcd.yaml
-            /kubernetes-apiserver.yaml
-            /kubernetes-controller-manager.yaml
-            /kubernetes-scheduler.yaml
-/kube-addon-manager.yaml            s
-        /addons                 #kubernetes addons yaml
-            /kubernetes-dashboard.yaml
-/dashboard-admin.yaml       #dashboard的权限
-/kubernetes-dns.yml
-/heapster.yaml
-/heapster-rbac.yaml
-/dns-horizontal-autoscaler.yaml
-/calico.yaml
-/calico-rbac.yaml
-    /certs                      #存放生成的证书
-        /templates              #cfss csr模板s
-/apiserver-csr.conf.template
-/ca-config.json         #cfssl ca的config文件
-/ca-csr.json                #cfssl ca证书的csr文件
-/kube-admin-csr.json.template
-/kubelet-csr.json.template
-/kube-proxy-csr.json
-    /scripts
-        /kubernetes_install.sh      #节点执行的脚本
-        /node_var_template          #节点变量模板
-    /INSTALL                    #安装主脚本
-    /cfssl_to_kubernetes.sh         #证书生成脚本，被INSTALL调用
-    /cluster_var                    #定义集群参数
-    /README.md                  #说明
 
+    kubernetes_install:
+        /binary                     # 包含所需组件的二进制文件和docker镜像
+            /二进制\镜像如上列表
+            /save.sh                #用于本地打包镜像
+        /docker_install
+            /docker-ce_17.03.2~ce-0~ubuntu-xenial_amd64.deb
+            /install                    #docker 安装脚本
+        /conf   配置模板
+            /mainfests                  #kubelet manifests yaml
+                /etcd.yaml
+                /kubernetes-apiserver.yaml
+                /kubernetes-controller-manager.yaml
+                /kubernetes-scheduler.yaml
+    /kube-addon-manager.yaml            s
+            /addons                 #kubernetes addons yaml
+                /kubernetes-dashboard.yaml
+    /dashboard-admin.yaml       #dashboard的权限
+    /kubernetes-dns.yml
+    /heapster.yaml
+    /heapster-rbac.yaml
+    /dns-horizontal-autoscaler.yaml
+    /calico.yaml
+    /calico-rbac.yaml
+        /certs                      #存放生成的证书
+            /templates              #cfss csr模板s
+    /apiserver-csr.conf.template
+    /ca-config.json         #cfssl ca的config文件
+    /ca-csr.json                #cfssl ca证书的csr文件
+    /kube-admin-csr.json.template
+    /kubelet-csr.json.template
+    /kube-proxy-csr.json
+        /scripts
+            /kubernetes_install.sh      #节点执行的脚本
+            /node_var_template          #节点变量模板
+        /INSTALL                    #安装主脚本
+        /cfssl_to_kubernetes.sh         #证书生成脚本，被INSTALL调用
+        /cluster_var                    #定义集群参数
+        /README.md                  #说明
 
 ## 安装步骤：
 ### 1.准备环境:
@@ -284,6 +289,7 @@ kubernetes_install:
     kubectl config set-context k8s_kube-admin --cluster=k8s --user=kube-admin
     kubectl config use-context kube-admin
     备份你的admin-kubeconfig。
+
 
 
 

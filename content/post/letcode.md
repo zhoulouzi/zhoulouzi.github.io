@@ -22,35 +22,33 @@ showDate: true
 ---
 
 
+
 # 总结出一些比较意义的题
 > 好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
 
-### 1.一个列表成员都是出现2次的整数，只有一个元素出现一次。
-> Given an array of integers, every element appears twice except for one. Find that single one.
-> Note:
-> Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
-我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：
-> One-line python solution with O(n) time
-```
-def singleNumber(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        return reduce(lambda x, y: x ^ y, nums)
-```
-第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。
-### 2. Remove Element
-Given an array and a value, remove all instances of that value in place and return the new length.
-Do not allocate extra space for another array, you must do this in place with constant memory.
-The order of elements can be changed. It doesn't matter what you leave beyond the new length.
-Example:
-Given input array nums = [3,2,2,3], val = 3
-Your function should return length = 2, with the first two elements of nums being 2.
->  这个题用python有点简单。但是 list.remove这个方法用的还是很少的.加深下记忆
+### 1.
+
+Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+> 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：One-line python solution with O(n) time
+
+    def singleNumber(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: int
+            """
+            return reduce(lambda x, y: x ^ y, nums)
+
+
+> 第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。
+
+
+### 2.
+Remove Element Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn't matter what  you leave beyond the new length. Example: Given input array nums =[3,2,2,3], val = 3 Your function should return length = 2, with thefirst two elements of nums being 2.
+
 ```
 def removeElement(nums, val):
-     for i in range(nums.count(val)):
+    for i in range(nums.count(val)):
             nums.remove(val)
      return len(nums)
 ```
@@ -115,6 +113,8 @@ def quick(L,left,right):
     #递归调用，知道子列表为单一子列表 left=right
 quick(L,0,len(L)-1)
 ```
+
+
 
 
 
