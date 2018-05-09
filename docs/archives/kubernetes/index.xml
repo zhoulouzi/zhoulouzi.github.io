@@ -17,10 +17,10 @@
       <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/2018/03/kubernetes-local/</guid>
-      <description>Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档关于local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) github手册地址：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
+      <description>Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档 1、local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) 2、github：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
 仔细阅读了这两篇文章之后，我们来做个实验。 环境： kubernets 1.9.3
 step1： api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
---feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
+ --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
  $ cat local-storage.yaml # Only create this for K8s 1.9+ apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: local-storage provisioner: kubernetes.io/no-provisioner volumeBindingMode: WaitForFirstConsumer
  step3: Manually create local persistent volume
  #文档中提供了一个 local volume static provisioner ，大概的功能就是 自动将你定义的path里的子文件夹 创建成 persistent volume #这里没有使用这种方式，而是选择了手动创建。 这里一定要关注一下 pv的 accessModes persistentVolumeReclaimPolicy 这两个参数，理解他们的意思。</description>
