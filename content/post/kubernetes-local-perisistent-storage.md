@@ -26,16 +26,17 @@ showDate: true
 # Kubernetes-local-perisistent-storage
 
 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。
-首先，我们来看一下文档关于local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local)
-github手册地址：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
+首先，我们来看一下文档
+  1、local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local)
+  2、github：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
 
 仔细阅读了这两篇文章之后，我们来做个实验。
 环境： kubernets 1.9.3
 ## step1：
 
-api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
+  api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
 
-    --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true
+      --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true
 
 ## step2:
  Creating a StorageClass:
