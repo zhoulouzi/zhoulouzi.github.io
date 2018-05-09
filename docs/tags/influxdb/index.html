@@ -334,10 +334,10 @@ Metric name and labels 每一个 time series 都是 被一个 metric name 和 �
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档关于local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) github手册地址：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
+              <div class="media-content hide-xs font-merryweather">Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档 1、local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) 2、github：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
 仔细阅读了这两篇文章之后，我们来做个实验。 环境： kubernets 1.9.3
 step1： api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
---feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
+ --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
  $ cat local-storage.yaml # Only create this for K8s 1.9+ apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: local-storage provisioner: kubernetes.io/no-provisioner volumeBindingMode: WaitForFirstConsumer
  step3: Manually create local persistent volume
  #文档中提供了一个 local volume static provisioner ，大概的功能就是 自动将你定义的path里的子文件夹 创建成 persistent volume #这里没有使用这种方式，而是选择了手动创建。 这里一定要关注一下 pv的 accessModes persistentVolumeReclaimPolicy 这两个参数，理解他们的意思。</div>
@@ -480,6 +480,24 @@ Metric name and labels 每一个 time series 都是 被一个 metric name 和 �
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/2017/03/docker/">
+                <h3 class="media-heading">docker pre-install kernel-check</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">docker pre-install kernel-check Docker官方明确要求了kernel版本要在version 3.10及以上，（但是在centos上还是遇到了很多bug，如果你用centos7我觉得应该在3.18以上，ubuntu的内核比较新，出问题较少）另外官方还是提供了一个check脚本，所以我们可以利用这个脚本check下我们的kernel缺少那些东西。
+step 1、curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh &gt; check-config.sh 2、bash ./check-config.sh  result [root@master1 ~]# bash check-config.sh warning: /proc/config.gz does not exist, searching other paths for kernel config ... info: reading kernel config from /boot/config-3.10.0-693.el7.x86_64 ... Generally Necessary: - cgroup hierarchy: properly mounted [/sys/fs/cgroup] - CONFIG_NAMESPACES: enabled - CONFIG_NET_NS: enabled - CONFIG_PID_NS: enabled - CONFIG_IPC_NS: enabled - CONFIG_UTS_NS: enabled - CONFIG_CGROUPS: enabled - CONFIG_CGROUP_CPUACCT: enabled - CONFIG_CGROUP_DEVICE: enabled - CONFIG_CGROUP_FREEZER: enabled - CONFIG_CGROUP_SCHED: enabled - CONFIG_CPUSETS: enabled - CONFIG_MEMCG: enabled - CONFIG_KEYS: enabled - CONFIG_VETH: enabled (as module) - CONFIG_BRIDGE: enabled (as module) - CONFIG_BRIDGE_NETFILTER: enabled (as module) - CONFIG_NF_NAT_IPV4: enabled (as module) - CONFIG_IP_NF_FILTER: enabled (as module) - CONFIG_IP_NF_TARGET_MASQUERADE: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_IPVS: enabled (as module) - CONFIG_IP_NF_NAT: enabled (as module) - CONFIG_NF_NAT: enabled (as module) - CONFIG_NF_NAT_NEEDED: enabled - CONFIG_POSIX_MQUEUE: enabled - CONFIG_DEVPTS_MULTIPLE_INSTANCES: enabled Optional Features: - CONFIG_USER_NS: enabled (RHEL7/CentOS7: User namespaces disabled; add 'user_namespace.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -487,7 +505,7 @@ Metric name and labels 每一个 time series 都是 被一个 metric name 和 �
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         8 posts found
+         9 posts found
       </p>
     </div>
   </div>
