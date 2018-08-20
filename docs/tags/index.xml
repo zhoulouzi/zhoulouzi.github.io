@@ -30,18 +30,9 @@
     </item>
     
     <item>
-      <title>Influxdb</title>
-      <link>https://blog.zhoulouzi.com/tags/influxdb/</link>
-      <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/tags/influxdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Kubernetes</title>
       <link>https://blog.zhoulouzi.com/tags/kubernetes/</link>
-      <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
+      <pubDate>Tue, 07 Aug 2018 11:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/tags/kubernetes/</guid>
       <description></description>
@@ -62,15 +53,6 @@
       <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/tags/minkube/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Prometheus</title>
-      <link>https://blog.zhoulouzi.com/tags/prometheus/</link>
-      <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/tags/prometheus/</guid>
       <description></description>
     </item>
     

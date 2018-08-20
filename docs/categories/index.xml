@@ -23,7 +23,7 @@
     <item>
       <title>Docker</title>
       <link>https://blog.zhoulouzi.com/categories/docker/</link>
-      <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
+      <pubDate>Tue, 07 Aug 2018 11:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/categories/docker/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>Kubernetes</title>
       <link>https://blog.zhoulouzi.com/categories/kubernetes/</link>
-      <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
+      <pubDate>Tue, 07 Aug 2018 11:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/categories/kubernetes/</guid>
       <description></description>
@@ -44,15 +44,6 @@
       <pubDate>Wed, 07 Jun 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/categories/life/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Prometheus</title>
-      <link>https://blog.zhoulouzi.com/categories/prometheus/</link>
-      <pubDate>Wed, 05 Apr 2017 21:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/categories/prometheus/</guid>
       <description></description>
     </item>
     

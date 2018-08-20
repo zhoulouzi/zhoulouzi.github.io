@@ -17,7 +17,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.32.2 with theme Tranquilpeak 0.4.3-BETA">
+    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
     <title>Kubernetes</title>
     <meta name="author" content="zhoulouzi">
     <meta name="keywords" content=", zhoulouzi">
@@ -67,14 +67,17 @@
 
     
       
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-110602463-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-110602463-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
 
     
@@ -202,6 +205,71 @@ ga('send', 'pageview');
         
           <section class="postShorten-group main-content-wrap">
             
+            
+              
+  
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="https://blog.zhoulouzi.com/2018/08/kubernetes/">
+          calico-flannel-weave
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-08-07T11:48:15&#43;08:00">
+        
+  August 7, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/docker">docker</a>, 
+    
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/kubernetes">kubernetes</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      calico: calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific 需要根据你的依赖网络环境来决定如何部署。 ipip: calico 会在每个node之间配置一个ip tunnel来转发package node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)
+要看的几篇文章： https://docs.projectcalico.org/v3.1/reference/architecture/ https://docs.projectcalico.org/v3.1/reference/architecture/components https://docs.projectcalico.org/v3.1/reference/architecture/data-path
+https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric
+简单测试数据 [ 6] 0.0-10.0 sec 1.07 GBytes 920 Mbits/sec [ 5] 0.0-10.0 sec 1.09 GBytes 937 Mbits/sec
+flannel vxlan backend: work in kernel space
+udp backend: work in userspace docker0 &mdash; flanel0(tun) &mdash; flanneld https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html vxlan https://www.slideshare.net/enakai/how-vxlan-works-on-linux https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf
+WEAVE NET FastDataPath: kernel space sleeve: userspace
+特点 Virtual Ethernet Switch Weave Net creates a virtual network that connects Docker containers deployed across multiple hosts.
+      <p>
+        <a href="https://blog.zhoulouzi.com/2018/08/kubernetes/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+    <a href="https://blog.zhoulouzi.com/2018/08/kubernetes/">
+      <div class="postShorten-thumbnailimg">
+        <img alt="" itemprop="image" src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png"/>
+      </div>
+    </a>
+  
+</article>
+
             
               
   
@@ -427,10 +495,11 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline,建议在网络正常的情况下使用一次minikube，然后在做offline的安装
- 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装 4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 这个指令可以帮助你把镜像打到一个tar包即可 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso
- minikube 启动参数： /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。
+       minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境,建议在网络正常的情况下使用一次minikube，然后在尝试offline的安装。
+准备 需要提前下载几个东西：
+ kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 minikube 的二进制文件 官网下载放到/usr/local/bin/ 下即可 docker的离线安装包 docker 离线安装 minikube要跑起来所需要的docker镜像：
+gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 导出tar包，方便随时在离线环境使用  minikue.iso 下载地址：minikube.iso
+  使用定制参数启动minikube /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  完成 
       <p>
         <a href="https://blog.zhoulouzi.com/2017/10/minikube/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -507,6 +576,30 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
       <div class="no-result text-color-light text-center">no post found</div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/2018/08/kubernetes/">
+                <h3 class="media-heading">calico-flannel-weave</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">calico: calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific 需要根据你的依赖网络环境来决定如何部署。 ipip: calico 会在每个node之间配置一个ip tunnel来转发package node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)
+要看的几篇文章： https://docs.projectcalico.org/v3.1/reference/architecture/ https://docs.projectcalico.org/v3.1/reference/architecture/components https://docs.projectcalico.org/v3.1/reference/architecture/data-path
+https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric
+简单测试数据 [ 6] 0.0-10.0 sec 1.07 GBytes 920 Mbits/sec [ 5] 0.0-10.0 sec 1.09 GBytes 937 Mbits/sec
+flannel vxlan backend: work in kernel space
+udp backend: work in userspace docker0 &mdash; flanel0(tun) &mdash; flanneld https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html vxlan https://www.slideshare.net/enakai/how-vxlan-works-on-linux https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf
+WEAVE NET FastDataPath: kernel space sleeve: userspace
+特点 Virtual Ethernet Switch Weave Net creates a virtual network that connects Docker containers deployed across multiple hosts.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -598,10 +691,11 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
                   Oct 10, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境。 https://github.com/zhoulouzi/minikube_install_offline,建议在网络正常的情况下使用一次minikube，然后在做offline的安装
- 需要提前下载几个东西： 1、kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 2、minikube 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 3、docker的离线安装包 docker 离线安装 4、minikube 要跑起来所需要的docker镜像： gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 这个指令可以帮助你把镜像打到一个tar包即可 5、minikue.iso 下载地址：https://storage.googleapis.com/minikube/iso/minikube-v0.23.5.iso
- minikube 启动参数： /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  确保 一个localkube的服务正常启动
-做完这些 正常使用kubectl apply 你的服务。</div>
+              <div class="media-content hide-xs font-merryweather"> minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境,建议在网络正常的情况下使用一次minikube，然后在尝试offline的安装。
+准备 需要提前下载几个东西：
+ kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 minikube 的二进制文件 官网下载放到/usr/local/bin/ 下即可 docker的离线安装包 docker 离线安装 minikube要跑起来所需要的docker镜像：
+gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 导出tar包，方便随时在离线环境使用  minikue.iso 下载地址：minikube.iso
+  使用定制参数启动minikube /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  完成 </div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -642,24 +736,6 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
 不过说真的，那些年在球队的日子真的是神仙般的生活，踢球，喝酒，吹逼。纯爷们才能一起干的事，你说对吧，Tango？ 5月份，我开始筹备这些事，特别感谢宋忠贤同学的跑腿，帮安排酒店，看欧冠的地方，很不错，大家玩的很嗨。有的兄弟结婚了，有的兄弟事业忙，所以定了一个6月3，4日一个不太炎热的日子。最后报名人数还可以20个人，最后各种原因你懂的，实际到场人数大打折扣。毕了业还这么坑？田老板？毅哥？这二位都是毕业好久没见的兄弟，挺想你们的，上次在北京，没喝够。 老五，谁在我上铺的兄弟，4年的感情一碰就会哭。胖了，听说偷偷跑回学校表白小学妹了？可以啊，66666。 继红哥，球技又提升了，有空回太原和你和亮哥踢，当年教诲，培养毕生难忘。 晓龙，敢无视老子太上皇的位子，成天在学弟面前贬低我的17号？对象不错。嗯。 胖子，你不来，你后悔不，见不了你哥。
 附靓照N张：
 2017年6月3日: 与学弟们的合照 2010年校联赛-资源环境学院冠军 2011年校联赛-资源环境学院八强 2012年校联赛-资源环境学院八强 2013年校联赛-资源环境学院亚军 </div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/2017/04/prometheus/">
-                <h3 class="media-heading">prometheus base</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">prometheus   多维度的数据模型(time series identified by metric name and key/value pairs) promQL强大灵活的查询语言 不依赖分布式存储 HTTP pull模式 收集 time series 这点跟influxdb的push模式不一样。 通过pushgateway来支持push time series，适合short-lived job。 可以通过服务发现或者静态配置scarpe目标 支持多种模式的图形和仪表盘   DATA MODEL prometheus基本上可以利用time series 存储所有的数据：streams of timestamped values belonging to the same metric and the same set of labeled dimensions. 除此之外，还可以通过query生成临时衍生的time series。
-Metric name and labels 每一个 time series 都是 被一个 metric name 和 一组 key-value 集合（labels） 唯一定义的。 metric name 代表一个系统被监测的功能。 eg：http_requeststotal 命名规则是 符合 [a-zA-Z:][a-zA-Z0-9_:]* 这个正则表达式。</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
