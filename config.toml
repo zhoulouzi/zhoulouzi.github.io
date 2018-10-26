@@ -20,7 +20,7 @@ publishDir = "docs"
 [author]
   name = "zhoulouzi"
   bio = "KEEP FOCUS AND CARRY ON"
-  job = "Dev ops"
+  job = "Devops"
   location = "China Beijing"
   gravatarEmail = "zhoulouzi@hotmail.com"
   twitter = "zhoulouzi"
@@ -65,7 +65,7 @@ publishDir = "docs"
 
 [params]
   # Global keywords configuration. Following keywords will be add to every pages
-  keywords = ["zhoulouzi"]
+  keywords = ["devops", "docker", "kubernetes", "mongodb", "python", "go", "zhoulouzi", "zhouzichen"]
   syntaxHighlighter = "highligth.js"
   clearReading = true
 

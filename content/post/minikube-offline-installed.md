@@ -11,6 +11,7 @@ categories:
 - docker
 - kubernetes
 clearReading: true
+coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 thumbnailImagePosition: right
 autoThumbnailImage: yes
@@ -22,6 +23,9 @@ showSocial: true
 showDate: true
 ---
 
+Install minikube offline.
+
+<!--more-->
 
 # minikube install offline step by step
 

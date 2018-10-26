@@ -10,6 +10,7 @@ archives:
 categories:
 - algorithm
 clearReading: true
+coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 thumbnailImagePosition: right
 autoThumbnailImage: yes
@@ -21,6 +22,9 @@ showSocial: true
 showDate: true
 ---
 
+Some letcode.
+
+<!--more-->
 
 
 # 总结出一些比较意义的题

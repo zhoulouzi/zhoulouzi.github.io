@@ -1,26 +1,49 @@
-
-
-
-  
-
-
-
-
-  
-
-
-  
-
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-BETA">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="zhoulouzi">
+<meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
+<meta name="description" content="blogs">
+
+
+<meta property="og:description" content="blogs">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Posts">
+<meta name="twitter:title" content="Posts">
+<meta property="og:url" content="https://blog.zhoulouzi.com/post/">
+<meta property="twitter:url" content="https://blog.zhoulouzi.com/post/">
+<meta property="og:site_name" content="zhoulouzi&#39;s Blog">
+<meta property="og:description" content="blogs">
+<meta name="twitter:description" content="blogs">
+<meta property="og:locale" content="en-us">
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@zhoulouzi">
+
+
+  <meta name="twitter:creator" content="@zhoulouzi">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
+
+
     <title>Posts</title>
-    <meta name="author" content="zhoulouzi">
-    <meta name="keywords" content=", zhoulouzi">
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
@@ -28,32 +51,8 @@
     
 
     
-    <meta name="description" content="blogs">
-    <meta property="og:description" content="blogs">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="Posts">
-    <meta property="og:url" content="/post/">
-    <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="zhoulouzi&#39;s Blog">
-    <meta name="twitter:description" content="blogs">
-    
-      <meta name="twitter:creator" content="@zhoulouzi">
-    
-    
 
-    
-    
-
-    
-      <meta property="og:image" content="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
-    
-
-    
-    
-    
-
-    
+    <link rel="canonical" href="https://blog.zhoulouzi.com/post/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -61,7 +60,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="https://blog.zhoulouzi.com/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    <link rel="stylesheet" href="https://blog.zhoulouzi.com/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
     
 
@@ -99,7 +98,7 @@ if (!doNotTrack) {
     
     
       
-        <img class="header-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=90" alt="Author&#39;s picture" />
+        <img class="header-picture" src="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=90" alt="Author&#39;s picture" />
       
     
     </a>
@@ -111,7 +110,7 @@ if (!doNotTrack) {
     
       <div class="sidebar-profile">
         <a href="https://blog.zhoulouzi.com/#about">
-          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="Author&#39;s picture" />
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">zhoulouzi</h4>
         
@@ -244,14 +243,11 @@ if (!doNotTrack) {
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      calico: calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific 需要根据你的依赖网络环境来决定如何部署。 ipip: calico 会在每个node之间配置一个ip tunnel来转发package node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)
-要看的几篇文章： https://docs.projectcalico.org/v3.1/reference/architecture/ https://docs.projectcalico.org/v3.1/reference/architecture/components https://docs.projectcalico.org/v3.1/reference/architecture/data-path
-https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric
-简单测试数据 [ 6] 0.0-10.0 sec 1.07 GBytes 920 Mbits/sec [ 5] 0.0-10.0 sec 1.09 GBytes 937 Mbits/sec
-flannel vxlan backend: work in kernel space
-udp backend: work in userspace docker0 &mdash; flanel0(tun) &mdash; flanneld https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html vxlan https://www.slideshare.net/enakai/how-vxlan-works-on-linux https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf
-WEAVE NET FastDataPath: kernel space sleeve: userspace
-特点 Virtual Ethernet Switch Weave Net creates a virtual network that connects Docker containers deployed across multiple hosts.
+      
+        <p>Comparison between calico、flannel、weave.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2018/08/kubernetes/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -309,13 +305,11 @@ WEAVE NET FastDataPath: kernel space sleeve: userspace
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档 1、local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) 2、github：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
-仔细阅读了这两篇文章之后，我们来做个实验。 环境： kubernets 1.9.3
-step1： api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
- --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
- $ cat local-storage.yaml # Only create this for K8s 1.9+ apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: local-storage provisioner: kubernetes.io/no-provisioner volumeBindingMode: WaitForFirstConsumer
- step3: Manually create local persistent volume
- #文档中提供了一个 local volume static provisioner ，大概的功能就是 自动将你定义的path里的子文件夹 创建成 persistent volume #这里没有使用这种方式，而是选择了手动创建。 这里一定要关注一下 pv的 accessModes persistentVolumeReclaimPolicy 这两个参数，理解他们的意思。
+      
+        <p>Use kubernetes local volume driver for statefulset app.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2018/03/kubernetes-local/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -373,8 +367,11 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      kubectl explain 之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。
-# kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具，看看是什么吧？ Registry creds &lt;-&gt; config.
+      
+        <p>Learn to explain kubernetes API resources.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2018/01/kubernetes/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -432,9 +429,11 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      kubernetes install offline step by step  概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
-备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
- etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster  kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary  kube-proxy组件： port： 127.
+      
+        <p>How to install a kubernetes cluster from scartch.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2017/11/kubernetes/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -490,9 +489,11 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      the secret lives of data http://thesecretlivesofdata.com/raft/
-the Raft Consensus Algorithm https://raft.github.io/
-Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/
+      
+        <p>raft</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2017/11/raft/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -550,11 +551,11 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-       minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境,建议在网络正常的情况下使用一次minikube，然后在尝试offline的安装。
-准备 需要提前下载几个东西：
- kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 minikube 的二进制文件 官网下载放到/usr/local/bin/ 下即可 docker的离线安装包 docker 离线安装 minikube要跑起来所需要的docker镜像：
-gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 导出tar包，方便随时在离线环境使用  minikue.iso 下载地址：minikube.iso
-  使用定制参数启动minikube /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  完成 
+      
+        <p>Install minikube offline.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2017/10/minikube/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -610,10 +611,11 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
 
     </div>
     <div class="postShorten-excerpt" itemprop="articleBody">
-      总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
- 1. Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
- 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：One-line python solution with O(n) time
- def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)   第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。
+      
+        <p>Some letcode.</p>
+
+<p></p>
+      
       <p>
         <a href="https://blog.zhoulouzi.com/2017/09/leetcode/" class="postShorten-excerpt_link link">Continue reading</a>
         
@@ -665,7 +667,7 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="//www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=110" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">zhoulouzi</h4>
     
@@ -675,7 +677,7 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
       <div id="about-card-job">
         <i class="fa fa-briefcase"></i>
         <br/>
-        Dev ops
+        Devops
       </div>
     
     
@@ -718,14 +720,9 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
                   Aug 8, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">calico: calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific 需要根据你的依赖网络环境来决定如何部署。 ipip: calico 会在每个node之间配置一个ip tunnel来转发package node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)
-要看的几篇文章： https://docs.projectcalico.org/v3.1/reference/architecture/ https://docs.projectcalico.org/v3.1/reference/architecture/components https://docs.projectcalico.org/v3.1/reference/architecture/data-path
-https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric
-简单测试数据 [ 6] 0.0-10.0 sec 1.07 GBytes 920 Mbits/sec [ 5] 0.0-10.0 sec 1.09 GBytes 937 Mbits/sec
-flannel vxlan backend: work in kernel space
-udp backend: work in userspace docker0 &mdash; flanel0(tun) &mdash; flanneld https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html vxlan https://www.slideshare.net/enakai/how-vxlan-works-on-linux https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf
-WEAVE NET FastDataPath: kernel space sleeve: userspace
-特点 Virtual Ethernet Switch Weave Net creates a virtual network that connects Docker containers deployed across multiple hosts.</div>
+              <div class="media-content hide-xs font-merryweather"><p>Comparison between calico、flannel、weave.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -742,13 +739,9 @@ WEAVE NET FastDataPath: kernel space sleeve: userspace
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Kubernetes-local-perisistent-storage 最近苦于公司没有上ceph、gluster、nfs这些volume provider，用了很久的hostpath+nodeselector，但是二者组合的方式对于部署statefulset的应用来说，很不方便，kubecon上有关于local-perisistent-storage这块的介绍吸引了我们来试试这个local volume的威力。 首先，我们来看一下文档 1、local volume的介绍(https://kubernetes.io/docs/concepts/storage/volumes/#local) 2、github：(https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume）
-仔细阅读了这两篇文章之后，我们来做个实验。 环境： kubernets 1.9.3
-step1： api-server, controller-manager, scheduler, and all kubelets 开启 feature-gates的功能：
- --feature-gates=PersistentLocalVolumes=true,VolumeScheduling=true,MountPropagation=true  step2: Creating a StorageClass:
- $ cat local-storage.yaml # Only create this for K8s 1.9+ apiVersion: storage.k8s.io/v1 kind: StorageClass metadata: name: local-storage provisioner: kubernetes.io/no-provisioner volumeBindingMode: WaitForFirstConsumer
- step3: Manually create local persistent volume
- #文档中提供了一个 local volume static provisioner ，大概的功能就是 自动将你定义的path里的子文件夹 创建成 persistent volume #这里没有使用这种方式，而是选择了手动创建。 这里一定要关注一下 pv的 accessModes persistentVolumeReclaimPolicy 这两个参数，理解他们的意思。</div>
+              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume driver for statefulset app.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -765,8 +758,9 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
                   Jan 1, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">kubectl explain 之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。
-# kubectl explain -h kubectl explain secrets kubectl explain secrets --recursive DESCRIPTION: Secret holds secret data of a certain type. The total bytes of the values in the Data field must be less than MaxSecretSize bytes. FIELDS: apiVersion &lt;string&gt; data &lt;map[string]string&gt; kind &lt;string&gt; metadata &lt;Object&gt; annotations &lt;map[string]string&gt; clusterName &lt;string&gt; creationTimestamp &lt;string&gt; deletionGracePeriodSeconds &lt;integer&gt; deletionTimestamp &lt;string&gt; finalizers &lt;[]string&gt; generateName &lt;string&gt; generation &lt;integer&gt; initializers &lt;Object&gt; pending &lt;[]Object&gt; name &lt;string&gt; result &lt;Object&gt; apiVersion &lt;string&gt; code &lt;integer&gt; details &lt;Object&gt; causes &lt;[]Object&gt; field &lt;string&gt; message &lt;string&gt; reason &lt;string&gt; group &lt;string&gt; kind &lt;string&gt; name &lt;string&gt; retryAfterSeconds &lt;integer&gt; uid &lt;string&gt; kind &lt;string&gt; message &lt;string&gt; metadata &lt;Object&gt; continue &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; reason &lt;string&gt; status &lt;string&gt; labels &lt;map[string]string&gt; name &lt;string&gt; namespace &lt;string&gt; ownerReferences &lt;[]Object&gt; apiVersion &lt;string&gt; blockOwnerDeletion &lt;boolean&gt; controller &lt;boolean&gt; kind &lt;string&gt; name &lt;string&gt; uid &lt;string&gt; resourceVersion &lt;string&gt; selfLink &lt;string&gt; uid &lt;string&gt; stringData &lt;map[string]string&gt; type &lt;string&gt; 试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）  额外分享一个工具，看看是什么吧？ Registry creds &lt;-&gt; config.</div>
+              <div class="media-content hide-xs font-merryweather"><p>Learn to explain kubernetes API resources.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -783,9 +777,9 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
                   Nov 11, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">kubernetes install offline step by step  概述: 此文档用于在ubuntu16.04上独立安装kubernetes节点 api-server与kubelet、kube-proxy之间通过tls认证交互 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
-备注： 未实现HA模式 ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
- etcd组件说明： port: 127.0.0.1:2379: listen-client 127.0.0.1:2380: initial-cluster  kubelet组件说明： port: 4194: cadvisor-port #cadvisor作为kubernetes一个组件集成在kubelet里 127.0.0.1:10248: localhost healthz endpoint # 10250: Kubelet to server on listen for HTTP and respond to a simple API (underspec’d currently) to submit a new manifest. 10255: The read-only port for the Kubelet to serve on with no authentication/authorization # 只读暴露kubelet里的指标 http://192.168.199.142:10255/stats/summary  kube-proxy组件： port： 127.</div>
+              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from scartch.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -802,9 +796,9 @@ step1： api-server, controller-manager, scheduler, and all kubelets 开启 feat
                   Nov 11, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">the secret lives of data http://thesecretlivesofdata.com/raft/
-the Raft Consensus Algorithm https://raft.github.io/
-Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/</div>
+              <div class="media-content hide-xs font-merryweather"><p>raft</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -821,11 +815,9 @@ Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Con
                   Oct 10, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"> minikube install offline step by step 目标： 在没有网络接入的情况下安装minikube。供公司app demo 演示使用环境,建议在网络正常的情况下使用一次minikube，然后在尝试offline的安装。
-准备 需要提前下载几个东西：
- kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 minikube 的二进制文件 官网下载放到/usr/local/bin/ 下即可 docker的离线安装包 docker 离线安装 minikube要跑起来所需要的docker镜像：
-gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_containers/k8s-dns-sidecar-amd64 1.14.5 gcr.io/google_containers/k8s-dns-kube-dns-amd64 1.14.5 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64 1.14.5 gcr.io/google-containers/kube-addon-manager v6.4-beta.2 gcr.io/google_containers/pause-amd64 3.0 docker image save 导出tar包，方便随时在离线环境使用  minikue.iso 下载地址：minikube.iso
-  使用定制参数启动minikube /usr/local/bin/minikube start --vm-driver=none --iso-url file://tmp/minikube-v0.23.5.iso --kubernetes-version v1.7.5 --extra-config=apiserver.Service.NodePortRange=0-60000  完成 </div>
+              <div class="media-content hide-xs font-merryweather"><p>Install minikube offline.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -842,10 +834,9 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
                   Sep 9, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">总结出一些比较意义的题  好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
- 1. Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
- 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：One-line python solution with O(n) time
- def singleNumber(self, nums): &quot;&quot;&quot; :type nums: List[int] :rtype: int &quot;&quot;&quot; return reduce(lambda x, y: x ^ y, nums)   第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。 reduce下这个列表，完美。</div>
+              <div class="media-content hide-xs font-merryweather"><p>Some letcode.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -862,10 +853,9 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
                   Jun 6, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"> 怀念不如相见。 从去年底，微信群里就滴滴不停，大家怂恿着要回学校给今年毕业的兄弟办一场告别赛。话说我们这帮兄弟都是毕业好几年的人了，整天混迹于校园群聊，还整天BB着那个学院今年来比较有实力的选手，那个学院今年怎么招摇了，押注那个学院今年夺冠，其实我看出来了，都是想回去踢个球，喝顿酒，在学弟面前吹吹逼，找找当年的感觉。
-不过说真的，那些年在球队的日子真的是神仙般的生活，踢球，喝酒，吹逼。纯爷们才能一起干的事，你说对吧，Tango？ 5月份，我开始筹备这些事，特别感谢宋忠贤同学的跑腿，帮安排酒店，看欧冠的地方，很不错，大家玩的很嗨。有的兄弟结婚了，有的兄弟事业忙，所以定了一个6月3，4日一个不太炎热的日子。最后报名人数还可以20个人，最后各种原因你懂的，实际到场人数大打折扣。毕了业还这么坑？田老板？毅哥？这二位都是毕业好久没见的兄弟，挺想你们的，上次在北京，没喝够。 老五，谁在我上铺的兄弟，4年的感情一碰就会哭。胖了，听说偷偷跑回学校表白小学妹了？可以啊，66666。 继红哥，球技又提升了，有空回太原和你和亮哥踢，当年教诲，培养毕生难忘。 晓龙，敢无视老子太上皇的位子，成天在学弟面前贬低我的17号？对象不错。嗯。 胖子，你不来，你后悔不，见不了你哥。
-附靓照N张：
-2017年6月3日: 与学弟们的合照 2010年校联赛-资源环境学院冠军 2011年校联赛-资源环境学院八强 2012年校联赛-资源环境学院八强 2013年校联赛-资源环境学院亚军 </div>
+              <div class="media-content hide-xs font-merryweather"><p>The great soccer team.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -882,8 +872,9 @@ gcr.io/google_containers/kubernetes-dashboard-amd64 v1.6.3 gcr.io/google_contain
                   Mar 3, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">docker pre-install kernel-check Docker官方明确要求了kernel版本要在version 3.10及以上，（但是在centos上还是遇到了很多bug，如果你用centos7我觉得应该在3.18以上，ubuntu的内核比较新，出问题较少）另外官方还是提供了一个check脚本，所以我们可以利用这个脚本check下我们的kernel缺少那些东西。
-step 1、curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh &gt; check-config.sh 2、bash ./check-config.sh  result [root@master1 ~]# bash check-config.sh warning: /proc/config.gz does not exist, searching other paths for kernel config ... info: reading kernel config from /boot/config-3.10.0-693.el7.x86_64 ... Generally Necessary: - cgroup hierarchy: properly mounted [/sys/fs/cgroup] - CONFIG_NAMESPACES: enabled - CONFIG_NET_NS: enabled - CONFIG_PID_NS: enabled - CONFIG_IPC_NS: enabled - CONFIG_UTS_NS: enabled - CONFIG_CGROUPS: enabled - CONFIG_CGROUP_CPUACCT: enabled - CONFIG_CGROUP_DEVICE: enabled - CONFIG_CGROUP_FREEZER: enabled - CONFIG_CGROUP_SCHED: enabled - CONFIG_CPUSETS: enabled - CONFIG_MEMCG: enabled - CONFIG_KEYS: enabled - CONFIG_VETH: enabled (as module) - CONFIG_BRIDGE: enabled (as module) - CONFIG_BRIDGE_NETFILTER: enabled (as module) - CONFIG_NF_NAT_IPV4: enabled (as module) - CONFIG_IP_NF_FILTER: enabled (as module) - CONFIG_IP_NF_TARGET_MASQUERADE: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled (as module) - CONFIG_NETFILTER_XT_MATCH_IPVS: enabled (as module) - CONFIG_IP_NF_NAT: enabled (as module) - CONFIG_NF_NAT: enabled (as module) - CONFIG_NF_NAT_NEEDED: enabled - CONFIG_POSIX_MQUEUE: enabled - CONFIG_DEVPTS_MULTIPLE_INSTANCES: enabled Optional Features: - CONFIG_USER_NS: enabled (RHEL7/CentOS7: User namespaces disabled; add 'user_namespace.</div>
+              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -916,6 +907,21 @@ step 1、curl https://raw.githubusercontent.com/docker/docker/master/contrib/che
 
 <script src="https://blog.zhoulouzi.com/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
 
 
 

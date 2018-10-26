@@ -11,6 +11,7 @@ categories:
 - docker
 - kubernetes
 clearReading: true
+coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 thumbnailImagePosition: right
 autoThumbnailImage: yes
@@ -21,7 +22,9 @@ showPagination: true
 showSocial: true
 showDate: true
 ---
+Use kubernetes local volume driver for statefulset app.
 
+<!--more-->
 
 # Kubernetes-local-perisistent-storage
 
