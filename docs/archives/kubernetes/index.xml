@@ -13,10 +13,10 @@
     
     <item>
       <title>calico-flannel-weave</title>
-      <link>https://blog.zhoulouzi.com/2018/08/kubernetes/</link>
+      <link>https://blog.zhoulouzi.com/post/calico-flannel-weave/</link>
       <pubDate>Tue, 07 Aug 2018 11:48:15 +0800</pubDate>
       
-      <guid>https://blog.zhoulouzi.com/2018/08/kubernetes/</guid>
+      <guid>https://blog.zhoulouzi.com/post/calico-flannel-weave/</guid>
       <description>&lt;p&gt;Comparison between calico、flannel、weave.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -24,21 +24,32 @@
     
     <item>
       <title>kubernetes-local-perisistent-storage</title>
-      <link>https://blog.zhoulouzi.com/2018/03/kubernetes-local/</link>
+      <link>https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/</link>
       <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
       
-      <guid>https://blog.zhoulouzi.com/2018/03/kubernetes-local/</guid>
+      <guid>https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/</guid>
       <description>&lt;p&gt;Use kubernetes local volume driver for statefulset app.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>How does flannel work with kubernetes.</title>
+      <link>https://blog.zhoulouzi.com/post/how-flannel-work/</link>
+      <pubDate>Wed, 14 Feb 2018 19:00:00 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/post/how-flannel-work/</guid>
+      <description>&lt;p&gt;Comparison between calico、flannel、weave.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>kubectl explain</title>
-      <link>https://blog.zhoulouzi.com/2018/01/kubernetes/</link>
+      <link>https://blog.zhoulouzi.com/post/kubernetes-yaml/</link>
       <pubDate>Wed, 31 Jan 2018 21:48:15 +0800</pubDate>
       
-      <guid>https://blog.zhoulouzi.com/2018/01/kubernetes/</guid>
+      <guid>https://blog.zhoulouzi.com/post/kubernetes-yaml/</guid>
       <description>&lt;p&gt;Learn to explain kubernetes API resources.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -46,10 +57,10 @@
     
     <item>
       <title>kubernetes install offline</title>
-      <link>https://blog.zhoulouzi.com/2017/11/kubernetes/</link>
+      <link>https://blog.zhoulouzi.com/post/kubernetes-install/</link>
       <pubDate>Tue, 07 Nov 2017 21:48:15 +0800</pubDate>
       
-      <guid>https://blog.zhoulouzi.com/2017/11/kubernetes/</guid>
+      <guid>https://blog.zhoulouzi.com/post/kubernetes-install/</guid>
       <description>&lt;p&gt;How to install a kubernetes cluster from scartch.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -57,10 +68,10 @@
     
     <item>
       <title>minikube install offline</title>
-      <link>https://blog.zhoulouzi.com/2017/10/minikube/</link>
-      <pubDate>Sat, 07 Oct 2017 21:48:15 +0800</pubDate>
+      <link>https://blog.zhoulouzi.com/post/minikube-offline-installed/</link>
+      <pubDate>Tue, 07 Mar 2017 12:00:00 +0800</pubDate>
       
-      <guid>https://blog.zhoulouzi.com/2017/10/minikube/</guid>
+      <guid>https://blog.zhoulouzi.com/post/minikube-offline-installed/</guid>
       <description>&lt;p&gt;Install minikube offline.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

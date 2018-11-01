@@ -9,9 +9,6 @@ paginate = 7
 canonifyurls = true
 publishDir = "docs"
 
-[permalinks]
-  post = "/:year/:month/:slug/"
-
 [taxonomies]
   tag = "tags"
   category = "categories"

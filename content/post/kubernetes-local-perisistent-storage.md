@@ -1,8 +1,6 @@
 ---
 title: "kubernetes-local-perisistent-storage"
 date: 2018-03-07T21:48:15+08:00
-draft: false
-slug: "kubernetes-local"
 tags:
 - kubernetes
 archives:
@@ -10,17 +8,8 @@ archives:
 categories:
 - docker
 - kubernetes
-clearReading: true
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
-thumbnailImagePosition: right
-autoThumbnailImage: yes
-metaAlignment: center
-comments: true
-showTags: true
-showPagination: true
-showSocial: true
-showDate: true
 ---
 Use kubernetes local volume driver for statefulset app.
 

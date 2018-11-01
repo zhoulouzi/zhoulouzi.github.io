@@ -1,8 +1,6 @@
 ---
 title: "kubectl explain"
 date: 2018-01-31T21:48:15+08:00
-draft: false
-slug: "kubernetes"
 tags:
 - kubernetes
 archives:
@@ -10,17 +8,8 @@ archives:
 categories:
 - docker
 - kubernetes
-clearReading: true
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
-thumbnailImagePosition: right
-autoThumbnailImage: yes
-metaAlignment: center
-comments: true
-showTags: true
-showPagination: true
-showSocial: true
-showDate: true
 ---
 
 Learn to explain kubernetes API resources.
