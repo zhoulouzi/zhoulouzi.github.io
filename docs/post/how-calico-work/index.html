@@ -8,43 +8,49 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="pre-check before install docker
+<meta name="description" content="了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
+ calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 
-">
 
-
-<meta property="og:description" content="pre-check before install docker
-
-">
+<meta property="og:description" content="了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
+ calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker pre-install kernel-check">
-<meta name="twitter:title" content="docker pre-install kernel-check">
-<meta property="og:url" content="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
-<meta property="twitter:url" content="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+<meta property="og:title" content="How does calico work with kubernetes">
+<meta name="twitter:title" content="How does calico work with kubernetes">
+<meta property="og:url" content="https://blog.zhoulouzi.com/post/how-calico-work/">
+<meta property="twitter:url" content="https://blog.zhoulouzi.com/post/how-calico-work/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="pre-check before install docker
-
-">
-<meta name="twitter:description" content="pre-check before install docker
-
-">
+<meta property="og:description" content="了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
+ calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
+<meta name="twitter:description" content="了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
+ calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2017-03-07T11:48:15">
+    <meta property="article:published_time" content="2018-02-14T19:00:00">
   
   
-    <meta property="article:modified_time" content="2017-03-07T11:48:15">
+    <meta property="article:modified_time" content="2018-02-14T19:00:00">
   
   
   
     
       <meta property="article:section" content="docker">
     
+      <meta property="article:section" content="kubernetes">
+    
   
   
     
-      <meta property="article:tag" content="docker">
+      <meta property="article:tag" content="kubernetes">
     
   
 
@@ -75,14 +81,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>docker pre-install kernel-check</title>
+    <title>How does calico work with kubernetes</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+    <link rel="canonical" href="https://blog.zhoulouzi.com/post/how-calico-work/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -233,15 +239,15 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      docker pre-install kernel-check
+      How does calico work with kubernetes
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-03-07T11:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-02-14T19:00:00&#43;08:00">
         
-  March 7, 2017
+  February 14, 2018
 
       </time>
     
@@ -250,7 +256,9 @@ if (!doNotTrack) {
   
     <span>in</span>
     
-      <a class="category-link" href="https://blog.zhoulouzi.com/categories/docker">docker</a>
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/docker">docker</a>, 
+    
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/kubernetes">kubernetes</a>
     
   
 
@@ -270,131 +278,35 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>pre-check before install docker</p>
+              <p>了解calico作为kubernetes的cni插件是如何工做的。
 
-<p></p>
+在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
+1. all containers can communicate with all other containers without NAT
+2. all nodes can communicate with all containers (and vice-versa) without NAT
+3. the IP that a container sees itself as is the same IP that others see it as</p>
 
-<h1 id="docker-pre-install-kernel-check">docker pre-install kernel-check</h1>
+<p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
+对比理解.</p>
 
-<p>Docker官方明确要求了kernel版本要在version 3.10及以上，（但是在centos上还是遇到了很多bug，如果你用centos7我觉得应该在3.18以上，ubuntu的内核比较新，出问题较少）另外官方还是提供了一个check脚本，所以我们可以利用这个脚本check下我们的kernel缺少那些东西。</p>
+<h1 id="calico">Calico</h1>
 
-<h2 id="step">step</h2>
+<h2 id="安装">安装</h2>
 
-<pre><code>1、curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh &gt; check-config.sh
-2、bash ./check-config.sh
-</code></pre>
+<blockquote>
+<p>推荐参考kubenretes和calico的文档，不多赘述.</p>
+</blockquote>
 
-<h2 id="result">result</h2>
+<h2 id="calico的工作原理">calico的工作原理:</h2>
 
-<pre><code>[root@master1 ~]# bash check-config.sh
-warning: /proc/config.gz does not exist, searching other paths for kernel config ...
-info: reading kernel config from /boot/config-3.10.0-693.el7.x86_64 ...
+<blockquote>
+<p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
+</blockquote>
 
-Generally Necessary:
-- cgroup hierarchy: properly mounted [/sys/fs/cgroup]
-- CONFIG_NAMESPACES: enabled
-- CONFIG_NET_NS: enabled
-- CONFIG_PID_NS: enabled
-- CONFIG_IPC_NS: enabled
-- CONFIG_UTS_NS: enabled
-- CONFIG_CGROUPS: enabled
-- CONFIG_CGROUP_CPUACCT: enabled
-- CONFIG_CGROUP_DEVICE: enabled
-- CONFIG_CGROUP_FREEZER: enabled
-- CONFIG_CGROUP_SCHED: enabled
-- CONFIG_CPUSETS: enabled
-- CONFIG_MEMCG: enabled
-- CONFIG_KEYS: enabled
-- CONFIG_VETH: enabled (as module)
-- CONFIG_BRIDGE: enabled (as module)
-- CONFIG_BRIDGE_NETFILTER: enabled (as module)
-- CONFIG_NF_NAT_IPV4: enabled (as module)
-- CONFIG_IP_NF_FILTER: enabled (as module)
-- CONFIG_IP_NF_TARGET_MASQUERADE: enabled (as module)
-- CONFIG_NETFILTER_XT_MATCH_ADDRTYPE: enabled (as module)
-- CONFIG_NETFILTER_XT_MATCH_CONNTRACK: enabled (as module)
-- CONFIG_NETFILTER_XT_MATCH_IPVS: enabled (as module)
-- CONFIG_IP_NF_NAT: enabled (as module)
-- CONFIG_NF_NAT: enabled (as module)
-- CONFIG_NF_NAT_NEEDED: enabled
-- CONFIG_POSIX_MQUEUE: enabled
-- CONFIG_DEVPTS_MULTIPLE_INSTANCES: enabled
+<h2 id="backend-实现">backend 实现:</h2>
 
-Optional Features:
-- CONFIG_USER_NS: enabled
-  (RHEL7/CentOS7: User namespaces disabled; add 'user_namespace.enable=1' to boot command line)
-- CONFIG_SECCOMP: enabled
-- CONFIG_CGROUP_PIDS: enabled
-- CONFIG_MEMCG_SWAP: enabled
-- CONFIG_MEMCG_SWAP_ENABLED: enabled
-    (cgroup swap accounting is currently enabled)
-- CONFIG_MEMCG_KMEM: enabled
-- CONFIG_RESOURCE_COUNTERS: missing
-- CONFIG_BLK_CGROUP: enabled
-- CONFIG_BLK_DEV_THROTTLING: enabled
-- CONFIG_IOSCHED_CFQ: enabled
-- CONFIG_CFQ_GROUP_IOSCHED: enabled
-- CONFIG_CGROUP_PERF: enabled
-- CONFIG_CGROUP_HUGETLB: enabled
-- CONFIG_NET_CLS_CGROUP: enabled
-- CONFIG_NETPRIO_CGROUP: enabled
-- CONFIG_CFS_BANDWIDTH: enabled
-- CONFIG_FAIR_GROUP_SCHED: enabled
-- CONFIG_RT_GROUP_SCHED: enabled
-- CONFIG_IP_VS: enabled (as module)
-- CONFIG_IP_VS_NFCT: enabled
-- CONFIG_IP_VS_RR: enabled (as module)
-- CONFIG_EXT3_FS: missing
-- CONFIG_EXT3_FS_XATTR: missing
-- CONFIG_EXT3_FS_POSIX_ACL: missing
-- CONFIG_EXT3_FS_SECURITY: missing
-    (enable these ext3 configs if you are using ext3 as backing filesystem)
-- CONFIG_EXT4_FS: enabled (as module)
-- CONFIG_EXT4_FS_POSIX_ACL: enabled
-- CONFIG_EXT4_FS_SECURITY: enabled
-- Network Drivers:
-  - &quot;overlay&quot;:
-    - CONFIG_VXLAN: enabled (as module)
-      Optional (for encrypted networks):
-      - CONFIG_CRYPTO: enabled
-      - CONFIG_CRYPTO_AEAD: enabled
-      - CONFIG_CRYPTO_GCM: enabled (as module)
-      - CONFIG_CRYPTO_SEQIV: enabled
-      - CONFIG_CRYPTO_GHASH: enabled (as module)
-      - CONFIG_XFRM: enabled
-      - CONFIG_XFRM_USER: enabled
-      - CONFIG_XFRM_ALGO: enabled
-      - CONFIG_INET_ESP: enabled (as module)
-      - CONFIG_INET_XFRM_MODE_TRANSPORT: enabled (as module)
-  - &quot;ipvlan&quot;:
-    - CONFIG_IPVLAN: missing
-  - &quot;macvlan&quot;:
-    - CONFIG_MACVLAN: enabled (as module)
-    - CONFIG_DUMMY: enabled (as module)
-  - &quot;ftp,tftp client in container&quot;:
-    - CONFIG_NF_NAT_FTP: enabled (as module)
-    - CONFIG_NF_CONNTRACK_FTP: enabled (as module)
-    - CONFIG_NF_NAT_TFTP: enabled (as module)
-    - CONFIG_NF_CONNTRACK_TFTP: enabled (as module)
-- Storage Drivers:
-  - &quot;aufs&quot;:
-    - CONFIG_AUFS_FS: missing
-  - &quot;btrfs&quot;:
-    - CONFIG_BTRFS_FS: enabled (as module)
-    - CONFIG_BTRFS_FS_POSIX_ACL: enabled
-  - &quot;devicemapper&quot;:
-    - CONFIG_BLK_DEV_DM: enabled (as module)
-    - CONFIG_DM_THIN_PROVISIONING: enabled (as module)
-  - &quot;overlay&quot;:
-    - CONFIG_OVERLAY_FS: enabled (as module)
-  - &quot;zfs&quot;:
-    - /dev/zfs: missing
-    - zfs command: missing
-    - zpool command: missing
+<h3 id="host-gw">host-gw</h3>
 
-Limits:
-- /proc/sys/kernel/keys/root_maxkeys: 1000000
-</code></pre>
+<h3 id="vxlan">vxlan</h3>
               
             </div>
           </div>
@@ -406,7 +318,7 @@ Limits:
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">TAGGED IN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/docker/">docker</a>
+  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/kubernetes/">kubernetes</a>
 
                   </div>
                 
@@ -419,7 +331,7 @@ Limits:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-flannel-work/" data-tooltip="How does flannel work with kubernetes">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -427,7 +339,7 @@ Limits:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/" data-tooltip="minikube install offline">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-perisistent-storage">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -445,7 +357,7 @@ Limits:
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/how-calico-work/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -493,7 +405,7 @@ Limits:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-flannel-work/" data-tooltip="How does flannel work with kubernetes">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -501,7 +413,7 @@ Limits:
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/" data-tooltip="minikube install offline">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-perisistent-storage">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -519,7 +431,7 @@ Limits:
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/how-calico-work/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -549,7 +461,7 @@ Limits:
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2Fpost%2Fdocker-preinstall-kernel-check%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2Fpost%2Fhow-calico-work%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
@@ -848,9 +760,9 @@ function updateMinWidth() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/blog.zhoulouzi.com\/post\/docker-preinstall-kernel-check\/';
+          this.page.url = 'https:\/\/blog.zhoulouzi.com\/post\/how-calico-work\/';
           
-            this.page.identifier = '\/post\/docker-preinstall-kernel-check\/'
+            this.page.identifier = '\/post\/how-calico-work\/'
           
         };
         (function() {

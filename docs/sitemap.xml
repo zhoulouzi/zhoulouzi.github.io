@@ -13,7 +13,17 @@
   </url>
   
   <url>
+    <loc>https://blog.zhoulouzi.com/post/how-calico-work/</loc>
+    <lastmod>2018-02-14T19:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.zhoulouzi.com/post/how-flannel-work/</loc>
+    <lastmod>2018-02-14T19:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhoulouzi.com/post/how-weave-work/</loc>
     <lastmod>2018-02-14T19:00:00+08:00</lastmod>
   </url>
   
@@ -76,12 +86,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
-    <lastmod>2018-08-07T11:48:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhoulouzi.com/archives/docker/</loc>
     <lastmod>2017-03-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
@@ -94,7 +98,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
+    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
     <lastmod>2018-08-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -107,6 +111,12 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/tags/kubernetes/</loc>
+    <lastmod>2018-08-07T11:48:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
     <lastmod>2018-08-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>

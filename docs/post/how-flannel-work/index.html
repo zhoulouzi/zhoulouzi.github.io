@@ -8,26 +8,30 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="Comparison between calico、flannel、weave.
+<meta name="description" content="了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
+ flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 
-">
 
-
-<meta property="og:description" content="Comparison between calico、flannel、weave.
-
-">
+<meta property="og:description" content="了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
+ flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How does flannel work with kubernetes.">
-<meta name="twitter:title" content="How does flannel work with kubernetes.">
+<meta property="og:title" content="How does flannel work with kubernetes">
+<meta name="twitter:title" content="How does flannel work with kubernetes">
 <meta property="og:url" content="https://blog.zhoulouzi.com/post/how-flannel-work/">
 <meta property="twitter:url" content="https://blog.zhoulouzi.com/post/how-flannel-work/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="Comparison between calico、flannel、weave.
-
-">
-<meta name="twitter:description" content="Comparison between calico、flannel、weave.
-
-">
+<meta property="og:description" content="了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
+ flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
+<meta name="twitter:description" content="了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
+ flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.">
 <meta property="og:locale" content="en-us">
 
   
@@ -77,7 +81,7 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>How does flannel work with kubernetes.</title>
+    <title>How does flannel work with kubernetes</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
@@ -235,7 +239,7 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      How does flannel work with kubernetes.
+      How does flannel work with kubernetes
     </h1>
   
   
@@ -274,9 +278,84 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Comparison between calico、flannel、weave.</p>
+              <p>了解flannel作为kubernetes的cni插件是如何工做的。
 
-<p></p>
+在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
+1. all containers can communicate with all other containers without NAT
+2. all nodes can communicate with all containers (and vice-versa) without NAT
+3. the IP that a container sees itself as is the same IP that others see it as</p>
+
+<p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
+对比理解.</p>
+
+<h1 id="flannel">Flannel</h1>
+
+<h2 id="安装">安装</h2>
+
+<blockquote>
+<p>推荐参考kubenretes和flannel的文档，不多赘述.</p>
+</blockquote>
+
+<h2 id="flannel的工作原理">flannel的工作原理:</h2>
+
+<blockquote>
+<p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
+</blockquote>
+
+<p>目前支持两种backing store来存储配置信息.
+1. etcd
+2. kubernetes API(kube subnet manager)</p>
+
+<p>Recommended backends
+1. VXLAN      vxlan是官方推荐的模式,注意需要kernel支持.
+2. host-gw    openshift选择的模式.
+3. UDP        debugging only or for very old kernels that don&rsquo;t support VXLAN.</p>
+
+<p>Experimental backends
+1. AWS VPC
+2. Alloc
+3. AliVPC
+4. IPSec
+5. IPIP
+6. GCE</p>
+
+<h2 id="backend-实现">backend 实现:</h2>
+
+<h3 id="host-gw">host-gw</h3>
+
+<blockquote>
+<p>Use host-gw to create IP routes to subnets via remote machine IPs. Requires direct layer2 connectivity between hosts running flannel.</p>
+</blockquote>
+
+<p>!(host-gw)[<a href="https://photos.app.goo.gl/8SYTGDj6C46UY6GZA">https://photos.app.goo.gl/8SYTGDj6C46UY6GZA</a>]</p>
+
+<p>host-gw模式下每个flanneld进程来将backing store里的节点信息和子网信息直接设置到host的路由表上，通过图表我们可以很直观的看到，host1上的pod1发送到host2上的pod2的packets没有经过任何封装(比如vxlan)，host-gw的实现方式和calico一样是一个layer3的实现，由于没有封装和解封所以性能损耗很小.Ps：那这种模式带来的限制就是节点直接需要layer2直连.</p>
+
+<p>参考:
+[](<a href="https://github.com/coreos/flannel/blob/master/Documentation/backends.md">https://github.com/coreos/flannel/blob/master/Documentation/backends.md</a>)
+[](<a href="https://docs.openshift.com/container-platform/3.4/architecture/additional_concepts/flannel.html">https://docs.openshift.com/container-platform/3.4/architecture/additional_concepts/flannel.html</a>)</p>
+
+<h3 id="vxlan">vxlan</h3>
+
+<blockquote>
+<p>Use in-kernel VXLAN to encapsulate the packets.</p>
+</blockquote>
+
+<p>关于vxlan的知识网络上是非常多的，简单来说就是在现有的layer3网络上实现了一套layer2网络的协议.</p>
+
+<p>参考:
+[](<a href="https://github.com/coreos/flannel/blob/master/Documentation/backends.md">https://github.com/coreos/flannel/blob/master/Documentation/backends.md</a>)</p>
+
+<h3 id="udp">udp</h3>
+
+<p>UDP模式下使用flanneld这个进程来封装packets.
+<img src="https://photos.app.goo.gl/DVVqiSUhQSFrs96o7" alt="udp" />
+这种模式增加了packets在user space和kernel space 来回copy的消耗,所以性能很差,官方只推荐在debug的时候来使用.
+<img src="https://photos.app.goo.gl/FndVYFRxses2MaaD9" alt="user-space" />
+参考:
+<a href="https://github.com/coreos/flannel/blob/master/Documentation/backends.md">flannel-backend</a>
+<a href="https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c">kubernetes-flannel-networking</a>
+<a href="https://www.slideshare.net/lorispack/using-coreos-flannel-for-docker-networking">using-coreos-flannel-for-docker-networking</a></p>
               
             </div>
           </div>
@@ -301,7 +380,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/" data-tooltip="kubectl explain">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-weave-work/" data-tooltip="How does weave work with kubernetes">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -309,7 +388,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-perisistent-storage">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-calico-work/" data-tooltip="How does calico work with kubernetes">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -375,7 +454,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/" data-tooltip="kubectl explain">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-weave-work/" data-tooltip="How does weave work with kubernetes">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -383,7 +462,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-perisistent-storage">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/how-calico-work/" data-tooltip="How does calico work with kubernetes">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -530,17 +609,58 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/how-flannel-work/">
-                <h3 class="media-heading">How does flannel work with kubernetes.</h3>
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/how-calico-work/">
+                <h3 class="media-heading">How does calico work with kubernetes</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Feb 2, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Comparison between calico、flannel、weave.</p>
-
-<p></p></div>
+              <div class="media-content hide-xs font-merryweather">了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
+ calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/how-flannel-work/">
+                <h3 class="media-heading">How does flannel work with kubernetes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
+ flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/how-weave-work/">
+                <h3 class="media-heading">How does weave work with kubernetes</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">了解weave作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
+官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
+Weave 安装  推荐参考kubenretes和weave的文档，不多赘述.
+ Weave的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -641,44 +761,6 @@ if (!doNotTrack) {
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/">
-                <h3 class="media-heading">minikube install offline</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Mar 3, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Install minikube offline.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
-                <h3 class="media-heading">docker pre-install kernel-check</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Mar 3, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -686,7 +768,7 @@ if (!doNotTrack) {
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         10 posts found
+         12 posts found
       </p>
     </div>
   </div>
