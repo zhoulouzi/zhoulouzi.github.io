@@ -390,10 +390,8 @@ if (!doNotTrack) {
                   Feb 2, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">了解calico作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
-官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
-Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
- calico的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
+              <div class="media-content hide-xs font-merryweather"><p>了解calico作为kubernetes的cni插件是如何工做的。
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -410,10 +408,8 @@ Calico 安装  推荐参考kubenretes和calico的文档，不多赘述.
                   Feb 2, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">了解flannel作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
-官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
-Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
- flannel的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
+              <div class="media-content hide-xs font-merryweather"><p>了解flannel作为kubernetes的cni插件是如何工做的。
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -430,10 +426,8 @@ Flannel 安装  推荐参考kubenretes和flannel的文档，不多赘述.
                   Feb 2, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">了解weave作为kubernetes的cni插件是如何工做的。 在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在kubernetes networking 明确提出对CNI插件实现的要求： 1. all containers can communicate with all other containers without NAT 2. all nodes can communicate with all containers (and vice-versa) without NAT 3. the IP that a container sees itself as is the same IP that others see it as
-官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章calico-flannel-weave.除此之外，还建议看看docker官方CNM的文档docker-CNM 对比理解.
-Weave 安装  推荐参考kubenretes和weave的文档，不多赘述.
- Weave的工作原理:  flannel is a virtual network that gives a subnet to each host for use with container runtimes.</div>
+              <div class="media-content hide-xs font-merryweather"><p>了解weave作为kubernetes的cni插件是如何工做的。
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
