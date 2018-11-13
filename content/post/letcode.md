@@ -1,5 +1,5 @@
 ---
-title: "leetcode 笔记"
+title: "leetcode python cases"
 date: 2017-09-05T21:48:15+08:00
 tags:
 - leetcode
@@ -11,17 +11,15 @@ coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 ---
 
-Some letcode.
+总结一些可能用的上的leetcode python 题目。
 
 <!--more-->
 
+### 
+> 好久没有更新自己的博客了,最近自己也抽空去leetcode刷题,补一补薄弱的环节.
 
-# 总结出一些比较意义的题
-> 好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。
 
-### 1.
-
-Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+1. Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
 
 > 我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：One-line python solution with O(n) time
 
@@ -36,8 +34,7 @@ Given an array of integers, every element appears twice except for one. Find tha
 > 第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。
 
 
-### 2.
-Remove Element Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn't matter what  you leave beyond the new length. Example: Given input array nums =[3,2,2,3], val = 3 Your function should return length = 2, with thefirst two elements of nums being 2.
+2. Remove Element Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn't matter what  you leave beyond the new length. Example: Given input array nums =[3,2,2,3], val = 3 Your function should return length = 2, with thefirst two elements of nums being 2.
 
 ```
 def removeElement(nums, val):
@@ -45,7 +42,8 @@ def removeElement(nums, val):
             nums.remove(val)
      return len(nums)
 ```
-### 3. Palindrome Number 回数，又看见这个题了，曾经面试遇到过
+
+3. Palindrome Number 回数，又看见这个题了，曾经面试遇到过
 利用切片搞定。
 ```
 def isPalindrome(x):
@@ -55,7 +53,8 @@ def isPalindrome(x):
         """
         return str(x) == str(x)[::-1]
 ```
-### 4. Valid Palindrome 回文，忽略大小写，只考虑字母和数字
+
+4. Valid Palindrome 回文，忽略大小写，只考虑字母和数字
 > For example,
 "A man, a plan, a canal: Panama" is a palindrome.
 "race a car" is not a palindrome.
@@ -70,9 +69,7 @@ def isPalindrome(x):
         return act == act[::-1]
 ```
 
-
-## 排序：
-### 冒泡排序：
+5. 冒泡排序：
 ```
 arr = [9,8,7,6,5,4,3,2,1]
 for j in range(len(arr)):
@@ -83,7 +80,7 @@ for j in range(len(arr)):
 print(arr)
 ```
 
-### 快速排序：
+6. 快速排序：
 ```
 def quick(L,left,right):
     if left >= right:

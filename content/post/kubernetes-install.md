@@ -1,6 +1,6 @@
 ---
 title: "kubernetes install offline"
-date: 2017-11-07T21:48:15+08:00
+date: 2017-04-07T21:48:15+08:00
 tags:
 - kubernetes
 archives:
@@ -11,18 +11,20 @@ categories:
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 ---
-How to install a kubernetes cluster from scartch.
-
+How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
 <!--more-->
 
 # kubernetes install offline step by step
->概述:
-此文档用于在ubuntu16.04上独立安装kubernetes节点
+> 概述:
+
+> 此文档用于在ubuntu16.04上独立安装kubernetes节点
 api-server与kubelet、kube-proxy之间通过tls认证交互
 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互
 
->备注：
-未实现HA模式  ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
+> 备注：
+
+> 未实现HA模式  ，实现HA模式，官方的文档https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。
 
 ### etcd组件说明：
     port:

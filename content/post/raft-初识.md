@@ -12,16 +12,15 @@ clearReading: true
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 ---
-raft
+
+利用一个动画,一片文章,一个PPT来了解Raft的基本原理。
 
 <!--more-->
 ### the secret lives of data
 http://thesecretlivesofdata.com/raft/
 
 ### the Raft Consensus Algorithm
-
 https://raft.github.io/
 
 ###  Raft: The raft-the-understandable-distributed-consensus-protocol Distributed Consensus Protocol
-
 https://speakerdeck.com/benbjohnson/raft-the-understandable-distributed-consensus-protocol/

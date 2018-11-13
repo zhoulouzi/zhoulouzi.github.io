@@ -8,24 +8,24 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="Some letcode.
+<meta name="description" content="总结一些可能用的上的leetcode python 题目。
 
 ">
 
 
-<meta property="og:description" content="Some letcode.
+<meta property="og:description" content="总结一些可能用的上的leetcode python 题目。
 
 ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 笔记">
-<meta name="twitter:title" content="leetcode 笔记">
+<meta property="og:title" content="leetcode python cases">
+<meta name="twitter:title" content="leetcode python cases">
 <meta property="og:url" content="https://blog.zhoulouzi.com/post/letcode/">
 <meta property="twitter:url" content="https://blog.zhoulouzi.com/post/letcode/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="Some letcode.
+<meta property="og:description" content="总结一些可能用的上的leetcode python 题目。
 
 ">
-<meta name="twitter:description" content="Some letcode.
+<meta name="twitter:description" content="总结一些可能用的上的leetcode python 题目。
 
 ">
 <meta property="og:locale" content="en-us">
@@ -75,7 +75,7 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>leetcode 笔记</title>
+    <title>leetcode python cases</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
@@ -233,7 +233,7 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      leetcode 笔记
+      leetcode python cases
     </h1>
   
   
@@ -270,19 +270,17 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Some letcode.</p>
+              <p>总结一些可能用的上的leetcode python 题目。</p>
 
 <p></p>
 
-<h1 id="总结出一些比较意义的题">总结出一些比较意义的题</h1>
-
 <blockquote>
-<p>好久没有更新自己的博客了，自从3月份跳槽到现在这几个月一直很忙，所以也一直没有时间更新，最近自己也抽空去leetcode刷题，补一补薄弱的环节。就从easy难度的开始刷起，刷完这600多道题。</p>
+<p>好久没有更新自己的博客了,最近自己也抽空去leetcode刷题,补一补薄弱的环节.</p>
 </blockquote>
 
-<h3 id="1">1.</h3>
-
-<p>Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<ol>
+<li>Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</li>
+</ol>
 
 <blockquote>
 <p>我的解法很平常遍历一遍列表给每个元素计数，返回值为1的元素，但是并不符合Note里提到的。于是在大神们的Solutions找到了这个答案：One-line python solution with O(n) time</p>
@@ -300,9 +298,9 @@ if (!doNotTrack) {
 <p>第一眼看，什么鬼，x 的 y次方～ 想了半天才明白 相同2个数 异或运算结果就是0 0和任意数 异或运算都是 任意数本身啊。  reduce下这个列表，完美。</p>
 </blockquote>
 
-<h3 id="2">2.</h3>
-
-<p>Remove Element Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn&rsquo;t matter what  you leave beyond the new length. Example: Given input array nums =[3,2,2,3], val = 3 Your function should return length = 2, with thefirst two elements of nums being 2.</p>
+<ol>
+<li>Remove Element Given an array and a value, remove all instances of that value in place and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. The order of elements can be changed. It doesn&rsquo;t matter what  you leave beyond the new length. Example: Given input array nums =[3,2,2,3], val = 3 Your function should return length = 2, with thefirst two elements of nums being 2.</li>
+</ol>
 
 <pre><code>def removeElement(nums, val):
     for i in range(nums.count(val)):
@@ -310,52 +308,49 @@ if (!doNotTrack) {
      return len(nums)
 </code></pre>
 
-<h3 id="3-palindrome-number-回数-又看见这个题了-曾经面试遇到过">3. Palindrome Number 回数，又看见这个题了，曾经面试遇到过</h3>
-
-<p>利用切片搞定。</p>
+<ol>
+<li><p>Palindrome Number 回数，又看见这个题了，曾经面试遇到过
+利用切片搞定。</p>
 
 <pre><code>def isPalindrome(x):
-        &quot;&quot;&quot;
-        :type x: int
-        :rtype: bool
-        &quot;&quot;&quot;
-        return str(x) == str(x)[::-1]
-</code></pre>
+    &quot;&quot;&quot;
+    :type x: int
+    :rtype: bool
+    &quot;&quot;&quot;
+    return str(x) == str(x)[::-1]
+</code></pre></li>
 
-<h3 id="4-valid-palindrome-回文-忽略大小写-只考虑字母和数字">4. Valid Palindrome 回文，忽略大小写，只考虑字母和数字</h3>
-
-<blockquote>
-<p>For example,
+<li><p>Valid Palindrome 回文，忽略大小写，只考虑字母和数字
+&gt; For example,
 &ldquo;A man, a plan, a canal: Panama&rdquo; is a palindrome.
 &ldquo;race a car&rdquo; is not a palindrome.</p>
 
-<pre><code> def isPalindrome(s):
-        &quot;&quot;&quot;
-        :type s: str
-        :rtype: bool
-        &quot;&quot;&quot;
-        act = []
-        act = list(filter(lambda a: a.isalnum(), list(s.lower())))
-        return act == act[::-1]
-</code></pre>
-</blockquote>
+<pre><code>def isPalindrome(s):
+    &quot;&quot;&quot;
+    :type s: str
+    :rtype: bool
+    &quot;&quot;&quot;
+    act = []
+    act = list(filter(lambda a: a.isalnum(), list(s.lower())))
+    return act == act[::-1]
+</code></pre></li>
 
-<h2 id="排序">排序：</h2>
-
-<h3 id="冒泡排序">冒泡排序：</h3>
-
-<pre><code>arr = [9,8,7,6,5,4,3,2,1]
+<li><p>冒泡排序：
+```
+arr = [9,8,7,6,5,4,3,2,1]
 for j in range(len(arr)):
-    for i in range(len(arr) - 1 - j ):
-        if arr[i] &gt; arr[i+1]:
-            arr[i],arr[i+1] = arr[i+1],arr[i]
+for i in range(len(arr) - 1 - j ):
+    if arr[i] &gt; arr[i+1]:
+        arr[i],arr[i+1] = arr[i+1],arr[i]</p></li>
+</ol>
 
-print(arr)
+<p>print(arr)</p>
+
+<pre><code>
+6. 快速排序：
 </code></pre>
 
-<h3 id="快速排序">快速排序：</h3>
-
-<pre><code>def quick(L,left,right):
+<p>def quick(L,left,right):
     if left &gt;= right:
         return L
     key = L[left]
@@ -364,18 +359,18 @@ print(arr)
     while left &lt; right:
         while left &lt; right and L[right] &gt;= key:
             right -= 1
-        L[left] = L[right]                     #------------------ 比key值小的值放到左边
+        L[left] = L[right]                     #&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; 比key值小的值放到左边
         while left &lt;right and L[left] &lt;= key:
             left += 1
-        L[right] = L[left]                     #------------------比key值大的放到右边
+        L[right] = L[left]                     #&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;比key值大的放到右边
     #left = right 跳出循环
-    L[left] = key                             #------------------将key值赋给left=right的位置
+    L[left] = key                             #&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;将key值赋给left=right的位置
     #此时left=right,分别对左右子列表进行快速排序
     quick(L,low,right-1)
     quick(L,left+1,high)
     #递归调用，知道子列表为单一子列表 left=right
 quick(L,0,len(L)-1)
-</code></pre>
+```</p>
               
             </div>
           </div>
@@ -611,14 +606,14 @@ quick(L,0,len(L)-1)
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
-                <h3 class="media-heading">kubernetes-local-perisistent-storage</h3>
+                <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume driver for statefulset app.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume for pods.</p>
 
 <p></p></div>
             </div>
@@ -684,33 +679,15 @@ quick(L,0,len(L)-1)
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/">
-                <h3 class="media-heading">kubectl explain</h3>
+                <h3 class="media-heading">Using kubeclt explain to write kubernetes yaml</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jan 1, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Learn to explain kubernetes API resources.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
-                <h3 class="media-heading">kubernetes install offline</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from scartch.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.</p>
 
 <p></p></div>
             </div>
@@ -729,7 +706,7 @@ quick(L,0,len(L)-1)
                   Nov 11, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>raft</p>
+              <div class="media-content hide-xs font-merryweather"><p>利用一个动画,一片文章,一个PPT来了解Raft的基本原理。</p>
 
 <p></p></div>
             </div>
@@ -741,14 +718,14 @@ quick(L,0,len(L)-1)
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/letcode/">
-                <h3 class="media-heading">leetcode 笔记</h3>
+                <h3 class="media-heading">leetcode python cases</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Sep 9, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Some letcode.</p>
+              <div class="media-content hide-xs font-merryweather"><p>总结一些可能用的上的leetcode python 题目。</p>
 
 <p></p></div>
             </div>
@@ -767,9 +744,28 @@ quick(L,0,len(L)-1)
                   Jun 6, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>The great soccer team.</p>
+              <div class="media-content hide-xs font-merryweather"><p>一个团队战斗力爆表的足球队.</p>
 
 <p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
+                <h3 class="media-heading">kubernetes install offline</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

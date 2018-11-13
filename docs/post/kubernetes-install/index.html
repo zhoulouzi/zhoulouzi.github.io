@@ -8,13 +8,13 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="How to install a kubernetes cluster from scartch.
-
+<meta name="description" content="How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
 ">
 
 
-<meta property="og:description" content="How to install a kubernetes cluster from scartch.
-
+<meta property="og:description" content="How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
 ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kubernetes install offline">
@@ -22,19 +22,19 @@
 <meta property="og:url" content="https://blog.zhoulouzi.com/post/kubernetes-install/">
 <meta property="twitter:url" content="https://blog.zhoulouzi.com/post/kubernetes-install/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="How to install a kubernetes cluster from scartch.
-
+<meta property="og:description" content="How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
 ">
-<meta name="twitter:description" content="How to install a kubernetes cluster from scartch.
-
+<meta name="twitter:description" content="How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
 ">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2017-11-07T21:48:15">
+    <meta property="article:published_time" content="2017-04-07T21:48:15">
   
   
-    <meta property="article:modified_time" content="2017-11-07T21:48:15">
+    <meta property="article:modified_time" content="2017-04-07T21:48:15">
   
   
   
@@ -241,9 +241,9 @@ if (!doNotTrack) {
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-11-07T21:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2017-04-07T21:48:15&#43;08:00">
         
-  November 7, 2017
+  April 7, 2017
 
       </time>
     
@@ -274,20 +274,22 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>How to install a kubernetes cluster from scartch.</p>
-
-<p></p>
+              <p>How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
+</p>
 
 <h1 id="kubernetes-install-offline-step-by-step">kubernetes install offline step by step</h1>
 
 <blockquote>
-<p>概述:
-此文档用于在ubuntu16.04上独立安装kubernetes节点
+<p>概述:</p>
+
+<p>此文档用于在ubuntu16.04上独立安装kubernetes节点
 api-server与kubelet、kube-proxy之间通过tls认证交互
 control-manager和scheduler通过api-server在本地暴露的127.0.0.1:8080交互</p>
 
-<p>备注：
-未实现HA模式  ，实现HA模式，官方的文档<a href="https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。">https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。</a></p>
+<p>备注：</p>
+
+<p>未实现HA模式  ，实现HA模式，官方的文档<a href="https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。">https://kubernetes.io/docs/admin/high-availability/里指明：需要etcd实现集群模式，apiserver是无状态的，在master节点上正常启动，利用云上的lb做负载均衡，感觉dns也行，注意证书问题就可以。，kube-controller-manager，kube-scheduler需要保证同时只有一个实例在work启动加上--leader-elect启动参数。</a></p>
 </blockquote>
 
 <h3 id="etcd组件说明">etcd组件说明：</h3>
@@ -631,7 +633,7 @@ kubectl config use-context kube-admin
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/raft-%E5%88%9D%E8%AF%86/" data-tooltip="Raft 初识">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/" data-tooltip="minikube install offline">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -639,7 +641,7 @@ kubectl config use-context kube-admin
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/" data-tooltip="kubectl explain">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/" data-tooltip="资环十年">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -705,7 +707,7 @@ kubectl config use-context kube-admin
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/raft-%E5%88%9D%E8%AF%86/" data-tooltip="Raft 初识">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/" data-tooltip="minikube install offline">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -713,7 +715,7 @@ kubectl config use-context kube-admin
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/" data-tooltip="kubectl explain">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/" data-tooltip="资环十年">
               
                   <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                   <i class="fa fa-angle-right"></i>
@@ -842,14 +844,14 @@ kubectl config use-context kube-admin
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
-                <h3 class="media-heading">kubernetes-local-perisistent-storage</h3>
+                <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume driver for statefulset app.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume for pods.</p>
 
 <p></p></div>
             </div>
@@ -915,33 +917,15 @@ kubectl config use-context kube-admin
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/">
-                <h3 class="media-heading">kubectl explain</h3>
+                <h3 class="media-heading">Using kubeclt explain to write kubernetes yaml</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jan 1, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Learn to explain kubernetes API resources.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
-                <h3 class="media-heading">kubernetes install offline</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from scartch.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.</p>
 
 <p></p></div>
             </div>
@@ -960,7 +944,7 @@ kubectl config use-context kube-admin
                   Nov 11, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>raft</p>
+              <div class="media-content hide-xs font-merryweather"><p>利用一个动画,一片文章,一个PPT来了解Raft的基本原理。</p>
 
 <p></p></div>
             </div>
@@ -972,14 +956,14 @@ kubectl config use-context kube-admin
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/letcode/">
-                <h3 class="media-heading">leetcode 笔记</h3>
+                <h3 class="media-heading">leetcode python cases</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Sep 9, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Some letcode.</p>
+              <div class="media-content hide-xs font-merryweather"><p>总结一些可能用的上的leetcode python 题目。</p>
 
 <p></p></div>
             </div>
@@ -998,9 +982,28 @@ kubectl config use-context kube-admin
                   Jun 6, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>The great soccer team.</p>
+              <div class="media-content hide-xs font-merryweather"><p>一个团队战斗力爆表的足球队.</p>
 
 <p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
+                <h3 class="media-heading">kubernetes install offline</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

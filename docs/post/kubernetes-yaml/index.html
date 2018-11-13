@@ -8,24 +8,28 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="Learn to explain kubernetes API resources.
+<meta name="description" content="Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.
 
 ">
 
 
-<meta property="og:description" content="Learn to explain kubernetes API resources.
+<meta property="og:description" content="Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.
 
 ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kubectl explain">
-<meta name="twitter:title" content="kubectl explain">
+<meta property="og:title" content="Using kubeclt explain to write kubernetes yaml">
+<meta name="twitter:title" content="Using kubeclt explain to write kubernetes yaml">
 <meta property="og:url" content="https://blog.zhoulouzi.com/post/kubernetes-yaml/">
 <meta property="twitter:url" content="https://blog.zhoulouzi.com/post/kubernetes-yaml/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="Learn to explain kubernetes API resources.
+<meta property="og:description" content="Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.
 
 ">
-<meta name="twitter:description" content="Learn to explain kubernetes API resources.
+<meta name="twitter:description" content="Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.
 
 ">
 <meta property="og:locale" content="en-us">
@@ -77,7 +81,7 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>kubectl explain</title>
+    <title>Using kubeclt explain to write kubernetes yaml</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
@@ -235,7 +239,7 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      kubectl explain
+      Using kubeclt explain to write kubernetes yaml
     </h1>
   
   
@@ -274,86 +278,118 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>Learn to explain kubernetes API resources.</p>
+              <p>Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.</p>
 
 <p></p>
 
 <h1 id="kubectl-explain">kubectl explain</h1>
 
-<p>之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。</p>
+<p>刚开始接触kubernetes的时候,会很头痛yaml配置文件怎么写.
+原因大概有几个方面,比如对objects不了解.或者了解但是具体的参数和配置还是需要手册来帮助,<a href="https://kubernetes.io/docs/reference/kubernetes-api/">kubernetes API references</a>提供了特别详细API手册,但是在使用过程中还是觉得不太方便.
+不过大家有没有注意到kubectl提供了sub command 可以很方便的描述每个opjects的参数和配置.</p>
 
-<pre><code># kubectl explain -h
+<p>首先来看看kubectl help:</p>
 
-kubectl explain secrets
+<pre><code>$kubectl explain -h
+    List the fields for supported resources
 
-kubectl explain secrets --recursive
+    This command describes the fields associated with each supported API resource. Fields are identified via a simple
+    JSONPath identifier:
 
-DESCRIPTION:
- Secret holds secret data of a certain type. The total bytes of the values
- in the Data field must be less than MaxSecretSize bytes.
+    &lt;type&gt;.&lt;fieldName&gt;[.&lt;fieldName&gt;]
 
-FIELDS:
-   apiVersion   &lt;string&gt;
-   data &lt;map[string]string&gt;
-   kind &lt;string&gt;
-   metadata &lt;Object&gt;
-      annotations   &lt;map[string]string&gt;
-      clusterName   &lt;string&gt;
-      creationTimestamp &lt;string&gt;
-      deletionGracePeriodSeconds    &lt;integer&gt;
-      deletionTimestamp &lt;string&gt;
-      finalizers    &lt;[]string&gt;
-      generateName  &lt;string&gt;
-      generation    &lt;integer&gt;
-      initializers  &lt;Object&gt;
-         pending    &lt;[]Object&gt;
-            name    &lt;string&gt;
-         result &lt;Object&gt;
-            apiVersion  &lt;string&gt;
-            code    &lt;integer&gt;
-            details &lt;Object&gt;
-               causes   &lt;[]Object&gt;
-                  field &lt;string&gt;
-                  message   &lt;string&gt;
-                  reason    &lt;string&gt;
-               group    &lt;string&gt;
-               kind &lt;string&gt;
-               name &lt;string&gt;
-               retryAfterSeconds    &lt;integer&gt;
-               uid  &lt;string&gt;
-            kind    &lt;string&gt;
-            message &lt;string&gt;
-            metadata    &lt;Object&gt;
-               continue &lt;string&gt;
-               resourceVersion  &lt;string&gt;
-               selfLink &lt;string&gt;
-            reason  &lt;string&gt;
-            status  &lt;string&gt;
-      labels    &lt;map[string]string&gt;
-      name  &lt;string&gt;
-      namespace &lt;string&gt;
-      ownerReferences   &lt;[]Object&gt;
-         apiVersion &lt;string&gt;
-         blockOwnerDeletion &lt;boolean&gt;
-         controller &lt;boolean&gt;
-         kind   &lt;string&gt;
-         name   &lt;string&gt;
-         uid    &lt;string&gt;
-      resourceVersion   &lt;string&gt;
-      selfLink  &lt;string&gt;
-      uid   &lt;string&gt;
-   stringData   &lt;map[string]string&gt;
-   type &lt;string&gt;
+    Add the --recursive flag to display all of the fields at once without descriptions. Information about each field is
+    retrieved from the server in OpenAPI format.
 
-试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）
+    Use &quot;kubectl api-resources&quot; for a complete list of supported resources.
+
+    Examples:
+    # Get the documentation of the resource and its fields
+    kubectl explain pods
+
+    # Get the documentation of a specific field of a resource
+    kubectl explain pods.spec.containers
+
+    Options:
+        --api-version='': Get different explanations for particular API version
+        --recursive=false: Print the fields of fields (Currently only 1 level deep)
+
+    Usage:
+    kubectl explain RESOURCE [options]
+
+    Use &quot;kubectl options&quot; for a list of global command-line options (applies to all commands).
 </code></pre>
 
-<h2 id="额外分享一个工具-看看是什么吧">额外分享一个工具，看看是什么吧？</h2>
+<p>我们来看看secrets里有哪些参数吧：</p>
 
-<pre><code>Registry creds &lt;-&gt; config.json &lt;-&gt; Kubernetes Secret YAML
+<pre><code>$kubectl explain secrets
 
-https://polyverse.github.io/docker-creds-converter/
+    kubectl explain secrets --recursive
+
+    DESCRIPTION:
+     Secret holds secret data of a certain type. The total bytes of the values
+     in the Data field must be less than MaxSecretSize bytes.
+
+    FIELDS:
+       apiVersion   &lt;string&gt;
+       data &lt;map[string]string&gt;
+       kind &lt;string&gt;
+       metadata &lt;Object&gt;
+          annotations   &lt;map[string]string&gt;
+          clusterName   &lt;string&gt;
+          creationTimestamp &lt;string&gt;
+          deletionGracePeriodSeconds    &lt;integer&gt;
+          deletionTimestamp &lt;string&gt;
+          finalizers    &lt;[]string&gt;
+          generateName  &lt;string&gt;
+          generation    &lt;integer&gt;
+          initializers  &lt;Object&gt;
+             pending    &lt;[]Object&gt;
+                name    &lt;string&gt;
+             result &lt;Object&gt;
+                apiVersion  &lt;string&gt;
+                code    &lt;integer&gt;
+                details &lt;Object&gt;
+                   causes   &lt;[]Object&gt;
+                      field &lt;string&gt;
+                      message   &lt;string&gt;
+                      reason    &lt;string&gt;
+                   group    &lt;string&gt;
+                   kind &lt;string&gt;
+                   name &lt;string&gt;
+                   retryAfterSeconds    &lt;integer&gt;
+                   uid  &lt;string&gt;
+                kind    &lt;string&gt;
+                message &lt;string&gt;
+                metadata    &lt;Object&gt;
+                   continue &lt;string&gt;
+                   resourceVersion  &lt;string&gt;
+                   selfLink &lt;string&gt;
+                reason  &lt;string&gt;
+                status  &lt;string&gt;
+          labels    &lt;map[string]string&gt;
+          name  &lt;string&gt;
+          namespace &lt;string&gt;
+          ownerReferences   &lt;[]Object&gt;
+             apiVersion &lt;string&gt;
+             blockOwnerDeletion &lt;boolean&gt;
+             controller &lt;boolean&gt;
+             kind   &lt;string&gt;
+             name   &lt;string&gt;
+             uid    &lt;string&gt;
+          resourceVersion   &lt;string&gt;
+          selfLink  &lt;string&gt;
+          uid   &lt;string&gt;
+       stringData   &lt;map[string]string&gt;
+       type &lt;string&gt;
 </code></pre>
+
+<p>有了这个方法是不是感觉爸爸再也不用担心我怎么写配置了.希望能够帮助到你。</p>
+
+<h1 id="额外分享一个工具-有兴趣的同学可以看看是什么">额外分享一个工具，有兴趣的同学可以看看是什么.</h1>
+
+<p><a href="https://polyverse.github.io/docker-creds-converter/">Registry creds &lt;-&gt; config.json &lt;-&gt; Kubernetes Secret YAML</a></p>
               
             </div>
           </div>
@@ -378,7 +414,7 @@ https://polyverse.github.io/docker-creds-converter/
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-install/" data-tooltip="kubernetes install offline">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/raft-%E5%88%9D%E8%AF%86/" data-tooltip="Raft 初识">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -452,7 +488,7 @@ https://polyverse.github.io/docker-creds-converter/
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-install/" data-tooltip="kubernetes install offline">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/raft-%E5%88%9D%E8%AF%86/" data-tooltip="Raft 初识">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -589,14 +625,14 @@ https://polyverse.github.io/docker-creds-converter/
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
-                <h3 class="media-heading">kubernetes-local-perisistent-storage</h3>
+                <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume driver for statefulset app.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Use kubernetes local volume for pods.</p>
 
 <p></p></div>
             </div>
@@ -662,33 +698,15 @@ https://polyverse.github.io/docker-creds-converter/
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-yaml/">
-                <h3 class="media-heading">kubectl explain</h3>
+                <h3 class="media-heading">Using kubeclt explain to write kubernetes yaml</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Jan 1, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Learn to explain kubernetes API resources.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
-                <h3 class="media-heading">kubernetes install offline</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Nov 11, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from scartch.</p>
+              <div class="media-content hide-xs font-merryweather"><p>Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.</p>
 
 <p></p></div>
             </div>
@@ -707,7 +725,7 @@ https://polyverse.github.io/docker-creds-converter/
                   Nov 11, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>raft</p>
+              <div class="media-content hide-xs font-merryweather"><p>利用一个动画,一片文章,一个PPT来了解Raft的基本原理。</p>
 
 <p></p></div>
             </div>
@@ -719,14 +737,14 @@ https://polyverse.github.io/docker-creds-converter/
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/letcode/">
-                <h3 class="media-heading">leetcode 笔记</h3>
+                <h3 class="media-heading">leetcode python cases</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Sep 9, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>Some letcode.</p>
+              <div class="media-content hide-xs font-merryweather"><p>总结一些可能用的上的leetcode python 题目。</p>
 
 <p></p></div>
             </div>
@@ -745,9 +763,28 @@ https://polyverse.github.io/docker-creds-converter/
                   Jun 6, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>The great soccer team.</p>
+              <div class="media-content hide-xs font-merryweather"><p>一个团队战斗力爆表的足球队.</p>
 
 <p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-install/">
+                <h3 class="media-heading">kubernetes install offline</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from Scratch(offline).
+(由于时间久远,此文仅做参考使用)
+</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

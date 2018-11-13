@@ -1,5 +1,5 @@
 ---
-title: "kubectl explain"
+title: "Using kubeclt explain to write kubernetes yaml"
 date: 2018-01-31T21:48:15+08:00
 tags:
 - kubernetes
@@ -12,17 +12,51 @@ coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ
 thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
 ---
 
-Learn to explain kubernetes API resources.
+Yaml references for kubernetes objects.
+如何更快,更准确的编写kubernetes yaml配置文件.
 
 <!--more-->
 
 # kubectl explain
+刚开始接触kubernetes的时候,会很头痛yaml配置文件怎么写.
+原因大概有几个方面,比如对objects不了解.或者了解但是具体的参数和配置还是需要手册来帮助,[kubernetes API references](https://kubernetes.io/docs/reference/kubernetes-api/)提供了特别详细API手册,但是在使用过程中还是觉得不太方便.
+不过大家有没有注意到kubectl提供了sub command 可以很方便的描述每个opjects的参数和配置.
 
- 之前很头疼kubernets的yaml文件怎么写，后天发现其实如果你装好了了kubectl你就随时随地的可以找到配置文件怎么写，kubectl explain 搭配 kubernetes官网API文档，yaml配置层级很清晰。
+首先来看看kubectl help:
+```
+$kubectl explain -h
+    List the fields for supported resources
 
-    # kubectl explain -h
+    This command describes the fields associated with each supported API resource. Fields are identified via a simple
+    JSONPath identifier:
 
-    kubectl explain secrets
+    <type>.<fieldName>[.<fieldName>]
+
+    Add the --recursive flag to display all of the fields at once without descriptions. Information about each field is
+    retrieved from the server in OpenAPI format.
+
+    Use "kubectl api-resources" for a complete list of supported resources.
+
+    Examples:
+    # Get the documentation of the resource and its fields
+    kubectl explain pods
+
+    # Get the documentation of a specific field of a resource
+    kubectl explain pods.spec.containers
+
+    Options:
+        --api-version='': Get different explanations for particular API version
+        --recursive=false: Print the fields of fields (Currently only 1 level deep)
+
+    Usage:
+    kubectl explain RESOURCE [options]
+
+    Use "kubectl options" for a list of global command-line options (applies to all commands).
+```
+
+我们来看看secrets里有哪些参数吧：
+```
+$kubectl explain secrets
 
     kubectl explain secrets --recursive
 
@@ -82,13 +116,11 @@ Learn to explain kubernetes API resources.
           uid   <string>
        stringData   <map[string]string>
        type <string>
-
-    试着在终端敲下这几个命令。（爸爸再也不用担心我写配置了）
-
+```
 
 
-## 额外分享一个工具，看看是什么吧？
+有了这个方法是不是感觉爸爸再也不用担心我怎么写配置了.希望能够帮助到你。
 
-    Registry creds <-> config.json <-> Kubernetes Secret YAML
+# 额外分享一个工具，有兴趣的同学可以看看是什么.
 
-    https://polyverse.github.io/docker-creds-converter/
+[Registry creds <-> config.json <-> Kubernetes Secret YAML](https://polyverse.github.io/docker-creds-converter/)

@@ -24,7 +24,7 @@ Install minikube offline.
 
 ### 准备
 需要提前下载几个东西：
-
+ 
  1. kubectl 的二进制文件 官网下载 放到/usr/local/bin/ 下即可 
  2. minikube 的二进制文件 官网下载放到/usr/local/bin/ 下即可 
  3. docker的离线安装包 docker 离线安装 
