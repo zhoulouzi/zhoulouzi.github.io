@@ -54,12 +54,12 @@
     </item>
     
     <item>
-      <title>How does weave work with kubernetes</title>
+      <title>How does weave net work with kubernetes</title>
       <link>https://blog.zhoulouzi.com/post/how-weave-work/</link>
       <pubDate>Wed, 14 Feb 2018 19:00:00 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/post/how-weave-work/</guid>
-      <description>&lt;p&gt;了解weave作为kubernetes的cni插件是如何工做的。
+      <description>&lt;p&gt;了解weave net作为kubernetes的cni插件是如何工作的。
 &lt;/p&gt;</description>
     </item>
     

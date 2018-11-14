@@ -8,21 +8,21 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="了解weave作为kubernetes的cni插件是如何工做的。
+<meta name="description" content="了解weave net作为kubernetes的cni插件是如何工作的。
 ">
 
 
-<meta property="og:description" content="了解weave作为kubernetes的cni插件是如何工做的。
+<meta property="og:description" content="了解weave net作为kubernetes的cni插件是如何工作的。
 ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How does weave work with kubernetes">
-<meta name="twitter:title" content="How does weave work with kubernetes">
+<meta property="og:title" content="How does weave net work with kubernetes">
+<meta name="twitter:title" content="How does weave net work with kubernetes">
 <meta property="og:url" content="https://blog.zhoulouzi.com/post/how-weave-work/">
 <meta property="twitter:url" content="https://blog.zhoulouzi.com/post/how-weave-work/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="了解weave作为kubernetes的cni插件是如何工做的。
+<meta property="og:description" content="了解weave net作为kubernetes的cni插件是如何工作的。
 ">
-<meta name="twitter:description" content="了解weave作为kubernetes的cni插件是如何工做的。
+<meta name="twitter:description" content="了解weave net作为kubernetes的cni插件是如何工作的。
 ">
 <meta property="og:locale" content="en-us">
 
@@ -59,8 +59,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png">
-  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png">
+  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg">
@@ -73,7 +73,7 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>How does weave work with kubernetes</title>
+    <title>How does weave net work with kubernetes</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
@@ -231,7 +231,7 @@ if (!doNotTrack) {
       <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      How does weave work with kubernetes
+      How does weave net work with kubernetes
     </h1>
   
   
@@ -270,26 +270,34 @@ if (!doNotTrack) {
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>了解weave作为kubernetes的cni插件是如何工做的。
+              <p>了解weave net作为kubernetes的cni插件是如何工作的。
 </p>
 
-<p>在解决容器网络的问题上,docker和kubernetes走了两条路子，分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
+<h1 id="容器网络">容器网络</h1>
+
+<p>在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
 1. all containers can communicate with all other containers without NAT
 2. all nodes can communicate with all containers (and vice-versa) without NAT
 3. the IP that a container sees itself as is the same IP that others see it as</p>
 
-<p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
+<p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave net.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
 对比理解.</p>
 
-<h1 id="weave">Weave</h1>
+<h1 id="weave-net">Weave Net</h1>
+
+<h2 id="weave-net-是什么">Weave Net 是什么</h2>
+
+<blockquote>
+<p>早期有文章描述说，Weave is described as &ldquo;a giant Ethernet switch to which all the containers are connected&rdquo;</p>
+</blockquote>
 
 <h2 id="安装">安装</h2>
 
 <blockquote>
-<p>推荐参考kubenretes和weave的文档，不多赘述.</p>
+<p>推荐参考kubenretes和Weave Net的文档，不多赘述.</p>
 </blockquote>
 
-<h2 id="weave的工作原理">Weave的工作原理:</h2>
+<h2 id="weave-net的工作原理">Weave Net的工作原理:</h2>
 
 <blockquote>
 <p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
@@ -590,14 +598,14 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/how-weave-work/">
-                <h3 class="media-heading">How does weave work with kubernetes</h3>
+                <h3 class="media-heading">How does weave net work with kubernetes</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Feb 2, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>了解weave作为kubernetes的cni插件是如何工做的。
+              <div class="media-content hide-xs font-merryweather"><p>了解weave net作为kubernetes的cni插件是如何工作的。
 </p></div>
             </div>
             <div style="clear:both;"></div>

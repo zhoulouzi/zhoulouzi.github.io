@@ -9,8 +9,8 @@ archives:
 categories:
 - algorithm
 clearReading: true
-coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
-thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
+coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165787/57870302c7b49_johjjv.jpg"
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165841/annie-solo_dk7p5t.png
 ---
 
 利用一个动画,一片文章,一个PPT来了解Raft的基本原理。

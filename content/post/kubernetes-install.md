@@ -6,10 +6,9 @@ tags:
 archives:
 - kubernetes
 categories:
-- docker
 - kubernetes
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
-thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png
 ---
 How to install a kubernetes cluster from Scratch(offline).
 (由于时间久远,此文仅做参考使用)

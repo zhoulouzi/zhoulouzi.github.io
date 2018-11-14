@@ -86,6 +86,12 @@
   </url>
   
   <url>
+    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
+    <lastmod>2018-02-14T19:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.zhoulouzi.com/archives/docker/</loc>
     <lastmod>2017-03-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
@@ -98,7 +104,7 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
+    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
     <lastmod>2018-08-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -111,12 +117,6 @@
   
   <url>
     <loc>https://blog.zhoulouzi.com/tags/kubernetes/</loc>
-    <lastmod>2018-08-07T11:48:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
     <lastmod>2018-08-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>

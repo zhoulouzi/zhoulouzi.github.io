@@ -8,7 +8,7 @@ archives:
 categories:
 - docker
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
-thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166014/Q9jiI1pL_400x400_p66pp8.jpg
 ---
 pre-check before install docker
 

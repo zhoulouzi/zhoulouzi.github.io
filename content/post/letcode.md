@@ -7,8 +7,8 @@ archives:
 - leetcode
 categories:
 - algorithm
-coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
-thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png
+coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165660/56f508af0c640_jhlpmc.jpg"
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165466/1024px-Python-logo-notext.svg_t5eiu7.png
 ---
 
 总结一些可能用的上的leetcode python 题目。
