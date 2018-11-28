@@ -23,31 +23,32 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166411/uu
 官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章[calico-flannel-weave](http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/).除此之外，还建议看看docker官方CNM的文档[docker-CNM](https://success.docker.com/article/networking)
 对比理解.
 
-
 # Calico
+Calico为容器网络提供了一个layer3的实现方式,packets在容器之间不需要封装和NAT.
 
-calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific
-需要根据你的依赖网络环境来决定如何部署。 
-ipip: calico 会在每个node之间配置一个ip tunnel来转发package
-node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)
+calico arch:
+![calico arch](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543404693/calico-arch-gen-v3.2_t04nry.svg)
+
 
 要看的几篇文章：
 ## 安装
->   推荐参考kubenretes和calico的文档，不多赘述.
+>   推荐参考kubernetes和calico的文档，不多赘述.
+
+[install calico on kubernetes](https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/calico)
 
 ## calico的工作原理:
 >   flannel is a virtual network that gives a subnet to each host for use with container runtimes.
 
-## 
+### node-to-node mesh
 
-### 
+### IPIP
 
-### 
+### BGP Route Reflector
 
 参考：
+
 https://docs.projectcalico.org/v3.1/reference/architecture/
 https://docs.projectcalico.org/v3.1/reference/architecture/components
 https://docs.projectcalico.org/v3.1/reference/architecture/data-path
-
 https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric
 https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric

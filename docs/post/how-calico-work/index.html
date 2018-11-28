@@ -282,18 +282,20 @@ if (!doNotTrack) {
 
 <h1 id="calico">Calico</h1>
 
-<p>calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific
-需要根据你的依赖网络环境来决定如何部署。
-ipip: calico 会在每个node之间配置一个ip tunnel来转发package
-node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)</p>
+<p>Calico为容器网络提供了一个layer3的实现方式,packets在容器之间不需要封装和NAT.</p>
+
+<p>calico arch:
+<img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543404693/calico-arch-gen-v3.2_t04nry.svg" alt="calico arch" /></p>
 
 <p>要看的几篇文章：</p>
 
 <h2 id="安装">安装</h2>
 
 <blockquote>
-<p>推荐参考kubenretes和calico的文档，不多赘述.</p>
+<p>推荐参考kubernetes和calico的文档，不多赘述.</p>
 </blockquote>
+
+<p><a href="https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/calico">install calico on kubernetes</a></p>
 
 <h2 id="calico的工作原理">calico的工作原理:</h2>
 
@@ -301,12 +303,18 @@ node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过
 <p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
 </blockquote>
 
-<p>参考：
-<a href="https://docs.projectcalico.org/v3.1/reference/architecture/">https://docs.projectcalico.org/v3.1/reference/architecture/</a>
-<a href="https://docs.projectcalico.org/v3.1/reference/architecture/components">https://docs.projectcalico.org/v3.1/reference/architecture/components</a>
-<a href="https://docs.projectcalico.org/v3.1/reference/architecture/data-path">https://docs.projectcalico.org/v3.1/reference/architecture/data-path</a></p>
+<h3 id="node-to-node-mesh">node-to-node mesh</h3>
 
-<p><a href="https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric">https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric</a>
+<h3 id="ipip">IPIP</h3>
+
+<h3 id="bgp-route-reflector">BGP Route Reflector</h3>
+
+<p>参考：</p>
+
+<p><a href="https://docs.projectcalico.org/v3.1/reference/architecture/">https://docs.projectcalico.org/v3.1/reference/architecture/</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/architecture/components">https://docs.projectcalico.org/v3.1/reference/architecture/components</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/architecture/data-path">https://docs.projectcalico.org/v3.1/reference/architecture/data-path</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric">https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric</a>
 <a href="https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric">https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric</a></p>
               
             </div>
