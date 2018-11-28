@@ -6,21 +6,10 @@
     <description>Recent content in Kubernetes on zhoulouzi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Aug 2018 11:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>calico-flannel-weave</title>
-      <link>https://blog.zhoulouzi.com/post/calico-flannel-weave/</link>
-      <pubDate>Tue, 07 Aug 2018 11:48:15 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/post/calico-flannel-weave/</guid>
-      <description>&lt;p&gt;Comparison between calico、flannel、weave.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>kubernetes-local-volume</title>

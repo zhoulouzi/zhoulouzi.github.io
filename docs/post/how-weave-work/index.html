@@ -271,10 +271,13 @@ if (!doNotTrack) {
 
 <h1 id="容器网络">容器网络</h1>
 
-<p>在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
-1. all containers can communicate with all other containers without NAT
-2. all nodes can communicate with all containers (and vice-versa) without NAT
-3. the IP that a container sees itself as is the same IP that others see it as</p>
+<p>在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：</p>
+
+<ol>
+<li>all containers can communicate with all other containers without NAT</li>
+<li>all nodes can communicate with all containers (and vice-versa) without NAT</li>
+<li>the IP that a container sees itself as is the same IP that others see it as</li>
+</ol>
 
 <p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave net.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
 对比理解.</p>
@@ -301,6 +304,10 @@ Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息
     UDP <sup>6783</sup>&frasl;<sub>6784</sub></p>
 </blockquote>
 
+<h2 id="weave-工作原理">Weave 工作原理</h2>
+
+<p>Weave net 会在每个节点上创建一个bridge(weave)所有的container都会通过veth设备链接到这个网桥上. 然后通过sleeve或者fast datapath来转发由容器发出来的packets</p>
+
 <h2 id="两种模式">两种模式</h2>
 
 <h3 id="fast-datapath">Fast Datapath</h3>
@@ -319,7 +326,18 @@ Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息
 <p>captured by the kernel and processed by the Weave Net router in user space, forwarded over UDP to weave router peers running on other hosts</p>
 </blockquote>
 
-<p><img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191187/weave-net-encap1-1024x459_yg5hjl.png" alt="sleeve" /></p>
+<p>通过pcap来截获发往不同节点的packets，Weave Net Router进程把这些packets封装成UDP包发送给目的节点的Router进程.</p>
+
+<p>sleeve 模式类似flannel的udp模式,不同的是UDP可以一次封装多个发往同一地址的packets
+<img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191187/weave-net-encap1-1024x459_yg5hjl.png" alt="sleeve" /></p>
+
+<p>参考：</p>
+
+<p><a href="https://www.weave.works/docs/net/latest/concepts/fastdp-how-it-works/">https://www.weave.works/docs/net/latest/concepts/fastdp-how-it-works/</a>
+<a href="https://www.weave.works/docs/net/latest/overview/">https://www.weave.works/docs/net/latest/overview/</a>
+<a href="https://www.weave.works/docs/net/latest/overview/features/">https://www.weave.works/docs/net/latest/overview/features/</a>
+<a href="https://www.weave.works/docs/net/latest/concepts/how-it-works/">https://www.weave.works/docs/net/latest/concepts/how-it-works/</a>
+<a href="https://www.weave.works/docs/net/latest/concepts/fastdp-how-it-works/">https://www.weave.works/docs/net/latest/concepts/fastdp-how-it-works/</a></p>
               
             </div>
           </div>
@@ -535,25 +553,6 @@ Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/calico-flannel-weave/">
-                <h3 class="media-heading">calico-flannel-weave</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Comparison between calico、flannel、weave.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
                 <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
@@ -720,6 +719,25 @@ Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+                <h3 class="media-heading">docker pre-install kernel-check</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -727,7 +745,7 @@ Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         12 posts found
+         11 posts found
       </p>
     </div>
   </div>

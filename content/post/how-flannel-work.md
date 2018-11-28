@@ -98,3 +98,8 @@ vxlan模式下,packets的转发不再经过内核态到用户态的传递,而是
 
 参考：
 [flannel vxlan](https://www.sdnlab.com/21143.html)
+https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c
+https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html
+vxlan
+https://www.slideshare.net/enakai/how-vxlan-works-on-linux
+https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf

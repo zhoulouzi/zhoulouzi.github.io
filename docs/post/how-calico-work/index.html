@@ -269,15 +269,25 @@ if (!doNotTrack) {
               <p>了解calico作为kubernetes的cni插件是如何工做的。
 </p>
 
-<p>在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：
-1. all containers can communicate with all other containers without NAT
-2. all nodes can communicate with all containers (and vice-versa) without NAT
-3. the IP that a container sees itself as is the same IP that others see it as</p>
+<p>在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在<a href="https://kubernetes.io/docs/concepts/cluster-administration/networking/">kubernetes networking</a> 明确提出对CNI插件实现的要求：</p>
+
+<ol>
+<li>all containers can communicate with all other containers without NAT</li>
+<li>all nodes can communicate with all containers (and vice-versa) without NAT</li>
+<li>the IP that a container sees itself as is the same IP that others see it as</li>
+</ol>
 
 <p>官网列出了很多实践,除了云平台提供的实现外,比较活跃的项目有calico,flannel,weave.每个project各有优点我们来看一个早期的对比文章<a href="http://chunqi.li/2015/11/15/Battlefield-Calico-Flannel-Weave-and-Docker-Overlay-Network/">calico-flannel-weave</a>.除此之外，还建议看看docker官方CNM的文档<a href="https://success.docker.com/article/networking">docker-CNM</a>
 对比理解.</p>
 
 <h1 id="calico">Calico</h1>
+
+<p>calico提供了多种部署方式，ipip，node-to-node BGP mesh，global/node specific
+需要根据你的依赖网络环境来决定如何部署。
+ipip: calico 会在每个node之间配置一个ip tunnel来转发package
+node-to-node BGP mesh: 每个节点利用bird建立bgp peer关系，节点通过路由表来转发packag(官方推荐是小于50个节点)</p>
+
+<p>要看的几篇文章：</p>
 
 <h2 id="安装">安装</h2>
 
@@ -291,11 +301,13 @@ if (!doNotTrack) {
 <p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
 </blockquote>
 
-<h2 id="backend-实现">backend 实现:</h2>
+<p>参考：
+<a href="https://docs.projectcalico.org/v3.1/reference/architecture/">https://docs.projectcalico.org/v3.1/reference/architecture/</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/architecture/components">https://docs.projectcalico.org/v3.1/reference/architecture/components</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/architecture/data-path">https://docs.projectcalico.org/v3.1/reference/architecture/data-path</a></p>
 
-<h3 id="host-gw">host-gw</h3>
-
-<h3 id="vxlan">vxlan</h3>
+<p><a href="https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric">https://docs.projectcalico.org/v3.1/reference/private-cloud/l2-interconnect-fabric</a>
+<a href="https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric">https://docs.projectcalico.org/v3.1/reference/private-cloud/l3-interconnect-fabric</a></p>
               
             </div>
           </div>
@@ -511,25 +523,6 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/calico-flannel-weave/">
-                <h3 class="media-heading">calico-flannel-weave</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Comparison between calico、flannel、weave.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
                 <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
@@ -696,6 +689,25 @@ if (!doNotTrack) {
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+                <h3 class="media-heading">docker pre-install kernel-check</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -703,7 +715,7 @@ if (!doNotTrack) {
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         12 posts found
+         11 posts found
       </p>
     </div>
   </div>

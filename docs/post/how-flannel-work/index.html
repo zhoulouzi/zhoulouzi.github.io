@@ -374,7 +374,12 @@ flannel提前创建了一个flannel0的TUN设备,这个设备的作用就是在
 <p>vxlan模式下,packets的转发不再经过内核态到用户态的传递,而是直接在内核态由vxlan模块直接处理.flanneld不再直接处理数据包.而是处理vxlan转发需要配置.</p>
 
 <p>参考：
-<a href="https://www.sdnlab.com/21143.html">flannel vxlan</a></p>
+<a href="https://www.sdnlab.com/21143.html">flannel vxlan</a>
+<a href="https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c">https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c</a>
+<a href="https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html">https://docs.openshift.com/container-platform/3.10/architecture/networking/network_plugins.html</a>
+vxlan
+<a href="https://www.slideshare.net/enakai/how-vxlan-works-on-linux">https://www.slideshare.net/enakai/how-vxlan-works-on-linux</a>
+<a href="https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf">https://events.static.linuxfound.org/sites/events/files/slides/2013-linuxcon.pdf</a></p>
               
             </div>
           </div>
@@ -590,25 +595,6 @@ flannel提前创建了一个flannel0的TUN设备,这个设备的作用就是在
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/calico-flannel-weave/">
-                <h3 class="media-heading">calico-flannel-weave</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Comparison between calico、flannel、weave.</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
                 <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
@@ -775,6 +761,25 @@ flannel提前创建了一个flannel0的TUN设备,这个设备的作用就是在
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
+                <h3 class="media-heading">docker pre-install kernel-check</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -782,7 +787,7 @@ flannel提前创建了一个flannel0的TUN设备,这个设备的作用就是在
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         12 posts found
+         11 posts found
       </p>
     </div>
   </div>
