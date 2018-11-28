@@ -1,5 +1,5 @@
 ---
-title: "Raft 初识"
+title: "About Raft"
 date: 2017-11-05T21:48:15+08:00
 tags:
 - raft

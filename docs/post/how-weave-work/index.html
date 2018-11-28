@@ -35,8 +35,6 @@
   
   
     
-      <meta property="article:section" content="docker">
-    
       <meta property="article:section" content="kubernetes">
     
   
@@ -59,8 +57,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
-  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
+  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166327/5a3da579-43d8-45a4-a315-cc84147574f3weave-logo-512_u4yo3b.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166327/5a3da579-43d8-45a4-a315-cc84147574f3weave-logo-512_u4yo3b.png">
 
 
   <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg">
@@ -248,8 +246,6 @@ if (!doNotTrack) {
   
     <span>in</span>
     
-      <a class="category-link" href="https://blog.zhoulouzi.com/categories/docker">docker</a>, 
-    
       <a class="category-link" href="https://blog.zhoulouzi.com/categories/kubernetes">kubernetes</a>
     
   
@@ -289,25 +285,41 @@ if (!doNotTrack) {
 
 <blockquote>
 <p>早期有文章描述说，Weave is described as &ldquo;a giant Ethernet switch to which all the containers are connected&rdquo;</p>
+
+<p><a href="https://www.weave.works/docs/net/latest/overview/">Weave Net官方文档</a>把整个工作原理是讲的比较清楚的,结合我们在自己环境中的实验,可能会有一个很快的理解和提升.</p>
 </blockquote>
+
+<p>Weave Net为容器创造了一个虚拟的二层网络,就好像所有的containers都连接在这个交换机上.那是如何做到呢.Weave Net在每个host上跑一个Weave Net routers,成为整个网络中一个peer节点. 各个peer会建立TCP的链接,
+Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息.</p>
 
 <h2 id="安装">安装</h2>
 
 <blockquote>
-<p>推荐参考kubenretes和Weave Net的文档，不多赘述.</p>
+<p>推荐参考kubenretes和Weave Net的文档，不多赘述.
+确保节点之间以下端口
+    TCP 6783
+    UDP <sup>6783</sup>&frasl;<sub>6784</sub></p>
 </blockquote>
 
-<h2 id="weave-net的工作原理">Weave Net的工作原理:</h2>
+<h2 id="两种模式">两种模式</h2>
+
+<h3 id="fast-datapath">Fast Datapath</h3>
 
 <blockquote>
-<p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
+<p>operates entirely in kernel space.</p>
 </blockquote>
 
-<h2 id="backend-实现">backend 实现:</h2>
+<p>Fast Datapath mode 需要linux kernel 3.12 及以后的版本(open vSwitch datapath (ODP) and VXLAN features),如果不支持的话，weave会fall back到sleeve mode.</p>
 
-<h3 id="host-gw">host-gw</h3>
+<p><img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191222/weave-net-fdp1-1024x454_wu3bpw.png" alt="fastdp" /></p>
 
-<h3 id="vxlan">vxlan</h3>
+<h3 id="sleeve">sleeve</h3>
+
+<blockquote>
+<p>captured by the kernel and processed by the Weave Net router in user space, forwarded over UDP to weave router peers running on other hosts</p>
+</blockquote>
+
+<p><img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191187/weave-net-encap1-1024x459_yg5hjl.png" alt="sleeve" /></p>
               
             </div>
           </div>
@@ -636,7 +648,7 @@ if (!doNotTrack) {
             
             <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/raft-%E5%88%9D%E8%AF%86/">
-                <h3 class="media-heading">Raft 初识</h3>
+                <h3 class="media-heading">About Raft</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
@@ -644,25 +656,6 @@ if (!doNotTrack) {
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather"><p>利用一个动画,一片文章,一个PPT来了解Raft的基本原理。</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/letcode/">
-                <h3 class="media-heading">leetcode python cases</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Sep 9, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>总结一些可能用的上的leetcode python 题目。</p>
 
 <p></p></div>
             </div>
@@ -703,6 +696,25 @@ if (!doNotTrack) {
               <div class="media-content hide-xs font-merryweather"><p>How to install a kubernetes cluster from Scratch(offline).
 (由于时间久远,此文仅做参考使用)
 </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/minikube-offline-installed/">
+                <h3 class="media-heading">minikube install offline</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Install minikube offline.</p>
+
+<p></p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>

@@ -38,11 +38,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/post/letcode/</loc>
-    <lastmod>2017-09-05T21:48:15+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/</loc>
     <lastmod>2017-06-07T21:48:15+08:00</lastmod>
   </url>
@@ -60,6 +55,11 @@
   <url>
     <loc>https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/</loc>
     <lastmod>2017-03-07T11:48:15+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhoulouzi.com/post/letcode/</loc>
+    <lastmod>2017-03-05T21:48:15+08:00</lastmod>
   </url>
   
   <url>
@@ -86,12 +86,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
-    <lastmod>2018-02-14T19:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.zhoulouzi.com/archives/docker/</loc>
     <lastmod>2017-03-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
@@ -104,8 +98,8 @@
   </url>
   
   <url>
-    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
-    <lastmod>2018-08-07T11:48:15+08:00</lastmod>
+    <loc>https://blog.zhoulouzi.com/categories/docker/</loc>
+    <lastmod>2017-03-07T11:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -122,14 +116,20 @@
   </url>
   
   <url>
+    <loc>https://blog.zhoulouzi.com/categories/kubernetes/</loc>
+    <lastmod>2018-08-07T11:48:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.zhoulouzi.com/archives/leetcode/</loc>
-    <lastmod>2017-09-05T21:48:15+08:00</lastmod>
+    <lastmod>2017-03-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.zhoulouzi.com/tags/leetcode/</loc>
-    <lastmod>2017-09-05T21:48:15+08:00</lastmod>
+    <lastmod>2017-03-05T21:48:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   

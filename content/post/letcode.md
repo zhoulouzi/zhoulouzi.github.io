@@ -1,6 +1,6 @@
 ---
 title: "leetcode python cases"
-date: 2017-09-05T21:48:15+08:00
+date: 2017-03-05T21:48:15+08:00
 tags:
 - leetcode
 archives:
@@ -16,7 +16,7 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165466/10
 <!--more-->
 
 ### 
-> 好久没有更新自己的博客了,最近自己也抽空去leetcode刷题,补一补薄弱的环节.
+> 抽空看看leetcode的题.
 
 
 1. Given an array of integers, every element appears twice except for one. Find that single one. Note: Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?

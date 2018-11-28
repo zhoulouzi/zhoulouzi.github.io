@@ -6,20 +6,10 @@
     <description>Recent content in Docker on zhoulouzi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Feb 2018 19:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 07 Mar 2017 11:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>How does weave net work with kubernetes</title>
-      <link>https://blog.zhoulouzi.com/post/how-weave-work/</link>
-      <pubDate>Wed, 14 Feb 2018 19:00:00 +0800</pubDate>
-      
-      <guid>https://blog.zhoulouzi.com/post/how-weave-work/</guid>
-      <description>&lt;p&gt;了解weave net作为kubernetes的cni插件是如何工作的。
-&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>docker pre-install kernel-check</title>

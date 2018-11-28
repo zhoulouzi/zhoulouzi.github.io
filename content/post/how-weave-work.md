@@ -6,10 +6,9 @@ tags:
 archives:
 - kubernetes
 categories:
-- docker
 - kubernetes
 coverImage: "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
-thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png
+thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166327/5a3da579-43d8-45a4-a315-cc84147574f3weave-logo-512_u4yo3b.png
 ---
 了解weave net作为kubernetes的cni插件是如何工作的。
 <!--more-->
@@ -28,14 +27,28 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/fa
 ## Weave Net 是什么
 > 早期有文章描述说，Weave is described as "a giant Ethernet switch to which all the containers are connected"
 
+> [Weave Net官方文档](https://www.weave.works/docs/net/latest/overview/)把整个工作原理是讲的比较清楚的,结合我们在自己环境中的实验,可能会有一个很快的理解和提升.
+
+Weave Net为容器创造了一个虚拟的二层网络,就好像所有的containers都连接在这个交换机上.那是如何做到呢.Weave Net在每个host上跑一个Weave Net routers,成为整个网络中一个peer节点. 各个peer会建立TCP的链接,
+Weave Net 利用Gossip协议协议在peer节点之间share网络拓扑的信息.
+
+
 ## 安装
 >   推荐参考kubenretes和Weave Net的文档，不多赘述.
+确保节点之间以下端口
+    TCP 6783 
+    UDP 6783/6784
 
-## Weave Net的工作原理:
->   flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+## 两种模式
+### Fast Datapath  
+> operates entirely in kernel space.
 
-## backend 实现:
+Fast Datapath mode 需要linux kernel 3.12 及以后的版本(open vSwitch datapath (ODP) and VXLAN features),如果不支持的话，weave会fall back到sleeve mode.
 
-### host-gw
+![fastdp](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191222/weave-net-fdp1-1024x454_wu3bpw.png)
+ 
+### sleeve  
+> captured by the kernel and processed by the Weave Net router in user space, forwarded over UDP to weave router peers running on other hosts
 
-### vxlan
+![sleeve](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542191187/weave-net-encap1-1024x459_yg5hjl.png)
+

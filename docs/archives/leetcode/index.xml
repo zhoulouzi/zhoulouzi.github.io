@@ -6,7 +6,7 @@
     <description>Recent content in Leetcode on zhoulouzi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Sep 2017 21:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Mar 2017 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/archives/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>leetcode python cases</title>
       <link>https://blog.zhoulouzi.com/post/letcode/</link>
-      <pubDate>Tue, 05 Sep 2017 21:48:15 +0800</pubDate>
+      <pubDate>Sun, 05 Mar 2017 21:48:15 +0800</pubDate>
       
       <guid>https://blog.zhoulouzi.com/post/letcode/</guid>
       <description>&lt;p&gt;总结一些可能用的上的leetcode python 题目。&lt;/p&gt;
