@@ -15,6 +15,7 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166535/im
 <!--more-->
 
 在解决容器网络的问题上,docker和kubernetes分别提出了CNM和CNI两个标准.但是kubernetes逐渐成为容器集群方案首选的时候,作为使用者,我们不得不去调研和测试开源的cni-plugin来解决我们容器环境的网络问题.cluster network addons来解决集群里网络互联互通的问题.kubernetes在[kubernetes networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/) 明确提出对CNI插件实现的要求：
+
 1. all containers can communicate with all other containers without NAT
 2. all nodes can communicate with all containers (and vice-versa) without NAT
 3. the IP that a container sees itself as is the same IP that others see it as
@@ -32,17 +33,20 @@ flannel是coreos开源的kubernetes容器网络解方案.也是很多人第一�
 ## flannel的工作原理:
 >   flannel is a virtual network that gives a subnet to each host for use with container runtimes.
 flannel在每个节点上跑一个flanneld的进程来负责从整个集群的网段中分配一个子网段作为本机的容器brigde的子网段,所有的配置信息会存贮在backing store里.目前支持两种backing store来存储配置信息.
+
 1. etcd
 2. kubernetes API(kube subnet manager)
 
 在A节点上的容器X发送给在B节点上容器Y的Pakets的转发过程是由flannel支持的backends来实现的,实现方式各不相同,了解他们的原理有助于技术选型和故障处理.
 
 Recommended backends
+
 1. VXLAN      vxlan是官方推荐的模式,注意需要kernel支持.
 2. host-gw    openshift选择的模式.
 3. UDP        debugging only or for very old kernels that don't support VXLAN.
 
 Experimental backends
+
 1. AWS VPC
 2. Alloc
 3. AliVPC
@@ -57,7 +61,7 @@ Experimental backends
 
 host-gw模式下flanneld watch backing store里关于子网和主机的信息,实时的更新到本机路由表上.
 
-![host-gw](https://photos.app.goo.gl/8SYTGDj6C46UY6GZA)
+![host-gw](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543398046/flannel-host-gw_1_xydcdn.png)
 
 通过上图我们可以很直观的看到，host1上的pod1发送到host2上的pod2的packets没有经过任何封装(比如vxlan)，host-gw的实现方式和calico一样是一个layer3的实现，由于没有封装和解封,所以性能损耗是所有实现方式里最小的.
 
@@ -71,12 +75,14 @@ host-gw模式下flanneld watch backing store里关于子网和主机的信息,�
 UDP模式下
 flannel提前创建了一个flannel0的TUN设备,这个设备的作用就是在内核态和用户态直接传递IP packets.
 
-![udp](https://photos.app.goo.gl/DVVqiSUhQSFrs96o7)
+![udp](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543398058/flannel-udp_auedi7.png)
 
 容器A发出的packets经过docker0和宿主机的路由给flannel0发送到flanneld进程,进程通过过滤子网和节点信息来将Packets封装成一个UDP包(源地址是本机ip,目的地址是目标ip)发送给目的节点的flanneld进程解封,发送给本地TUN设备,然后路由到本地docker0网桥,最终发送给正确的容器.
 
 这种模式增加了packets在user space和kernel space 来回copy的消耗,所以性能很差,目前官方只推荐在debug的时候来使用.
-![TUN设备的作用](https://photos.app.goo.gl/FndVYFRxses2MaaD9)
+
+TUN设备的作用:
+![TUN设备的作用](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543398057/flannel-udp-tun-png_cyzq0c.png)
 参考:
 [flannel-backend](https://github.com/coreos/flannel/blob/master/Documentation/backends.md)
 [kubernetes-flannel-networking](https://blog.laputa.io/kubernetes-flannel-networking-6a1cb1f8ec7c)
