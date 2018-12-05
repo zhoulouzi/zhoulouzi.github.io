@@ -24,7 +24,9 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542166411/uu
 对比理解.
 
 # Calico
-Calico为容器网络提供了一个layer3的实现方式,packets在容器之间不需要封装和NAT.
+> Calico creates and manages a flat layer 3 network, assigning each workload a fully routable IP address.
+
+Calico为容器网络提供了一个layer3的实现方式,packets在endpoints之间不需要封装和NAT.
 
 calico arch:
 ![calico arch](https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543404693/calico-arch-gen-v3.2_t04nry.svg)
@@ -32,18 +34,32 @@ calico arch:
 
 要看的几篇文章：
 ## 安装
->   推荐参考kubernetes和calico的文档，不多赘述.
+> 推荐参考kubernetes和calico的文档，不多赘述.
 
 [install calico on kubernetes](https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/calico)
 
 ## calico的工作原理:
->   flannel is a virtual network that gives a subnet to each host for use with container runtimes.
+>  In the Calico approach, IP packets to or from a workload are routed and firewalled by the Linux routing table and iptables infrastructure on the workload’s host. 
 
-### node-to-node mesh
+calico通过控制endpoints宿主机上的路由表和iptables来控制endpoints之间相互发送的packets
+
+详见:[The Calico Data Path](https://docs.projectcalico.org/v3.3/reference/architecture/data-path)
+
+### Node-to-Node mesh
+这个模式下, 跑在每个节点上BIRD互为BGP peer,共享容器的路由信息。
+
+需要节点之间二层可达.
 
 ### IPIP
+IPIP模式实现场景是你没办法完全控制节点之间的network,比如在节点之间非layer2直连的情况下,packets在转发之后无法被正确路由到目的节点.
+IPIP是一种把一个IP packets封装在另一个IP packets的 IP tunnel协议
+最终包在外边一层header的是宿主机和目的宿主机的IP addrs.
+
+参考:[config ipip](https://docs.projectcalico.org/v3.3/usage/configuration/ip-in-ip)
 
 ### BGP Route Reflector
+
+Node-to-Node mesh 在大规模部会遇到性能问题
 
 参考：
 
