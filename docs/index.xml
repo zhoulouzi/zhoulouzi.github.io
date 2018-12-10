@@ -6,10 +6,20 @@
     <description>Recent content on zhoulouzi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Mar 2018 21:48:15 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Dec 2018 21:48:15 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.zhoulouzi.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Configure the Kubernetes Aggregation Layer</title>
+      <link>https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/</link>
+      <pubDate>Fri, 07 Dec 2018 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/</guid>
+      <description>&lt;p&gt;How to Configure the Kubernetes Aggregation Layer
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>kubernetes-local-volume</title>

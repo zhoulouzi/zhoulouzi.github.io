@@ -8,19 +8,41 @@
 <meta name="generator" content="Hugo 0.47 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="zhoulouzi">
 <meta name="keywords" content=", devops, docker, kubernetes, mongodb, python, go, zhoulouzi, zhouzichen">
-<meta name="description" content="blogs">
+<meta name="description" content="How to Configure the Kubernetes Aggregation Layer
+">
 
 
-<meta property="og:description" content="blogs">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zihuan">
-<meta name="twitter:title" content="Zihuan">
-<meta property="og:url" content="https://blog.zhoulouzi.com/archives/zihuan/">
-<meta property="twitter:url" content="https://blog.zhoulouzi.com/archives/zihuan/">
+<meta property="og:description" content="How to Configure the Kubernetes Aggregation Layer
+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Configure the Kubernetes Aggregation Layer">
+<meta name="twitter:title" content="Configure the Kubernetes Aggregation Layer">
+<meta property="og:url" content="https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
+<meta property="twitter:url" content="https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
 <meta property="og:site_name" content="zhoulouzi&#39;s Blog">
-<meta property="og:description" content="blogs">
-<meta name="twitter:description" content="blogs">
+<meta property="og:description" content="How to Configure the Kubernetes Aggregation Layer
+">
+<meta name="twitter:description" content="How to Configure the Kubernetes Aggregation Layer
+">
 <meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-12-07T21:48:15">
+  
+  
+    <meta property="article:modified_time" content="2018-12-07T21:48:15">
+  
+  
+  
+    
+      <meta property="article:section" content="kubernetes">
+    
+  
+  
+    
+      <meta property="article:tag" content="kubernetes">
+    
+  
 
 
 <meta name="twitter:card" content="summary">
@@ -35,6 +57,12 @@
 
 
 
+  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
+  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/favicon_z3wusk.png">
+
+
+  <meta property="og:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg">
+  <meta property="twitter:image" content="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg">
 
 
 
@@ -43,16 +71,14 @@
   <meta property="twitter:image" content="https://www.gravatar.com/avatar/f56039ed04a4e2f1901c1b07449f6e5a?s=640">
 
 
-    <title>Zihuan</title>
+    <title>Configure the Kubernetes Aggregation Layer</title>
 
     <link rel="icon" href="https://blog.zhoulouzi.com/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://blog.zhoulouzi.com/archives/zihuan/index.xml">
-    
 
     
 
-    <link rel="canonical" href="https://blog.zhoulouzi.com/archives/zihuan/">
+    <link rel="canonical" href="https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -85,7 +111,7 @@ if (!doNotTrack) {
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="2">
+      <header id="header" data-behavior="5">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="https://blog.zhoulouzi.com/">zhoulouzi&#39;s Blog</a>
@@ -105,7 +131,7 @@ if (!doNotTrack) {
   
 </header>
 
-      <nav id="sidebar" data-behavior="2">
+      <nav id="sidebar" data-behavior="5">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -194,37 +220,24 @@ if (!doNotTrack) {
 </nav>
 
       
-
-      <div id="main" data-behavior="2"
-        class="
-               hasCoverMetaIn
-               ">
-        <section class="postShorten-group main-content-wrap">
-          
-          
-            
-  
+  <div class="post-header-cover
+              text-left
+              "
+       style="background-image:url('https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg')"
+       data-behavior="5">
     
+      <div class="post-header main-content-wrap text-left">
   
-
-
+    <h1 class="post-title" itemprop="headline">
+      Configure the Kubernetes Aggregation Layer
+    </h1>
   
-
-<article class="postShorten postShorten--thumbnailimg-right" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/">
-          资环十年
-        </a>
-      </h1>
-      
+  
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2017-06-07T21:48:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-12-07T21:48:15&#43;08:00">
         
-  June 7, 2017
+  December 7, 2018
 
       </time>
     
@@ -233,38 +246,239 @@ if (!doNotTrack) {
   
     <span>in</span>
     
-      <a class="category-link" href="https://blog.zhoulouzi.com/categories/life">life</a>
+      <a class="category-link" href="https://blog.zhoulouzi.com/categories/kubernetes">kubernetes</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      
-        <p>一个团队战斗力爆表的足球队.</p>
-
-<p></p>
-      
-      <p>
-        <a href="https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/" class="postShorten-excerpt_link link">Continue reading</a>
-        
-      </p>
-    </div>
+</div>
+    
   </div>
-  
-    <a href="https://blog.zhoulouzi.com/post/%E8%B5%84%E7%8E%AF-%E5%8D%81%E5%B9%B4/">
-      <div class="postShorten-thumbnailimg">
-        <img alt="" itemprop="image" src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355321/Real_gaggav.png"/>
-      </div>
-    </a>
-  
-</article>
 
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>How to Configure the Kubernetes Aggregation Layer
+</p>
 
-        </section>
+<h3 id="what">What</h3>
+
+<p>Aggregation layer 和 CustomResourceDefinition 都是 Kubernetes为扩展API的方式，两者的对比:<a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#comparing-ease-of-use">Comparing Aggregation and CRD</a></p>
+
+<p>###
+kubernetes最新的一个系统监控组件metrics-server(用来代替heapster)在部署的过程中需要api-server提前配置好 Aggregation Layer，但是配置相关的官方文档很简短,并没有详细的步骤,现在这里介绍下怎么配置,证书生成和其他一些细节.</p>
+
+<h3 id="configure-the-kubernetes-aggregation-layer">Configure the Kubernetes Aggregation Layer</h3>
+
+<p>在kubernetes核心代码里有一个组件 kube-aggregator,实现了以下3个功能：
+- Provide an API for registering API servers.
+- Summarize discovery information from all the servers.
+- Proxy client requests to individual servers.</p>
+
+<p>最后可能的request path如下</p>
+
+<pre><code>    client ----&gt; proxy(kube-aggregator) ----&gt; kube-apiserver
+                                        ----&gt; (ex. metrics-server)
+</code></pre>
+
+<h4 id="生成生证书">生成生证书</h4>
+
+<p>proxy-client certs就是提供与后端apiserver双向TLS验证过程中的凭证,其中证书的CN属性 需要和apiserver的&ndash;requestheader-allowed-names值一致.</p>
+
+<p>Install cfssl.</p>
+
+<pre><code>[cfssl](https://github.com/cloudflare/cfssl)
+</code></pre>
+
+<h5 id="生成-kubernetes-front-proxy-ca-证书">生成 Kubernetes-front-proxy CA 证书</h5>
+
+<p>kubernetes-front-proxy-ca-csr.json:</p>
+
+<pre><code>{
+    &quot;CN&quot;: &quot;Kubernetes-front-proxy CA&quot;,
+    &quot;key&quot;: {
+        &quot;algo&quot;: &quot;rsa&quot;,
+        &quot;size&quot;: 2048
+    },
+    &quot;names&quot;: [
+        {
+            &quot;C&quot;: &quot;CN&quot;,
+            &quot;L&quot;: &quot;BJ&quot;,
+            &quot;ST&quot;: &quot;BJ&quot;,
+            &quot;O&quot;: &quot;Kubernetes-front-proxy CA&quot;,
+            &quot;OU&quot;: &quot;Kubernetes-front-proxy CA&quot;
+        }
+    ]
+}
+</code></pre>
+
+<p>使用下面的证书生成CA的证书</p>
+
+<pre><code>$ cfssl gencert -initca ./kubernetes-front-proxy-CA-csr.json | cfssljson -bare kubernetes-front-proxy-ca
+</code></pre>
+
+<h5 id="生成-front-proxy-client-证书">生成 front-proxy-client 证书</h5>
+
+<p>ca-config.json:</p>
+
+<pre><code>{
+    &quot;signing&quot;: {
+        &quot;default&quot;: {
+            &quot;expiry&quot;: &quot;876000h&quot;
+        },
+        &quot;profiles&quot;: {
+            &quot;kubernetes-front-proxy&quot;: {
+                &quot;expiry&quot;: &quot;876000h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;key encipherment&quot;,
+		            &quot;client auth&quot;
+                ]
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>kubernetes-front-proxy.csr:</p>
+
+<pre><code>{
+  &quot;CN&quot;: &quot;front-proxy-client&quot;,
+  &quot;key&quot;: {
+    &quot;algo&quot;: &quot;rsa&quot;,
+    &quot;size&quot;: 2048
+  },
+  &quot;names&quot;: [
+        {
+            &quot;C&quot;: &quot;CN&quot;,
+            &quot;L&quot;: &quot;BJ&quot;,
+            &quot;ST&quot;: &quot;BJ&quot;,
+            &quot;O&quot;: &quot;front-proxy-client&quot;,
+            &quot;OU&quot;: &quot;front-proxy-client&quot;
+        }
+    ]
+}
+</code></pre>
+
+<p>使用以下命令生成 front-proxy-client 证书：</p>
+
+<pre><code>$ cfssl gencert -ca=kubernetes-front-proxy-ca.pem -ca-key=kubernetes-front-proxy-ca-key.pem  --config=ca-config.json -profile=kubernetes-front-proxy ./kubernetes-front-proxy.csr | cfssljson -bare kubernetes-front-proxy
+</code></pre>
+
+<h4 id="kube-apiserver-添加启动参数">kube-apiserver 添加启动参数</h4>
+
+<pre><code> --requestheader-client-ca-file=&lt;path to aggregator CA cert&gt;
+ --requestheader-allowed-names=front-proxy-client
+ --requestheader-extra-headers-prefix=X-Remote-Extra-
+ --requestheader-group-headers=X-Remote-Group
+ --requestheader-username-headers=X-Remote-User
+ --proxy-client-cert-file=&lt;path to aggregator proxy cert&gt;
+ --proxy-client-key-file=&lt;path to aggregator proxy key&gt;
+</code></pre>
+
+<p>Tips:如果你的api-server节点上没有kube-proxy,额外添加参数</p>
+
+<pre><code>--enable-aggregator-routing=true
+</code></pre>
+
+<h3 id="参考">参考</h3>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/access-kubernetes-api/configure-aggregation-layer/">configure-aggregation-layer</a></li>
+<li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/api-machinery/aggregated-api-servers.md">aggregated-api-servers</a></li>
+<li><a href="https://docs.google.com/document/d/1y16jKL2hMjQO0trYBJJSczPAWj8vAgNFrdTZeCincmI/edit#">Two Ways to Extend the K8s API</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://blog.zhoulouzi.com/tags/kubernetes/">kubernetes</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-volume">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 zhoulouzi. All Rights Reserved
@@ -272,6 +486,78 @@ if (!doNotTrack) {
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/" data-tooltip="kubernetes-local-volume">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fblog.zhoulouzi.com%2Fpost%2Fkubernetes-api-aggregation%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -552,6 +838,32 @@ function updateMinWidth() {
 }
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/blog.zhoulouzi.com\/post\/kubernetes-api-aggregation\/';
+          
+            this.page.identifier = '\/post\/kubernetes-api-aggregation\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'blog-zhoulouzi-com';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 

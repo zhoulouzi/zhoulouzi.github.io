@@ -282,7 +282,11 @@ if (!doNotTrack) {
 
 <h1 id="calico">Calico</h1>
 
-<p>Calico为容器网络提供了一个layer3的实现方式,packets在容器之间不需要封装和NAT.</p>
+<blockquote>
+<p>Calico creates and manages a flat layer 3 network, assigning each workload a fully routable IP address.</p>
+</blockquote>
+
+<p>Calico为容器网络提供了一个layer3的实现方式,packets在endpoints之间不需要封装和NAT.</p>
 
 <p>calico arch:
 <img src="https://res.cloudinary.com/ddvxfzzbe/image/upload/v1543404693/calico-arch-gen-v3.2_t04nry.svg" alt="calico arch" /></p>
@@ -300,14 +304,30 @@ if (!doNotTrack) {
 <h2 id="calico的工作原理">calico的工作原理:</h2>
 
 <blockquote>
-<p>flannel is a virtual network that gives a subnet to each host for use with container runtimes.</p>
+<p>In the Calico approach, IP packets to or from a workload are routed and firewalled by the Linux routing table and iptables infrastructure on the workload’s host.</p>
 </blockquote>
 
-<h3 id="node-to-node-mesh">node-to-node mesh</h3>
+<p>calico通过控制endpoints宿主机上的路由表和iptables来控制endpoints之间相互发送的packets</p>
+
+<p>详见:<a href="https://docs.projectcalico.org/v3.3/reference/architecture/data-path">The Calico Data Path</a></p>
+
+<h3 id="node-to-node-mesh">Node-to-Node mesh</h3>
+
+<p>这个模式下, 跑在每个节点上BIRD互为BGP peer,共享容器的路由信息。</p>
+
+<p>需要节点之间二层可达.</p>
 
 <h3 id="ipip">IPIP</h3>
 
+<p>IPIP模式实现场景是你没办法完全控制节点之间的network,比如在节点之间非layer2直连的情况下,packets在转发之后无法被正确路由到目的节点.
+IPIP是一种把一个IP packets封装在另一个IP packets的 IP tunnel协议
+最终包在外边一层header的是宿主机和目的宿主机的IP addrs.</p>
+
+<p>参考:<a href="https://docs.projectcalico.org/v3.3/usage/configuration/ip-in-ip">config ipip</a></p>
+
 <h3 id="bgp-route-reflector">BGP Route Reflector</h3>
+
+<p>Node-to-Node mesh 在大规模部会遇到性能问题</p>
 
 <p>参考：</p>
 
@@ -531,6 +551,24 @@ if (!doNotTrack) {
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-api-aggregation/">
+                <h3 class="media-heading">Configure the Kubernetes Aggregation Layer</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>How to Configure the Kubernetes Aggregation Layer
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/">
                 <h3 class="media-heading">kubernetes-local-volume</h3>
               </a>
@@ -697,25 +735,6 @@ if (!doNotTrack) {
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://blog.zhoulouzi.com/post/docker-preinstall-kernel-check/">
-                <h3 class="media-heading">docker pre-install kernel-check</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Mar 3, 2017
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>pre-check before install docker</p>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -723,7 +742,7 @@ if (!doNotTrack) {
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         11 posts found
+         12 posts found
       </p>
     </div>
   </div>
