@@ -279,13 +279,16 @@ It will ensure certificates are valid and up to date periodically, and attempt t
 <p>我们将做一个自动为kubernetes-dashoboard申请letsencrypt证书并且暴露在ingress入口上的例子.</p>
 
 <blockquote>
-<p>Requirement:
-- cloudflare account api-key for ACME dns01 check
-- cert-manager installed
-- ingress-nginx installed
-- kubernetes-dashboard installed
--  安装可以参考 <a href="https://github.com/zhoulouzi/easy-kubernetes-HA-cluster/tree/master/addon_config">addon configs</a></p>
+<p>Requirement:</p>
 </blockquote>
+
+<ul>
+<li>cloudflare account api-key for ACME dns01 check</li>
+<li>cert-manager installed</li>
+<li>ingress-nginx installed</li>
+<li>kubernetes-dashboard installed</li>
+<li>安装可以参考 <a href="https://github.com/zhoulouzi/easy-kubernetes-HA-cluster/tree/master/addon_config">addon configs</a></li>
+</ul>
 
 <ol>
 <li><p>把 cloudflare-api-key 做成 kubernetes secret</p>
@@ -330,38 +333,32 @@ dns01:
           key: api
 </code></pre></li>
 
-<li><p>定义 kubernetes dashboard的 ingress
-```
-apiVersion: extensions/v1beta1
+<li><p>定义 kubernetes dashboard的 ingress</p></li>
+</ol>
+
+<pre><code>apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-name: kubernetes-dashboard
-namespace: kube-system
-annotations:
-kubernetes.io/ingress.class: nginx
-nginx.ingress.kubernetes.io/backend-protocol: &ldquo;HTTPS&rdquo;
-certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-certmanager.k8s.io/acme-challenge-type: dns01
+  name: kubernetes-dashboard
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: &quot;HTTPS&quot;
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/acme-challenge-type: dns01
 spec:
-tls:</p>
-
-<ul>
-<li>hosts:</li>
-<li>kubernetes-dashboard.example.com
-secretName: kubernetes-dashboard
-rules:</li>
-<li>host: kubernetes-dashboard.example.com
-http:
-paths:
-
-<ul>
-<li>backend:
-serviceName: kubernetes-dashboard
-servicePort: 443
-```</li>
-</ul></li>
-</ul></li>
-</ol>
+  tls:
+  - hosts:
+    - kubernetes-dashboard.example.com
+    secretName: kubernetes-dashboard
+  rules:
+  - host: kubernetes-dashboard.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 443
+</code></pre>
 
 <p>最后一步提交给kube-apiserver之后等待 DNS01 check通过.
 访问<a href="https://kubernetes-dashboard.example.com">https://kubernetes-dashboard.example.com</a> 验证证书.</p>

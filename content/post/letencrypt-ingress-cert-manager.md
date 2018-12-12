@@ -13,13 +13,16 @@ thumbnailImage: https://res.cloudinary.com/ddvxfzzbe/image/upload/v1542165911/fa
 Use cert-manager to automate ingress's tls with letsencrypt.
 <!--more-->
 ### What
+
 cert-manager is a Kubernetes add-on to automate the management and issuance of TLS certificates from various issuing sources.
 It will ensure certificates are valid and up to date periodically, and attempt to renew certificates at an appropriate time before expiry.
 
 ### Steps
+
 我们将做一个自动为kubernetes-dashoboard申请letsencrypt证书并且暴露在ingress入口上的例子.
 
 > Requirement:
+
 - cloudflare account api-key for ACME dns01 check
 - cert-manager installed
 - ingress-nginx installed
@@ -70,6 +73,7 @@ spec:
 ```
 
 3. 定义 kubernetes dashboard的 ingress
+
 ```
 apiVersion: extensions/v1beta1
 kind: Ingress
