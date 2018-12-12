@@ -22,6 +22,16 @@
     </item>
     
     <item>
+      <title>Use cert-manager to automate ingress&#39;s tls with letsencrypt.</title>
+      <link>https://blog.zhoulouzi.com/post/letencrypt-ingress-cert-manager/</link>
+      <pubDate>Sat, 07 Apr 2018 21:48:15 +0800</pubDate>
+      
+      <guid>https://blog.zhoulouzi.com/post/letencrypt-ingress-cert-manager/</guid>
+      <description>&lt;p&gt;Use cert-manager to automate ingress&amp;rsquo;s tls with letsencrypt.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>kubernetes-local-volume</title>
       <link>https://blog.zhoulouzi.com/post/kubernetes-local-perisistent-storage/</link>
       <pubDate>Wed, 07 Mar 2018 21:48:15 +0800</pubDate>
