@@ -1,9 +1,9 @@
 baseURL = "https://zhoulouzi.github.io/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
-title = "zhoulouzi's Blog"
+title = "周子琛's Blog"
 theme = "hugo-tranquilpeak-theme"
-disqusShortname = "blog-zhoulouzi"
+disqusShortname = "World peace!"
 googleAnalytics = "UA-110602463-1"
 paginate = 7
 canonifyurls = true
@@ -15,9 +15,9 @@ publishDir = "public"
   archive = "archives"
 
 [author]
-  name = "zhoulouzi"
-  bio = "KEEP FOCUS AND CARRY ON"
-  job = "Devops"
+  name = "周子琛"
+  bio = "KEEP FOCUS"
+  job = "SRE"
   location = "China Beijing"
   gravatarEmail = "zhoulouzi@hotmail.com"
   twitter = "zhoulouzi"
@@ -70,7 +70,7 @@ publishDir = "public"
 
   description = "blogs"
   sidebarBehavior = 2
-  coverImage = "https://res.cloudinary.com/ddvxfzzbe/image/upload/v1513355392/ChMkJ1f8ljWIBAmcAA-gWT6p-0oAAWzegGSHVwAD6Bx012_telyks.jpg"
+  coverImage = "https://res.cloudinary.com/ddvxfzzbe/raw/upload/v1543398000/8SYTGDj6C46UY6GZA_ggrk33.jpeg"
 
   imageGallery = true
   thumbnailImage = true
