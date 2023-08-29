@@ -1,9 +1,9 @@
-baseURL = "https://blog.zhoulouzi.com/"
+baseURL = "https://zhoulouzi.github.io/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "zhoulouzi's Blog"
 theme = "hugo-tranquilpeak-theme"
-disqusShortname = "blog-zhoulouzi-com"
+disqusShortname = "blog-zhoulouzi"
 googleAnalytics = "UA-110602463-1"
 paginate = 7
 canonifyurls = true
