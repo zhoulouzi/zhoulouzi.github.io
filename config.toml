@@ -7,7 +7,7 @@ disqusShortname = "blog-zhoulouzi"
 googleAnalytics = "UA-110602463-1"
 paginate = 7
 canonifyurls = true
-publishDir = "docs"
+publishDir = "public"
 
 [taxonomies]
   tag = "tags"
